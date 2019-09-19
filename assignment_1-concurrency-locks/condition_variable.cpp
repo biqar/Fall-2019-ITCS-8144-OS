@@ -12,6 +12,7 @@ const int inf = (1<<28);
 const int MAX = 1005;
 const int MAX_THREAD = 10;
 const int THREAD_SLEEP_TIME_MS = 100 * 1000;
+const int REACH_POINT = 100;
 //const int THREAD_LOOP = 1000;
 //const int THREAD_LOOP = 100000;
 //const int iterators[] = { 1, 10, 100 };
@@ -29,38 +30,31 @@ struct thread_data {
 
 void *thread_safe_increment(void *arg) {
     while(true) {
-        struct thread_data *this_thread_data = (struct thread_data *) arg;
-        printf("Job#%d has started\n", this_thread_data->tid);
-
         pthread_mutex_lock(&mutex);
+        struct thread_data *this_thread_data = (struct thread_data *) arg;
         printf("Job#%d acquired lock with shared_resource value: %lu\n", this_thread_data->tid, shared_resource);
-        shared_resource += 1;
-        if(shared_resource % 10 == 0) {
-            printf("signalling to the observer ...\n");
+        if(shared_resource == REACH_POINT) {
             pthread_cond_signal(&cond);
+            printf("Job#%d releasing lock with shared_resource value: %lu\n", this_thread_data->tid, shared_resource);
+            pthread_mutex_unlock(&mutex);
+            break;
         }
-        //usleep(THREAD_SLEEP_TIME_MS);
-        sleep(1000000);
+        shared_resource += 1;
         printf("Job#%d releasing lock with shared_resource value: %lu\n", this_thread_data->tid, shared_resource);
         pthread_mutex_unlock(&mutex);
-
-        printf("Job#%d has finished\n", this_thread_data->tid);
+        usleep(THREAD_SLEEP_TIME_MS);
     }
 }
 
 void *observer(void *arg) {
-    printf("observer is called ...\n");
-    while(true) {
-        pthread_mutex_lock(&mutex);
-        if(shared_resource % 10 == 0) {
-            printf("Yeah .... Got it!\n");
-            pthread_cancel(threads[1]);
-            break;
-        } else {
-            pthread_cond_wait(&cond, &mutex);
-        }
-        pthread_mutex_unlock(&mutex);
+    printf("observer thread is started!\n");
+    pthread_mutex_lock(&mutex);
+    while(shared_resource != REACH_POINT) {
+        pthread_cond_wait(&cond, &mutex);
     }
+    printf("Yeah .... Reached to %d!\n", REACH_POINT);
+    //pthread_cancel(threads[1]);
+    pthread_mutex_unlock(&mutex);
 }
 
 //todo: not working properly, need to check sleep part and observer awaking part
@@ -88,6 +82,11 @@ int main(int argc, char** argv) {
     pthread_mutex_init(&mutex, 0);
     shared_resource = 1;
 
+    //observer thread with id #0
+    struct thread_data *trd_data = (struct thread_data *)malloc(sizeof(struct thread_data));
+    trd_data->tid = 0;
+    pthread_create(&threads[i], NULL, observer, (void *)trd_data);
+
     for(i=1; i<nt; i+=1) {
         struct thread_data *trd_data = (struct thread_data *)malloc(sizeof(struct thread_data));
         trd_data->tid = i;
@@ -95,16 +94,10 @@ int main(int argc, char** argv) {
         pthread_create(&threads[i], NULL, thread_safe_increment, (void *)trd_data);
     }
 
-    //observer thread with id #0
-    struct thread_data *trd_data = (struct thread_data *)malloc(sizeof(struct thread_data));
-    trd_data->tid = 0;
-    pthread_create(&threads[i], NULL, observer, (void *)trd_data);
-
     for(i=0; i<nt; i+=1) {
         pthread_join(threads[i], NULL);
     }
     pthread_mutex_destroy(&mutex);
-    //printf("~~~~~~~~~~~~~done with %d iteration~~~~~~~~~~~~~\n", iterators[t]);
     cerr << nt << " threads took: " << (clock()-st)/CLOCKS_PER_SEC << endl;
 
 	return 0;
