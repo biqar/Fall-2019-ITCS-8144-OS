@@ -1,14 +1,12 @@
 #pragma warning ( disable : 4786 )
 
-#include <iostream>
+#include <stdio.h>
 #include <pthread.h>
 #include <errno.h>
+#include <stdlib.h>
 
-using namespace std;
-
-const int inf = (1 << 28);
-const int MAX = 1005;
-const int MAX_THREAD = 10;
+#define MAX 1005
+#define MAX_THREAD 10
 const int THREAD_LOOP = 1000;
 //const int THREAD_LOOP = 100000;
 const int iterators[] = {1, 10, 100};
@@ -55,10 +53,10 @@ int main(int argc, char **argv) {
     }
 
     nt = atoi(argv[1]);
-    if (nt != 2 && nt != 4 && nt != 8) {
-        printf("illegal number of threads to create: %d\n", nt);
-        return 1;
-    }
+//    if (nt != 2 && nt != 4 && nt != 8) {
+//        printf("illegal number of threads to create: %d\n", nt);
+//        return 1;
+//    }
 
     for (t = 0; t < test; t += 1) {
         double st = clock();
@@ -75,9 +73,8 @@ int main(int argc, char **argv) {
             pthread_join(threads[i], NULL);
         }
         pthread_spin_destroy(&spinlock);
-        printf("~~~~~~~~~~~~~done with %d iteration~~~~~~~~~~~~~\n", iterators[t]);
-        cerr << nt << " threads with iteration " << iterators[t] << " took: " << (clock() - st) / CLOCKS_PER_SEC
-             << endl;
+        printf("%d threads with iteration %d took: %f\n", nt, iterators[t], (clock() - st) / CLOCKS_PER_SEC);
+        //cerr << nt << " threads with iteration " << iterators[t] << " took: " << (clock() - st) / CLOCKS_PER_SEC << endl;
     }
 
     return 0;

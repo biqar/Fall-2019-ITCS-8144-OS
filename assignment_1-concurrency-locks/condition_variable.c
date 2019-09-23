@@ -1,16 +1,13 @@
 #pragma warning ( disable : 4786 )
 
-#include <iostream>
 #include <pthread.h>
 #include <errno.h>
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
-using namespace std;
 
-const int inf = (1<<28);
-const int MAX = 1005;
-const int MAX_THREAD = 10;
+#define MAX 1005
+#define MAX_THREAD 10
 const int THREAD_SLEEP_TIME_MS = 100 * 1000;
 const int REACH_POINT = 100;
 //const int THREAD_LOOP = 1000;
@@ -29,7 +26,7 @@ struct thread_data {
 };
 
 void *thread_safe_increment(void *arg) {
-    while(true) {
+    while(1) {
         pthread_mutex_lock(&mutex);
         struct thread_data *this_thread_data = (struct thread_data *) arg;
         printf("Job#%d acquired lock with shared_resource value: %lu\n", this_thread_data->tid, shared_resource);
@@ -52,7 +49,7 @@ void *observer(void *arg) {
     while(shared_resource != REACH_POINT) {
         pthread_cond_wait(&cond, &mutex);
     }
-    printf("Yeah .... Reached to %d!\n", REACH_POINT);
+    printf("Reached to %d!\n", REACH_POINT);
     //pthread_cancel(threads[1]);
     pthread_mutex_unlock(&mutex);
 }
@@ -73,10 +70,10 @@ int main(int argc, char** argv) {
     }
 
     nt = atoi(argv[1]);
-    if(nt != 2 && nt != 4 && nt != 8) {
-        printf("illegal number of threads to create: %d\n", nt);
-        return 1;
-    }
+//    if(nt != 2 && nt != 4 && nt != 8) {
+//        printf("illegal number of threads to create: %d\n", nt);
+//        return 1;
+//    }
 
     double st=clock();
     pthread_mutex_init(&mutex, 0);
@@ -98,7 +95,8 @@ int main(int argc, char** argv) {
         pthread_join(threads[i], NULL);
     }
     pthread_mutex_destroy(&mutex);
-    cerr << nt << " threads took: " << (clock()-st)/CLOCKS_PER_SEC << endl;
+    //cerr << nt << " threads took: " << (clock()-st)/CLOCKS_PER_SEC << endl;
+    printf("%d threads took: %f\n", nt, (clock() - st) / CLOCKS_PER_SEC);
 
 	return 0;
 }
