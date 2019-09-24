@@ -14,7 +14,7 @@ const int iterators[] = { 1, 1000, 1000000 };
 unsigned long int shared_resource;
 
 pthread_t threads[MAX_THREAD];
-pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t mutex;
 
 struct thread_data {
     int  tid, itr;
@@ -66,6 +66,7 @@ int main(int argc, char** argv) {
 
     for(t=0; t<test; t+=1) {
         clock_gettime(CLOCK_REALTIME, &start);
+        pthread_mutex_init(&mutex, NULL);
         shared_resource = 0;
         for(i=0; i<nt; i+=1) {
             struct thread_data *trd_data = (struct thread_data *) malloc(sizeof(struct thread_data));
