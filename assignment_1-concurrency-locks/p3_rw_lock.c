@@ -7,7 +7,7 @@
 #include <stdlib.h>
 
 #define MAX 1005
-#define MAX_THREAD 10
+#define MAX_THREAD 100
 //const int THREAD_LOOP = 10;
 const int THREAD_LOOP = 10000;
 
@@ -23,7 +23,8 @@ pthread_rwlock_t rwlock;
 void *reader_thread_op(void *arg) {
     for (int i = 0; i < THREAD_LOOP; i += 1) {
         pthread_rwlock_rdlock(&rwlock);
-        printf("reader thread #%d: %lu\n", ((struct thread_data *) arg)->tid, shared_resource);
+        unsigned long int current = shared_resource;
+        //printf("reader thread #%d: %lu\n", ((struct thread_data *) arg)->tid, shared_resource);
         pthread_rwlock_unlock(&rwlock);
     }
 }
@@ -37,6 +38,17 @@ void *writer_thread_op(void *arg) {
     }
 }
 
+double get_execution_time(struct timespec start, struct timespec finish) {
+    long seconds = finish.tv_sec - start.tv_sec;
+    long ns = finish.tv_nsec - start.tv_nsec;
+
+    if (start.tv_nsec > finish.tv_nsec) { // clock underflow
+        --seconds;
+        ns += 1000000000;
+    }
+    return (double)seconds + (double)ns/(double)1000000000;
+}
+
 int main(int argc, char **argv) {
     //freopen("in.txt", "r", stdin);
     //freopen("out.txt", "w", stdout);
@@ -44,6 +56,7 @@ int main(int argc, char **argv) {
     int i = 0, j, k;
     int test = 3, t = 0, kase = 0;
     int error, nt;
+    struct timespec start, finish;
 
     if (argc > 2) {
         printf("illegal number of arguments: %d\n", argc);
@@ -51,12 +64,8 @@ int main(int argc, char **argv) {
     }
 
     nt = atoi(argv[1]);
-//    if (nt != 2 && nt != 4 && nt != 8) {
-//        printf("illegal number of threads to create: %d\n", nt);
-//        return 1;
-//    }
-
-    double st = clock();
+    //double st = clock();
+    clock_gettime(CLOCK_REALTIME, &start);
     pthread_rwlock_init(&rwlock, 0);
     shared_resource = 0;
 
@@ -72,13 +81,14 @@ int main(int argc, char **argv) {
         pthread_create(&readers[i], NULL, reader_thread_op, (void *) trd_data);
     }
 
+    pthread_join(writer, NULL);
     for (i = 0; i < nt; i += 1) {
         pthread_join(readers[i], NULL);
     }
-    pthread_join(writer, NULL);
-
     pthread_rwlock_destroy(&rwlock);
-    printf("%d threads took: %f\n", nt, (clock() - st) / CLOCKS_PER_SEC);
+    clock_gettime(CLOCK_REALTIME, &finish);
+
+    printf("[Reader/Writer Lock] %d reader threads took: %f\n", nt, get_execution_time(start, finish));
 
     return 0;
 }

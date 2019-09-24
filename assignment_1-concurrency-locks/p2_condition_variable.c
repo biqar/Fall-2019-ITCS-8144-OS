@@ -10,10 +10,6 @@
 #define MAX_THREAD 10
 const int THREAD_SLEEP_TIME_MS = 100 * 1000;
 const int REACH_POINT = 100;
-//const int THREAD_LOOP = 1000;
-//const int THREAD_LOOP = 100000;
-//const int iterators[] = { 1, 10, 100 };
-//const int iterators[] = { 1, 1000, 1000000 };
 
 unsigned long int shared_resource;
 
@@ -50,12 +46,20 @@ void *observer(void *arg) {
         pthread_cond_wait(&cond, &mutex);
     }
     printf("Reached to %d!\n", REACH_POINT);
-    //pthread_cancel(threads[1]);
     pthread_mutex_unlock(&mutex);
 }
 
-//todo: not working properly, need to check sleep part and observer awaking part
-//todo: also need to know why lock_wait.c is not running
+double get_execution_time(struct timespec start, struct timespec finish) {
+    long seconds = finish.tv_sec - start.tv_sec;
+    long ns = finish.tv_nsec - start.tv_nsec;
+
+    if (start.tv_nsec > finish.tv_nsec) { // clock underflow
+        --seconds;
+        ns += 1000000000;
+    }
+    return (double)seconds + (double)ns/(double)1000000000;
+}
+
 int main(int argc, char** argv) {
 	//freopen("in.txt", "r", stdin);
 	//freopen("out.txt", "w", stdout);
@@ -63,6 +67,7 @@ int main(int argc, char** argv) {
 	int i = 0, j, k;
 	int test = 3, t = 0, kase=0;
     int error, nt;
+    struct timespec start, finish;
 
     if(argc > 2) {
         printf("illegal number of arguments: %d\n", argc);
@@ -70,10 +75,7 @@ int main(int argc, char** argv) {
     }
 
     nt = atoi(argv[1]);
-//    if(nt != 2 && nt != 4 && nt != 8) {
-//        printf("illegal number of threads to create: %d\n", nt);
-//        return 1;
-//    }
+    clock_gettime(CLOCK_REALTIME, &start);
 
     double st=clock();
     pthread_mutex_init(&mutex, 0);
@@ -95,8 +97,9 @@ int main(int argc, char** argv) {
         pthread_join(threads[i], NULL);
     }
     pthread_mutex_destroy(&mutex);
-    //cerr << nt << " threads took: " << (clock()-st)/CLOCKS_PER_SEC << endl;
-    printf("%d threads took: %f\n", nt, (clock() - st) / CLOCKS_PER_SEC);
+    clock_gettime(CLOCK_REALTIME, &finish);
+
+    printf("[Condition Variable] %d threads took: %f\n", nt, get_execution_time(start, finish));
 
 	return 0;
 }
