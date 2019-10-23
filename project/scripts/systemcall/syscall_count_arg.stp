@@ -1,0 +1,47 @@
+#! /usr/bin/env stap
+
+global syscall_count, total_syscall_count
+arg_passed
+
+function is_arg_passed() {
+    if(@1[0] != '\0') arg_passed = true
+    else arg_passed = false
+}
+
+probe begin {
+    printf("Collecting system-call data for the whole system\n")
+    printf("Top 20 <processes, syscall> pair will be displayed for the interval of 10 seconds\n")
+    printf("Type Ctrl+c to exit the program\n\n\n")
+
+    printf("%s\n", @1)
+    is_arg_passed()
+    if(arg_passed) printf("passed with argument\n")
+    else printf("no argument traced\n")
+}
+
+probe syscall.* {
+    syscall_count[execname(), name] <<< 1
+    total_syscall_count[execname(), name] <<< 1
+}
+
+function print_top_systemcall() {
+    printf("%25s %25s %10s\n", "Process Name", "Syscall Name", "#Syscalls")
+    foreach([proc, name] in syscall_count- limit 20) {
+        printf("%25s %25s %10d\n", proc, name, @count(syscall_count[proc, name]))
+    }
+    delete syscall_count
+}
+
+probe timer.s(10) {
+    print_top_systemcall()
+    printf("%60s\n", "***************<>***************");
+}
+
+probe end {
+    printf("\nTotal Result:\n")
+    printf("%25s %25s %10s\n", "Process Name", "Syscall Name", "#Syscalls")
+    foreach([proc, name] in total_syscall_count- limit 20) {
+        printf("%25s %25s %10d\n", proc, name, @count(total_syscall_count[proc, name]))
+    }
+    delete total_syscall_count
+}
