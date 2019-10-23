@@ -15,7 +15,7 @@ probe syscall.* {
 function print_top_systemcall() {
     printf("%25s %10s\n", "SYSTEM-CALL", "COUNT")
     foreach(proc in syscall_count- limit 20) {
-        printf("%25s %10s\n", proc, @count(syscall_count[proc]))
+        printf("%25s %10d\n", proc, @count(syscall_count[proc]))
     }
     delete syscall_count
 }
