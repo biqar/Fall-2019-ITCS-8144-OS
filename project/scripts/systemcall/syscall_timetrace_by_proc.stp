@@ -1,0 +1,47 @@
+#! /usr/bin/env stap
+
+global syscall_start, syscall_duration, total_syscall_duration
+
+probe begin {
+    printf("Trace time spent in all system calls in a per-process way\n")
+    printf("Top 20 processes will be displayed for the interval of 10 seconds\n")
+    printf("Type Ctrl+c to exit the program\n\n\n")
+}
+
+function timestamp:long(proc) {
+    return gettimeofday_us() - syscall_start[proc]
+}
+
+probe syscall.* {
+    syscall_start[proc] = gettimeofday_us()
+}
+
+probe syscall.*.return {
+    duration = timestamp(execname())
+    if(duration > 0) {
+        syscall_duration[execname()] <<< duration
+        total_syscall_duration[execname()] <<< duration
+    }
+}
+
+function print_top_systemcall() {
+    printf("%25s %10s\n", "Process Name", "Duration spend on syscalls")
+    foreach(proc in syscall_duration- limit 20) {
+        printf("%25s %10ld\n", proc, @sum(syscall_duration[proc]))
+    }
+    delete syscall_duration
+}
+
+probe timer.s(10) {
+    print_top_systemcall()
+    printf("%35s\n", "***************<>***************");
+}
+
+probe end {
+    printf("\nTotal Result:\n")
+    printf("%25s %10s\n", "Process Name", "Duration spend on syscalls")
+    foreach(proc in total_syscall_duration- limit 20) {
+        printf("%25s %10ld\n", proc, @sum(total_syscall_duration[proc]))
+    }
+    delete total_syscall_duration
+}
