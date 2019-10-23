@@ -3,8 +3,8 @@
 global syscall_count, total_syscall_count
 
 probe begin {
-    printf("Collecting system-call data for the whole system\n")
-    printf("Top 20 <processes, syscall> pair will be displayed for the interval of 10 seconds\n")
+    printf("Collecting system-call data for the process: %s\n", @1)
+    printf("Top 20 syscall by process [%s] will be displayed for the interval of 10 seconds\n", @1)
     printf("Type Ctrl+c to exit the program\n\n\n")
 }
 
@@ -29,7 +29,7 @@ probe timer.s(10) {
 }
 
 probe end {
-    printf("\nTotal Result:\n")
+    printf("\nTotal Syscall Result for Process [%s]:\n", @1)
     printf("%25s %25s %10s\n", "Process Name", "Syscall Name", "#Syscalls")
     foreach([proc, name] in total_syscall_count- limit 20) {
         printf("%25s %25s %10d\n", proc, name, @count(total_syscall_count[proc, name]))
