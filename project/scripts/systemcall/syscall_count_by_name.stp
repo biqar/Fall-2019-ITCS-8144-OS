@@ -1,0 +1,26 @@
+#! /usr/bin/env stap
+
+global syscall_count
+
+probe begin {
+    printf("Collecting system-call data for the whole system\n")
+    printf("Top 20 system-calls will be displayed for the interval of 10 seconds\n")
+    printf("Type Ctrl+c to exit the program\n\n\n")
+}
+
+probe syscall.* {
+    syscall_count[name] <<< 1
+}
+
+function print_top_systemcall() {
+    printf("%25s %10s\n", "Syscall Name", "#Syscalls")
+    foreach(syscall in syscall_count- limit 20) {
+        printf("%25s %10d\n", syscall, @count(syscall_count[syscall]))
+    }
+    delete syscall_count
+}
+
+probe timer.s(10) {
+    print_top_systemcall()
+    printf("%35s\n", "***************<>***************");
+}
