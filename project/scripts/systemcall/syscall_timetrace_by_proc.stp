@@ -9,7 +9,10 @@ probe begin {
 }
 
 function timestamp:long(proc) {
-    return gettimeofday_us() - syscall_start[proc]
+    if([proc] in syscall_start) {
+        return gettimeofday_us() - syscall_start[proc]
+    }
+    return -1
 }
 
 probe syscall.* {
