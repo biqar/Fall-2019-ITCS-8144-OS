@@ -22,5 +22,5 @@ function print_top_systemcall() {
 
 probe timer.s(10) {
     print_top_systemcall()
-    printf("***************<>***************\n");
+    printf("%35s\n", ""***************<>***************");
 }
