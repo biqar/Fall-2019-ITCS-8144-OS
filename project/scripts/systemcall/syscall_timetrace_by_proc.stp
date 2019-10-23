@@ -22,15 +22,18 @@ probe syscall.* {
 probe syscall.*.return {
     duration = timestamp(execname())
     if(duration > 0) {
-        syscall_duration[execname()] <<< duration
-        total_syscall_duration[execname()] <<< duration
+        if([execname()] in syscall_duration) syscall_duration[execname()] += duration
+        else syscall_duration[execname()] = duration
+
+        if([execname()] in total_syscall_duration) total_syscall_duration[execname()] += duration
+        else total_syscall_duration[execname()] = duration
     }
 }
 
 function print_top_systemcall() {
-    printf("%25s %10s\n", "Process Name", "Duration spend on syscalls")
+    printf("%25s %s\n", "Process Name", "Duration spend on syscalls")
     foreach(proc in syscall_duration- limit 20) {
-        printf("%25s %10ld\n", proc, @sum(syscall_duration[proc]))
+        printf("%25s %ld\n", proc, @sum(syscall_duration[proc]))
     }
     delete syscall_duration
 }
@@ -42,9 +45,9 @@ probe timer.s(10) {
 
 probe end {
     printf("\nTotal Result:\n")
-    printf("%25s %10s\n", "Process Name", "Duration spend on syscalls")
+    printf("%25s %s\n", "Process Name", "Duration spend on syscalls")
     foreach(proc in total_syscall_duration- limit 20) {
-        printf("%25s %10ld\n", proc, @sum(total_syscall_duration[proc]))
+        printf("%25s %ld\n", proc, @sum(total_syscall_duration[proc]))
     }
     delete total_syscall_duration
 }
