@@ -95,3 +95,34 @@ Total Result:
           gnome-terminal-                    writev         56
                         X                     ioctl         55
 ------------------------------------------------------------------------
+[raqib@localhost systemcall]$ sudo stap syscall_count_arg.stp gnome-shell
+[sudo] password for raqib: 
+Collecting system-call data for the process: gnome-shell
+Top 20 syscall by process [gnome-shell] will be displayed for the interval of 10 seconds
+Type Ctrl+c to exit the program
+
+
+             Process Name              Syscall Name  #Syscalls
+              gnome-shell                   recvmsg        560
+              gnome-shell                      poll        224
+              gnome-shell                    writev        112
+              gnome-shell                     write         16
+              gnome-shell                      read         16
+                            ***************<>***************
+             Process Name              Syscall Name  #Syscalls
+              gnome-shell                   recvmsg        693
+              gnome-shell                      poll        274
+              gnome-shell                    writev        137
+              gnome-shell                     write         25
+              gnome-shell                      read         21
+                            ***************<>***************
+^C
+Total Syscall Result for Process [gnome-shell]:
+             Process Name              Syscall Name  #Syscalls
+              gnome-shell                   recvmsg       1526
+              gnome-shell                      poll        600
+              gnome-shell                    writev        299
+              gnome-shell                     write         59
+              gnome-shell                      read         47
+[raqib@localhost systemcall]$ 
+
