@@ -1,6 +1,6 @@
 #! /usr/bin/env stap
 
-global syscall_count
+global syscall_count, total_syscall_count
 
 probe begin {
     printf("Collecting system-call data for the whole system\n")
@@ -10,6 +10,7 @@ probe begin {
 
 probe syscall.* {
     syscall_count[execname(), name] <<< 1
+    total_syscall_count[execname(), name] <<< 1
 }
 
 function print_top_systemcall() {
@@ -23,4 +24,13 @@ function print_top_systemcall() {
 probe timer.s(10) {
     print_top_systemcall()
     printf("%60s\n", "***************<>***************");
+}
+
+probe end {
+    printf("Total Result:\n")
+    printf("%25s %25s %10s\n", "Process Name", "Syscall Name", "#Syscalls")
+    foreach([proc, name] in total_syscall_count- limit 20) {
+        printf("%25s %25s %10d\n", proc, name, @count(total_syscall_count[proc, name]))
+    }
+    delete total_syscall_count
 }
