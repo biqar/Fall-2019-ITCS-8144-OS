@@ -1,373 +1,859 @@
- 28986[    bash]/  5394[gnome-terminal-] kprocess.create
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_fork
-	PID: 28986 -> 29082
- 28986[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
- 28986[    bash]/  5394[gnome-terminal-] syscall.wait4
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_wait
- 29082[    bash]/ 28986[    bash] kprocess.start
- 29082[    bash]/ 28986[    bash] syscall.execve
- 29082[    bash]/ 28986[    bash] kprocess.exec
-	filename: "/usr/bin/uname"
- 29082[   uname]/ 28986[    bash] kprocess.exec_complete
- 29082[   uname]/ 28986[    bash] kprocess.exit
+ 29570[systemd-udevd]/  1540[systemd-udevd] kprocess.exit
 	return code: 0
- 29082[   uname]/ 28986[    bash] scheduler.process_exit
- 28986[    bash]/  5394[gnome-terminal-] kprocess.release
- 28986[    bash]/  5394[gnome-terminal-] syscall.wait4
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_wait
- 28986[    bash]/  5394[gnome-terminal-] kprocess.create
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_fork
-	PID: 28986 -> 29083
- 28986[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
- 29083[    bash]/ 28986[    bash] kprocess.start
- 29083[    bash]/ 28986[    bash] kprocess.create
- 29083[    bash]/ 28986[    bash] scheduler.process_fork
-	PID: 29083 -> 29084
- 29083[    bash]/ 28986[    bash] scheduler.wakeup_new
- 29083[    bash]/ 28986[    bash] kprocess.create
- 29083[    bash]/ 28986[    bash] scheduler.process_fork
-	PID: 29083 -> 29085
- 29083[    bash]/ 28986[    bash] scheduler.wakeup_new
- 29083[    bash]/ 28986[    bash] syscall.wait4
- 29083[    bash]/ 28986[    bash] scheduler.process_wait
- 29084[    bash]/ 29083[    bash] kprocess.start
- 29084[    bash]/ 29083[    bash] kprocess.exit
-	return code: 0
- 29084[    bash]/ 29083[    bash] scheduler.process_exit
- 29083[    bash]/ 28986[    bash] kprocess.release
- 29083[    bash]/ 28986[    bash] syscall.wait4
- 29083[    bash]/ 28986[    bash] scheduler.process_wait
- 29085[    bash]/ 29083[    bash] kprocess.start
- 29085[    bash]/ 29083[    bash] syscall.execve
- 29085[    bash]/ 29083[    bash] kprocess.exec
-	filename: "/usr/bin/sed"
- 29085[     sed]/ 29083[    bash] kprocess.exec_complete
- 29085[     sed]/ 29083[    bash] kprocess.exit
-	return code: 0
- 29085[     sed]/ 29083[    bash] scheduler.process_exit
- 29083[    bash]/ 28986[    bash] kprocess.release
- 29083[    bash]/ 28986[    bash] syscall.wait4
- 29083[    bash]/ 28986[    bash] scheduler.process_wait
- 29083[    bash]/ 28986[    bash] kprocess.exit
-	return code: 0
- 29083[    bash]/ 28986[    bash] scheduler.process_exit
- 28986[    bash]/  5394[gnome-terminal-] syscall.wait4
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_wait
- 28986[    bash]/  5394[gnome-terminal-] kprocess.release
- 28986[    bash]/  5394[gnome-terminal-] syscall.wait4
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_wait
- 28986[    bash]/  5394[gnome-terminal-] kprocess.create
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_fork
-	PID: 28986 -> 29086
- 28986[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
- 29086[    bash]/ 28986[    bash] kprocess.start
- 29086[    bash]/ 28986[    bash] kprocess.create
- 29086[    bash]/ 28986[    bash] scheduler.process_fork
-	PID: 29086 -> 29087
- 29086[    bash]/ 28986[    bash] scheduler.wakeup_new
- 29087[    bash]/ 29086[    bash] kprocess.start
- 29087[    bash]/ 29086[    bash] kprocess.create
- 29087[    bash]/ 29086[    bash] scheduler.process_fork
-	PID: 29087 -> 29088
- 29087[    bash]/ 29086[    bash] scheduler.wakeup_new
- 29087[    bash]/ 29086[    bash] syscall.wait4
- 29087[    bash]/ 29086[    bash] scheduler.process_wait
- 29088[    bash]/ 29087[    bash] kprocess.start
- 29088[    bash]/ 29087[    bash] kprocess.exit
-	return code: 0
- 29088[    bash]/ 29087[    bash] scheduler.process_exit
- 29087[    bash]/ 29086[    bash] kprocess.release
- 29087[    bash]/ 29086[    bash] syscall.wait4
- 29087[    bash]/ 29086[    bash] scheduler.process_wait
- 29087[    bash]/ 29086[    bash] kprocess.exit
-	return code: 0
- 29087[    bash]/ 29086[    bash] scheduler.process_exit
- 29086[    bash]/ 28986[    bash] syscall.wait4
- 29086[    bash]/ 28986[    bash] scheduler.process_wait
- 29086[    bash]/ 28986[    bash] kprocess.release
- 29086[    bash]/ 28986[    bash] syscall.wait4
- 29086[    bash]/ 28986[    bash] scheduler.process_wait
- 29086[    bash]/ 28986[    bash] kprocess.exit
-	return code: 0
- 29086[    bash]/ 28986[    bash] scheduler.process_exit
- 28986[    bash]/  5394[gnome-terminal-] syscall.wait4
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_wait
- 28986[    bash]/  5394[gnome-terminal-] kprocess.release
- 28986[    bash]/  5394[gnome-terminal-] syscall.wait4
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_wait
-     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
-     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
-     0[swapper/0]/     0[        ] scheduler.process_free
-     0[swapper/0]/     0[        ] scheduler.process_free
-     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
-     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
-     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
- 29004[abrt-dbus]/     1[ systemd] kprocess.exit
-	return code: 0
- 29004[abrt-dbus]/     1[ systemd] scheduler.process_exit
- 29004[   gmain]/     1[ systemd] kprocess.exit
-	return code: 0
- 29004[   gmain]/     1[ systemd] scheduler.process_exit
- 29004[   gmain]/     1[ systemd] kprocess.release
- 29004[   gdbus]/     1[ systemd] kprocess.exit
-	return code: 0
- 29004[   gdbus]/     1[ systemd] scheduler.process_exit
- 29004[   gdbus]/     1[ systemd] kprocess.release
-     1[ systemd]/     0[        ] scheduler.process_wait
-     1[ systemd]/     0[        ] scheduler.process_wait
-     1[ systemd]/     0[        ] kprocess.release
-     1[ systemd]/     0[        ] scheduler.process_wait
-     0[swapper/0]/     0[        ] scheduler.process_free
-     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
-     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
- 28986[    bash]/  5394[gnome-terminal-] kprocess.create
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_fork
-	PID: 28986 -> 29089
- 28986[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
- 28986[    bash]/  5394[gnome-terminal-] syscall.wait4
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_wait
- 29089[    bash]/ 28986[    bash] kprocess.start
- 29089[    bash]/ 28986[    bash] syscall.execve
- 29089[    bash]/ 28986[    bash] kprocess.exec
-	filename: "/usr/bin/uname"
- 29089[   uname]/ 28986[    bash] kprocess.exec_complete
- 29089[   uname]/ 28986[    bash] kprocess.exit
-	return code: 0
- 29089[   uname]/ 28986[    bash] scheduler.process_exit
- 28986[    bash]/  5394[gnome-terminal-] kprocess.release
- 28986[    bash]/  5394[gnome-terminal-] syscall.wait4
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_wait
- 28986[    bash]/  5394[gnome-terminal-] kprocess.create
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_fork
-	PID: 28986 -> 29090
- 28986[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
- 29090[    bash]/ 28986[    bash] kprocess.start
- 29090[    bash]/ 28986[    bash] kprocess.create
- 29090[    bash]/ 28986[    bash] scheduler.process_fork
-	PID: 29090 -> 29091
- 29090[    bash]/ 28986[    bash] scheduler.wakeup_new
- 29090[    bash]/ 28986[    bash] kprocess.create
- 29090[    bash]/ 28986[    bash] scheduler.process_fork
-	PID: 29090 -> 29092
- 29090[    bash]/ 28986[    bash] scheduler.wakeup_new
- 29090[    bash]/ 28986[    bash] syscall.wait4
- 29090[    bash]/ 28986[    bash] scheduler.process_wait
- 29091[    bash]/ 29090[    bash] kprocess.start
- 29091[    bash]/ 29090[    bash] kprocess.exit
-	return code: 0
- 29091[    bash]/ 29090[    bash] scheduler.process_exit
- 29090[    bash]/ 28986[    bash] kprocess.release
- 29090[    bash]/ 28986[    bash] syscall.wait4
- 29090[    bash]/ 28986[    bash] scheduler.process_wait
- 29092[    bash]/ 29090[    bash] kprocess.start
- 29092[    bash]/ 29090[    bash] syscall.execve
- 29092[    bash]/ 29090[    bash] kprocess.exec
-	filename: "/usr/bin/sed"
- 29092[     sed]/ 29090[    bash] kprocess.exec_complete
- 29092[     sed]/ 29090[    bash] kprocess.exit
-	return code: 0
- 29092[     sed]/ 29090[    bash] scheduler.process_exit
- 29090[    bash]/ 28986[    bash] kprocess.release
- 29090[    bash]/ 28986[    bash] syscall.wait4
- 29090[    bash]/ 28986[    bash] scheduler.process_wait
- 29090[    bash]/ 28986[    bash] kprocess.exit
-	return code: 0
- 29090[    bash]/ 28986[    bash] scheduler.process_exit
- 28986[    bash]/  5394[gnome-terminal-] syscall.wait4
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_wait
- 28986[    bash]/  5394[gnome-terminal-] kprocess.release
- 28986[    bash]/  5394[gnome-terminal-] syscall.wait4
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_wait
- 28986[    bash]/  5394[gnome-terminal-] kprocess.create
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_fork
-	PID: 28986 -> 29093
- 28986[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
- 29093[    bash]/ 28986[    bash] kprocess.start
- 29093[    bash]/ 28986[    bash] kprocess.create
- 29093[    bash]/ 28986[    bash] scheduler.process_fork
-	PID: 29093 -> 29094
- 29093[    bash]/ 28986[    bash] scheduler.wakeup_new
- 29094[    bash]/ 29093[    bash] kprocess.start
- 29094[    bash]/ 29093[    bash] kprocess.create
- 29094[    bash]/ 29093[    bash] scheduler.process_fork
-	PID: 29094 -> 29095
- 29094[    bash]/ 29093[    bash] scheduler.wakeup_new
- 29094[    bash]/ 29093[    bash] syscall.wait4
- 29094[    bash]/ 29093[    bash] scheduler.process_wait
- 29095[    bash]/ 29094[    bash] kprocess.start
- 29095[    bash]/ 29094[    bash] kprocess.exit
-	return code: 0
- 29095[    bash]/ 29094[    bash] scheduler.process_exit
- 29094[    bash]/ 29093[    bash] kprocess.release
- 29094[    bash]/ 29093[    bash] syscall.wait4
- 29094[    bash]/ 29093[    bash] scheduler.process_wait
- 29094[    bash]/ 29093[    bash] kprocess.exit
-	return code: 0
- 29094[    bash]/ 29093[    bash] scheduler.process_exit
- 29093[    bash]/ 28986[    bash] syscall.wait4
- 29093[    bash]/ 28986[    bash] scheduler.process_wait
- 29093[    bash]/ 28986[    bash] kprocess.release
- 29093[    bash]/ 28986[    bash] syscall.wait4
- 29093[    bash]/ 28986[    bash] scheduler.process_wait
- 29093[    bash]/ 28986[    bash] kprocess.exit
-	return code: 0
- 29093[    bash]/ 28986[    bash] scheduler.process_exit
- 28986[    bash]/  5394[gnome-terminal-] syscall.wait4
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_wait
- 28986[    bash]/  5394[gnome-terminal-] kprocess.release
- 28986[    bash]/  5394[gnome-terminal-] syscall.wait4
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_wait
-     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
-     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
-     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
-     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
-     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
-     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
-     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
- 29077[systemd-udevd]/  1540[systemd-udevd] kprocess.exit
-	return code: 0
- 29077[systemd-udevd]/  1540[systemd-udevd] scheduler.process_exit
+ 29570[systemd-udevd]/  1540[systemd-udevd] scheduler.process_exit
   1540[systemd-udevd]/     1[ systemd] syscall.wait4
   1540[systemd-udevd]/     1[ systemd] scheduler.process_wait
   1540[systemd-udevd]/     1[ systemd] kprocess.release
   1540[systemd-udevd]/     1[ systemd] syscall.wait4
   1540[systemd-udevd]/     1[ systemd] scheduler.process_wait
-     0[swapper/0]/     0[        ] scheduler.process_free
- 28986[    bash]/  5394[gnome-terminal-] kprocess.create
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_fork
-	PID: 28986 -> 29096
- 28986[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
- 28986[    bash]/  5394[gnome-terminal-] syscall.wait4
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_wait
- 29096[    bash]/ 28986[    bash] kprocess.start
- 29096[    bash]/ 28986[    bash] syscall.execve
- 29096[    bash]/ 28986[    bash] kprocess.exec
+     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
+  5394[gnome-terminal-]/     1[ systemd] kprocess.create
+  5394[gnome-terminal-]/     1[ systemd] scheduler.process_fork
+	PID: 5394 -> 5394
+  5394[gnome-terminal-]/     1[ systemd] scheduler.wakeup_new
+  5394[gnome-terminal-]/     1[ systemd] kprocess.create
+  5394[gnome-terminal-]/     1[ systemd] scheduler.process_fork
+	PID: 5394 -> 5394
+  5394[gnome-terminal-]/     1[ systemd] scheduler.wakeup_new
+  5394[gnome-terminal-]/     1[ systemd] kprocess.create
+  5394[gnome-terminal-]/     1[ systemd] scheduler.process_fork
+	PID: 5394 -> 5394
+  5394[gnome-terminal-]/     1[ systemd] scheduler.wakeup_new
+  5394[gnome-terminal-]/     1[ systemd] kprocess.start
+  5394[    pool]/     1[ systemd] kprocess.create
+  5394[    pool]/     1[ systemd] scheduler.process_fork
+	PID: 5394 -> 29578
+  5394[    pool]/     1[ systemd] scheduler.wakeup_new
+  5394[gnome-terminal-]/     1[ systemd] kprocess.start
+  5394[gnome-terminal-]/     1[ systemd] kprocess.start
+ 29578[    pool]/  5394[gnome-terminal-] kprocess.start
+ 29578[    pool]/  5394[gnome-terminal-] syscall.execve
+ 29578[    pool]/  5394[gnome-terminal-] kprocess.exec
+	filename: "/bin/bash"
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.exec_complete
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.create
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_fork
+	PID: 29578 -> 29579
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
+  5394[gnome-terminal-]/     1[ systemd] syscall.wait4
+  5394[gnome-terminal-]/     1[ systemd] scheduler.process_wait
+ 29579[    bash]/ 29578[    bash] kprocess.start
+ 29579[    bash]/ 29578[    bash] kprocess.create
+ 29579[    bash]/ 29578[    bash] scheduler.process_fork
+	PID: 29579 -> 29580
+ 29579[    bash]/ 29578[    bash] scheduler.wakeup_new
+ 29579[    bash]/ 29578[    bash] syscall.wait4
+ 29579[    bash]/ 29578[    bash] scheduler.process_wait
+ 29580[    bash]/ 29579[    bash] kprocess.start
+ 29580[    bash]/ 29579[    bash] syscall.execve
+ 29580[    bash]/ 29579[    bash] kprocess.exec
+	filename: "/usr/bin/id"
+ 29580[      id]/ 29579[    bash] kprocess.exec_complete
+ 29580[      id]/ 29579[    bash] kprocess.exit
+	return code: 0
+ 29580[      id]/ 29579[    bash] scheduler.process_exit
+ 29579[    bash]/ 29578[    bash] kprocess.release
+ 29579[    bash]/ 29578[    bash] syscall.wait4
+ 29579[    bash]/ 29578[    bash] scheduler.process_wait
+ 29579[    bash]/ 29578[    bash] kprocess.exit
+	return code: 0
+ 29579[    bash]/ 29578[    bash] scheduler.process_exit
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.release
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.create
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_fork
+	PID: 29578 -> 29581
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
+ 29581[    bash]/ 29578[    bash] kprocess.start
+ 29581[    bash]/ 29578[    bash] kprocess.create
+ 29581[    bash]/ 29578[    bash] scheduler.process_fork
+	PID: 29581 -> 29582
+ 29581[    bash]/ 29578[    bash] scheduler.wakeup_new
+ 29581[    bash]/ 29578[    bash] syscall.wait4
+ 29581[    bash]/ 29578[    bash] scheduler.process_wait
+ 29582[    bash]/ 29581[    bash] kprocess.start
+ 29582[    bash]/ 29581[    bash] syscall.execve
+ 29582[    bash]/ 29581[    bash] kprocess.exec
+	filename: "/usr/bin/id"
+ 29582[      id]/ 29581[    bash] kprocess.exec_complete
+ 29582[      id]/ 29581[    bash] kprocess.exit
+	return code: 0
+ 29582[      id]/ 29581[    bash] scheduler.process_exit
+ 29581[    bash]/ 29578[    bash] kprocess.release
+ 29581[    bash]/ 29578[    bash] syscall.wait4
+ 29581[    bash]/ 29578[    bash] scheduler.process_wait
+ 29581[    bash]/ 29578[    bash] kprocess.exit
+	return code: 0
+ 29581[    bash]/ 29578[    bash] scheduler.process_free
+ 29581[    bash]/ 29578[    bash] scheduler.process_exit
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.release
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.create
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_fork
+	PID: 29578 -> 29583
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29583[    bash]/ 29578[    bash] kprocess.start
+ 29583[    bash]/ 29578[    bash] syscall.execve
+ 29583[    bash]/ 29578[    bash] kprocess.exec
+	filename: "/usr/bin/tty"
+ 29583[     tty]/ 29578[    bash] kprocess.exec_complete
+ 29583[     tty]/ 29578[    bash] kprocess.exit
+	return code: 0
+ 29583[     tty]/ 29578[    bash] scheduler.process_exit
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.release
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.create
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_fork
+	PID: 29578 -> 29584
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29584[    bash]/ 29578[    bash] kprocess.start
+ 29584[    bash]/ 29578[    bash] syscall.execve
+ 29584[    bash]/ 29578[    bash] kprocess.exec
+	filename: "/usr/bin/mkdir"
+ 29584[   mkdir]/ 29578[    bash] kprocess.exec_complete
+ 29584[   mkdir]/ 29578[    bash] kprocess.exit
+	return code: 0
+ 29584[   mkdir]/ 29578[    bash] scheduler.process_exit
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.release
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.create
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_fork
+	PID: 29578 -> 29585
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
+ 29585[    bash]/ 29578[    bash] kprocess.start
+ 29585[    bash]/ 29578[    bash] scheduler.process_free
+ 29585[    bash]/ 29578[    bash] kprocess.create
+ 29585[    bash]/ 29578[    bash] scheduler.process_fork
+	PID: 29585 -> 29586
+ 29585[    bash]/ 29578[    bash] scheduler.wakeup_new
+ 29585[    bash]/ 29578[    bash] syscall.wait4
+ 29585[    bash]/ 29578[    bash] scheduler.process_wait
+ 29586[    bash]/ 29585[    bash] kprocess.start
+ 29586[    bash]/ 29585[    bash] syscall.execve
+ 29586[    bash]/ 29585[    bash] kprocess.exec
+	filename: "/usr/bin/mktemp"
+ 29586[  mktemp]/ 29585[    bash] kprocess.exec_complete
+ 29586[  mktemp]/ 29585[    bash] kprocess.exit
+	return code: 0
+ 29586[  mktemp]/ 29585[    bash] scheduler.process_exit
+ 29585[    bash]/ 29578[    bash] kprocess.release
+ 29585[    bash]/ 29578[    bash] syscall.wait4
+ 29585[    bash]/ 29578[    bash] scheduler.process_wait
+ 29585[    bash]/ 29578[    bash] kprocess.exit
+	return code: 0
+ 29585[    bash]/ 29578[    bash] scheduler.process_exit
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.release
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.create
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_fork
+	PID: 29578 -> 29587
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
+ 29587[    bash]/ 29578[    bash] kprocess.start
+ 29587[    bash]/ 29578[    bash] kprocess.create
+ 29587[    bash]/ 29578[    bash] scheduler.process_fork
+	PID: 29587 -> 29588
+ 29587[    bash]/ 29578[    bash] scheduler.wakeup_new
+ 29587[    bash]/ 29578[    bash] syscall.wait4
+ 29587[    bash]/ 29578[    bash] scheduler.process_wait
+ 29588[    bash]/ 29587[    bash] kprocess.start
+ 29588[    bash]/ 29587[    bash] syscall.execve
+ 29588[    bash]/ 29587[    bash] kprocess.exec
+	filename: "/usr/bin/cat"
+ 29588[     cat]/ 29587[    bash] kprocess.exec_complete
+ 29588[     cat]/ 29587[    bash] kprocess.exit
+	return code: 0
+ 29588[     cat]/ 29587[    bash] scheduler.process_exit
+ 29587[    bash]/ 29578[    bash] kprocess.release
+ 29587[    bash]/ 29578[    bash] syscall.wait4
+ 29587[    bash]/ 29578[    bash] scheduler.process_wait
+ 29587[    bash]/ 29578[    bash] kprocess.exit
+	return code: 0
+ 29587[    bash]/ 29578[    bash] scheduler.process_exit
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.release
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.create
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_fork
+	PID: 29578 -> 29589
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29589[    bash]/ 29578[    bash] kprocess.start
+ 29589[    bash]/ 29578[    bash] syscall.execve
+ 29589[    bash]/ 29578[    bash] kprocess.exec
+	filename: "/usr/bin/date"
+ 29589[    date]/ 29578[    bash] kprocess.exec_complete
+ 29589[    date]/ 29578[    bash] kprocess.exit
+	return code: 0
+ 29589[    date]/ 29578[    bash] scheduler.process_exit
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.release
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.create
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_fork
+	PID: 29578 -> 29590
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29590[    bash]/ 29578[    bash] kprocess.start
+ 29590[    bash]/ 29578[    bash] syscall.execve
+ 29590[    bash]/ 29578[    bash] kprocess.exec
+	filename: "/usr/bin/mv"
+ 29590[      mv]/ 29578[    bash] kprocess.exec_complete
+ 29590[      mv]/ 29578[    bash] scheduler.process_free
+ 29590[      mv]/ 29578[    bash] kprocess.exit
+	return code: 0
+ 29590[      mv]/ 29578[    bash] scheduler.process_exit
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.release
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_free
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_free
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_free
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.create
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_fork
+	PID: 29578 -> 29591
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29591[    bash]/ 29578[    bash] kprocess.start
+ 29591[    bash]/ 29578[    bash] syscall.execve
+ 29591[    bash]/ 29578[    bash] kprocess.exec
+	filename: "/usr/bin/timeout"
+ 29591[ timeout]/ 29578[    bash] kprocess.exec_complete
+ 29591[ timeout]/ 29578[    bash] kprocess.create
+ 29591[ timeout]/ 29578[    bash] scheduler.process_fork
+	PID: 29591 -> 29592
+ 29591[ timeout]/ 29578[    bash] scheduler.wakeup_new
+ 29591[ timeout]/ 29578[    bash] syscall.wait4
+ 29591[ timeout]/ 29578[    bash] scheduler.process_wait
+ 29592[ timeout]/ 29591[ timeout] kprocess.start
+ 29592[ timeout]/ 29591[ timeout] scheduler.process_free
+ 29592[ timeout]/ 29591[ timeout] scheduler.process_free
+ 29592[ timeout]/ 29591[ timeout] scheduler.process_free
+ 29592[ timeout]/ 29591[ timeout] scheduler.process_free
+ 29592[ timeout]/ 29591[ timeout] scheduler.process_free
+ 29592[ timeout]/ 29591[ timeout] syscall.execve
+ 29592[ timeout]/ 29591[ timeout] kprocess.exec
+	filename: "/usr/local/bin/abrt-cli"
+ 29592[ timeout]/ 29591[ timeout] kprocess.exec_complete
+ 29592[ timeout]/ 29591[ timeout] syscall.execve
+ 29592[ timeout]/ 29591[ timeout] kprocess.exec
+	filename: "/usr/local/sbin/abrt-cli"
+ 29592[ timeout]/ 29591[ timeout] kprocess.exec_complete
+ 29592[ timeout]/ 29591[ timeout] syscall.execve
+ 29592[ timeout]/ 29591[ timeout] kprocess.exec
+	filename: "/usr/bin/abrt-cli"
+ 29592[abrt-cli]/ 29591[ timeout] kprocess.exec_complete
+ 29592[abrt-cli]/ 29591[ timeout] kprocess.create
+ 29592[abrt-cli]/ 29591[ timeout] scheduler.process_fork
+	PID: 29592 -> 29592
+ 29592[abrt-cli]/ 29591[ timeout] scheduler.wakeup_new
+ 29592[abrt-cli]/ 29591[ timeout] scheduler.process_free
+ 29592[abrt-cli]/ 29591[ timeout] kprocess.create
+ 29592[abrt-cli]/ 29591[ timeout] scheduler.process_fork
+	PID: 29592 -> 29592
+ 29592[abrt-cli]/ 29591[ timeout] scheduler.wakeup_new
+ 29592[abrt-cli]/ 29591[ timeout] kprocess.start
+ 29592[abrt-cli]/ 29591[ timeout] kprocess.start
+  2878[dbus-daemon]/     1[ systemd] kprocess.create
+  2878[dbus-daemon]/     1[ systemd] scheduler.process_fork
+	PID: 2878 -> 29595
+  2878[dbus-daemon]/     1[ systemd] scheduler.wakeup_new
+ 29595[dbus-daemon]/  2878[dbus-daemon] kprocess.start
+ 29595[dbus-daemon]/  2878[dbus-daemon] kprocess.create
+ 29595[dbus-daemon]/  2878[dbus-daemon] scheduler.process_fork
+	PID: 29595 -> 29596
+ 29595[dbus-daemon]/  2878[dbus-daemon] scheduler.wakeup_new
+ 29595[dbus-daemon]/  2878[dbus-daemon] syscall.wait4
+ 29595[dbus-daemon]/  2878[dbus-daemon] scheduler.process_wait
+ 29596[dbus-daemon]/ 29595[dbus-daemon] kprocess.start
+ 29596[dbus-daemon]/ 29595[dbus-daemon] syscall.execve
+ 29596[dbus-daemon]/ 29595[dbus-daemon] kprocess.exec
+	filename: "//usr/libexec/dbus-1/dbus-daemon-launch-helper"
+ 29596[dbus-daemon-lau]/ 29595[dbus-daemon] kprocess.exec_complete
+ 29596[dbus-daemon-lau]/ 29595[dbus-daemon] syscall.execve
+ 29596[dbus-daemon-lau]/ 29595[dbus-daemon] kprocess.exec
+	filename: "/usr/sbin/abrt-dbus"
+ 29596[abrt-dbus]/ 29595[dbus-daemon] kprocess.exec_complete
+ 29596[abrt-dbus]/ 29595[dbus-daemon] kprocess.create
+ 29596[abrt-dbus]/ 29595[dbus-daemon] scheduler.process_fork
+	PID: 29596 -> 29596
+ 29596[abrt-dbus]/ 29595[dbus-daemon] scheduler.wakeup_new
+ 29596[abrt-dbus]/ 29595[dbus-daemon] kprocess.create
+ 29596[abrt-dbus]/ 29595[dbus-daemon] scheduler.process_fork
+	PID: 29596 -> 29596
+ 29596[abrt-dbus]/ 29595[dbus-daemon] scheduler.wakeup_new
+ 29596[abrt-dbus]/ 29595[dbus-daemon] kprocess.start
+ 29596[abrt-dbus]/ 29595[dbus-daemon] kprocess.start
+ 29596[    pool]/ 29595[dbus-daemon] kprocess.create
+ 29596[    pool]/ 29595[dbus-daemon] scheduler.process_fork
+	PID: 29596 -> 29596
+ 29596[    pool]/ 29595[dbus-daemon] scheduler.wakeup_new
+ 29596[    pool]/ 29595[dbus-daemon] kprocess.start
+  2878[dbus-daemon]/     1[ systemd] syscall.wait4
+  2878[dbus-daemon]/     1[ systemd] scheduler.process_wait
+  2878[dbus-daemon]/     1[ systemd] syscall.wait4
+  2878[dbus-daemon]/     1[ systemd] scheduler.process_wait
+ 29595[dbus-daemon]/  2878[dbus-daemon] kprocess.exit
+	return code: 9
+ 29595[dbus-daemon]/  2878[dbus-daemon] scheduler.process_exit
+  2878[dbus-daemon]/     1[ systemd] kprocess.release
+ 29592[abrt-cli]/ 29591[ timeout] kprocess.exit
+	return code: 0
+ 29592[abrt-cli]/ 29591[ timeout] scheduler.process_exit
+ 29592[   gmain]/ 29591[ timeout] kprocess.exit
+	return code: 0
+ 29592[   gmain]/ 29591[ timeout] scheduler.process_exit
+ 29592[   gmain]/ 29591[ timeout] kprocess.release
+ 29592[   gdbus]/ 29591[ timeout] kprocess.exit
+	return code: 0
+ 29592[   gdbus]/ 29591[ timeout] scheduler.process_exit
+ 29592[   gdbus]/ 29591[ timeout] kprocess.release
+ 29591[ timeout]/ 29578[    bash] kprocess.release
+ 29591[ timeout]/ 29578[    bash] kprocess.exit
+	return code: 0
+ 29591[ timeout]/ 29578[    bash] scheduler.process_exit
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.release
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.create
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_fork
+	PID: 29578 -> 29600
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
+  2934[firewalld]/     1[ systemd] scheduler.process_free
+  2934[firewalld]/     1[ systemd] scheduler.process_free
+     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
+ 29600[    bash]/ 29578[    bash] kprocess.start
+ 29600[    bash]/ 29578[    bash] kprocess.create
+ 29600[    bash]/ 29578[    bash] scheduler.process_fork
+	PID: 29600 -> 29601
+ 29600[    bash]/ 29578[    bash] scheduler.wakeup_new
+ 29600[    bash]/ 29578[    bash] syscall.wait4
+ 29600[    bash]/ 29578[    bash] scheduler.process_wait
+ 29601[    bash]/ 29600[    bash] kprocess.start
+ 29601[    bash]/ 29600[    bash] syscall.execve
+ 29601[    bash]/ 29600[    bash] kprocess.exec
+	filename: "/usr/bin/ls"
+ 29601[      ls]/ 29600[    bash] kprocess.exec_complete
+ 29601[      ls]/ 29600[    bash] scheduler.process_free
+ 29601[      ls]/ 29600[    bash] scheduler.process_free
+ 29601[      ls]/ 29600[    bash] kprocess.exit
+	return code: 0
+ 29601[      ls]/ 29600[    bash] scheduler.process_exit
+ 29600[    bash]/ 29578[    bash] kprocess.release
+ 29600[    bash]/ 29578[    bash] syscall.wait4
+ 29600[    bash]/ 29578[    bash] scheduler.process_wait
+ 29600[    bash]/ 29578[    bash] kprocess.exit
+	return code: 0
+ 29600[    bash]/ 29578[    bash] scheduler.process_exit
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.release
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.create
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_fork
+	PID: 29578 -> 29602
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
+ 29602[    bash]/ 29578[    bash] kprocess.start
+ 29602[    bash]/ 29578[    bash] kprocess.create
+ 29602[    bash]/ 29578[    bash] scheduler.process_fork
+	PID: 29602 -> 29603
+ 29602[    bash]/ 29578[    bash] scheduler.wakeup_new
+ 29602[    bash]/ 29578[    bash] syscall.wait4
+ 29602[    bash]/ 29578[    bash] scheduler.process_wait
+ 29603[    bash]/ 29602[    bash] kprocess.start
+ 29603[    bash]/ 29602[    bash] scheduler.process_free
+ 29603[    bash]/ 29602[    bash] scheduler.process_free
+ 29603[    bash]/ 29602[    bash] syscall.execve
+ 29603[    bash]/ 29602[    bash] kprocess.exec
 	filename: "/usr/bin/uname"
- 29096[   uname]/ 28986[    bash] kprocess.exec_complete
- 29096[   uname]/ 28986[    bash] kprocess.exit
+ 29603[   uname]/ 29602[    bash] kprocess.exec_complete
+ 29603[   uname]/ 29602[    bash] kprocess.exit
 	return code: 0
- 29096[   uname]/ 28986[    bash] scheduler.process_exit
- 28986[    bash]/  5394[gnome-terminal-] kprocess.release
- 28986[    bash]/  5394[gnome-terminal-] syscall.wait4
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_wait
- 28986[    bash]/  5394[gnome-terminal-] kprocess.create
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_fork
-	PID: 28986 -> 29097
- 28986[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
- 29097[    bash]/ 28986[    bash] kprocess.start
- 29097[    bash]/ 28986[    bash] kprocess.create
- 29097[    bash]/ 28986[    bash] scheduler.process_fork
-	PID: 29097 -> 29098
- 29097[    bash]/ 28986[    bash] scheduler.wakeup_new
- 29097[    bash]/ 28986[    bash] kprocess.create
- 29097[    bash]/ 28986[    bash] scheduler.process_fork
-	PID: 29097 -> 29099
- 29097[    bash]/ 28986[    bash] scheduler.wakeup_new
- 29097[    bash]/ 28986[    bash] syscall.wait4
- 29097[    bash]/ 28986[    bash] scheduler.process_wait
- 29099[    bash]/ 29097[    bash] kprocess.start
- 29099[    bash]/ 29097[    bash] syscall.execve
- 29099[    bash]/ 29097[    bash] kprocess.exec
+ 29603[   uname]/ 29602[    bash] scheduler.process_exit
+ 29602[    bash]/ 29578[    bash] kprocess.release
+ 29602[    bash]/ 29578[    bash] syscall.wait4
+ 29602[    bash]/ 29578[    bash] scheduler.process_wait
+ 29602[    bash]/ 29578[    bash] kprocess.exit
+	return code: 0
+ 29602[    bash]/ 29578[    bash] scheduler.process_exit
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.release
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.create
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_fork
+	PID: 29578 -> 29604
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29604[    bash]/ 29578[    bash] kprocess.start
+ 29604[    bash]/ 29578[    bash] syscall.execve
+ 29604[    bash]/ 29578[    bash] kprocess.exec
+	filename: "/usr/sbin/pidof"
+ 29604[   pidof]/ 29578[    bash] kprocess.exec_complete
+ 29604[   pidof]/ 29578[    bash] scheduler.process_free
+ 29604[   pidof]/ 29578[    bash] scheduler.process_free
+ 29604[   pidof]/ 29578[    bash] kprocess.exit
+	return code: 256
+ 29604[   pidof]/ 29578[    bash] scheduler.process_exit
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.release
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.create
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_fork
+	PID: 29578 -> 29605
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
+ 29605[    bash]/ 29578[    bash] kprocess.start
+ 29605[    bash]/ 29578[    bash] kprocess.create
+ 29605[    bash]/ 29578[    bash] scheduler.process_fork
+	PID: 29605 -> 29606
+ 29605[    bash]/ 29578[    bash] scheduler.wakeup_new
+ 29605[    bash]/ 29578[    bash] syscall.wait4
+ 29605[    bash]/ 29578[    bash] scheduler.process_wait
+ 29606[    bash]/ 29605[    bash] kprocess.start
+ 29606[    bash]/ 29605[    bash] syscall.execve
+ 29606[    bash]/ 29605[    bash] kprocess.exec
+	filename: "/usr/bin/pkg-config"
+ 29606[pkg-config]/ 29605[    bash] kprocess.exec_complete
+ 29606[pkg-config]/ 29605[    bash] kprocess.exit
+	return code: 0
+ 29606[pkg-config]/ 29605[    bash] scheduler.process_exit
+     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
+ 29605[    bash]/ 29578[    bash] kprocess.release
+ 29605[    bash]/ 29578[    bash] syscall.wait4
+ 29605[    bash]/ 29578[    bash] scheduler.process_wait
+ 29605[    bash]/ 29578[    bash] kprocess.exit
+	return code: 0
+ 29605[    bash]/ 29578[    bash] scheduler.process_exit
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.release
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.create
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_fork
+	PID: 29578 -> 29607
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29607[    bash]/ 29578[    bash] kprocess.start
+ 29607[    bash]/ 29578[    bash] syscall.execve
+ 29607[    bash]/ 29578[    bash] kprocess.exec
+	filename: "/usr/libexec/grepconf.sh"
+ 29607[grepconf.sh]/ 29578[    bash] kprocess.exec_complete
+ 29607[grepconf.sh]/ 29578[    bash] kprocess.create
+ 29607[grepconf.sh]/ 29578[    bash] scheduler.process_fork
+	PID: 29607 -> 29608
+ 29607[grepconf.sh]/ 29578[    bash] scheduler.wakeup_new
+ 29607[grepconf.sh]/ 29578[    bash] syscall.wait4
+ 29607[grepconf.sh]/ 29578[    bash] scheduler.process_wait
+ 29608[grepconf.sh]/ 29607[grepconf.sh] kprocess.start
+ 29608[grepconf.sh]/ 29607[grepconf.sh] syscall.execve
+ 29608[grepconf.sh]/ 29607[grepconf.sh] kprocess.exec
+	filename: "/usr/bin/grep"
+ 29608[    grep]/ 29607[grepconf.sh] kprocess.exec_complete
+ 29608[    grep]/ 29607[grepconf.sh] kprocess.exit
+	return code: 256
+ 29608[    grep]/ 29607[grepconf.sh] scheduler.process_exit
+ 29607[grepconf.sh]/ 29578[    bash] kprocess.release
+ 29607[grepconf.sh]/ 29578[    bash] syscall.wait4
+ 29607[grepconf.sh]/ 29578[    bash] scheduler.process_wait
+ 29607[grepconf.sh]/ 29578[    bash] kprocess.exit
+	return code: 0
+ 29607[grepconf.sh]/ 29578[    bash] scheduler.process_exit
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.release
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.create
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_fork
+	PID: 29578 -> 29609
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
+ 29609[    bash]/ 29578[    bash] kprocess.start
+ 29609[    bash]/ 29578[    bash] kprocess.create
+ 29609[    bash]/ 29578[    bash] scheduler.process_fork
+	PID: 29609 -> 29610
+ 29609[    bash]/ 29578[    bash] scheduler.wakeup_new
+ 29609[    bash]/ 29578[    bash] syscall.wait4
+ 29609[    bash]/ 29578[    bash] scheduler.process_wait
+ 29610[    bash]/ 29609[    bash] kprocess.start
+ 29610[    bash]/ 29609[    bash] syscall.execve
+ 29610[    bash]/ 29609[    bash] kprocess.exec
+	filename: "/usr/bin/tty"
+ 29610[     tty]/ 29609[    bash] kprocess.exec_complete
+ 29610[     tty]/ 29609[    bash] kprocess.exit
+	return code: 0
+ 29610[     tty]/ 29609[    bash] scheduler.process_exit
+ 29609[    bash]/ 29578[    bash] kprocess.release
+ 29609[    bash]/ 29578[    bash] syscall.wait4
+ 29609[    bash]/ 29578[    bash] scheduler.process_wait
+ 29609[    bash]/ 29578[    bash] kprocess.create
+ 29609[    bash]/ 29578[    bash] scheduler.process_fork
+	PID: 29609 -> 29611
+ 29609[    bash]/ 29578[    bash] scheduler.wakeup_new
+ 29609[    bash]/ 29578[    bash] syscall.wait4
+ 29609[    bash]/ 29578[    bash] scheduler.process_wait
+ 29611[    bash]/ 29609[    bash] kprocess.start
+ 29611[    bash]/ 29609[    bash] syscall.execve
+ 29611[    bash]/ 29609[    bash] kprocess.exec
+	filename: "/usr/bin/tput"
+ 29611[    tput]/ 29609[    bash] kprocess.exec_complete
+ 29611[    tput]/ 29609[    bash] kprocess.exit
+	return code: 0
+ 29611[    tput]/ 29609[    bash] scheduler.process_exit
+ 29609[    bash]/ 29578[    bash] kprocess.release
+ 29609[    bash]/ 29578[    bash] syscall.wait4
+ 29609[    bash]/ 29578[    bash] scheduler.process_wait
+ 29609[    bash]/ 29578[    bash] kprocess.exit
+	return code: 0
+ 29609[    bash]/ 29578[    bash] scheduler.process_exit
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.release
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.create
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_fork
+	PID: 29578 -> 29612
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
+ 29612[    bash]/ 29578[    bash] kprocess.start
+ 29612[    bash]/ 29578[    bash] kprocess.create
+ 29612[    bash]/ 29578[    bash] scheduler.process_fork
+	PID: 29612 -> 29613
+ 29612[    bash]/ 29578[    bash] scheduler.wakeup_new
+ 29612[    bash]/ 29578[    bash] syscall.wait4
+ 29612[    bash]/ 29578[    bash] scheduler.process_wait
+ 29613[    bash]/ 29612[    bash] kprocess.start
+ 29613[    bash]/ 29612[    bash] scheduler.process_free
+ 29613[    bash]/ 29612[    bash] syscall.execve
+ 29613[    bash]/ 29612[    bash] kprocess.exec
+	filename: "/usr/bin/dircolors"
+ 29613[dircolors]/ 29612[    bash] kprocess.exec_complete
+ 29613[dircolors]/ 29612[    bash] kprocess.exit
+	return code: 0
+ 29613[dircolors]/ 29612[    bash] scheduler.process_exit
+ 29612[    bash]/ 29578[    bash] kprocess.release
+ 29612[    bash]/ 29578[    bash] syscall.wait4
+ 29612[    bash]/ 29578[    bash] scheduler.process_wait
+ 29612[    bash]/ 29578[    bash] kprocess.exit
+	return code: 0
+ 29612[    bash]/ 29578[    bash] scheduler.process_exit
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.release
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.create
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_fork
+	PID: 29578 -> 29614
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29614[    bash]/ 29578[    bash] kprocess.start
+ 29614[    bash]/ 29578[    bash] syscall.execve
+ 29614[    bash]/ 29578[    bash] kprocess.exec
+	filename: "/usr/bin/grep"
+ 29614[    grep]/ 29578[    bash] kprocess.exec_complete
+ 29614[    grep]/ 29578[    bash] kprocess.exit
+	return code: 256
+ 29614[    grep]/ 29578[    bash] scheduler.process_exit
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.release
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_free
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.create
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_fork
+	PID: 29578 -> 29615
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
+ 29615[    bash]/ 29578[    bash] kprocess.start
+ 29615[    bash]/ 29578[    bash] kprocess.create
+ 29615[    bash]/ 29578[    bash] scheduler.process_fork
+	PID: 29615 -> 29616
+ 29615[    bash]/ 29578[    bash] scheduler.wakeup_new
+ 29615[    bash]/ 29578[    bash] syscall.wait4
+ 29615[    bash]/ 29578[    bash] scheduler.process_wait
+ 29616[    bash]/ 29615[    bash] kprocess.start
+ 29616[    bash]/ 29615[    bash] syscall.execve
+ 29616[    bash]/ 29615[    bash] kprocess.exec
+	filename: "/usr/bin/id"
+ 29616[      id]/ 29615[    bash] kprocess.exec_complete
+ 29616[      id]/ 29615[    bash] kprocess.exit
+	return code: 0
+ 29616[      id]/ 29615[    bash] scheduler.process_exit
+ 29615[    bash]/ 29578[    bash] kprocess.release
+ 29615[    bash]/ 29578[    bash] syscall.wait4
+ 29615[    bash]/ 29578[    bash] scheduler.process_wait
+ 29615[    bash]/ 29578[    bash] kprocess.exit
+	return code: 0
+ 29615[    bash]/ 29578[    bash] scheduler.process_exit
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.release
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.create
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_fork
+	PID: 29578 -> 29617
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
+ 29617[    bash]/ 29578[    bash] kprocess.start
+ 29617[    bash]/ 29578[    bash] kprocess.create
+ 29617[    bash]/ 29578[    bash] scheduler.process_fork
+	PID: 29617 -> 29618
+ 29617[    bash]/ 29578[    bash] scheduler.wakeup_new
+ 29617[    bash]/ 29578[    bash] kprocess.create
+ 29617[    bash]/ 29578[    bash] scheduler.process_fork
+	PID: 29617 -> 29619
+ 29617[    bash]/ 29578[    bash] scheduler.wakeup_new
+ 29617[    bash]/ 29578[    bash] syscall.wait4
+ 29617[    bash]/ 29578[    bash] scheduler.process_wait
+ 29618[    bash]/ 29617[    bash] kprocess.start
+ 29618[    bash]/ 29617[    bash] kprocess.exit
+	return code: 0
+ 29618[    bash]/ 29617[    bash] scheduler.process_exit
+ 29617[    bash]/ 29578[    bash] kprocess.release
+ 29617[    bash]/ 29578[    bash] syscall.wait4
+ 29617[    bash]/ 29578[    bash] scheduler.process_wait
+ 29619[    bash]/ 29617[    bash] kprocess.start
+ 29619[    bash]/ 29617[    bash] syscall.execve
+ 29619[    bash]/ 29617[    bash] kprocess.exec
 	filename: "/usr/bin/sed"
- 29099[     sed]/ 29097[    bash] kprocess.exec_complete
- 29098[    bash]/ 29097[    bash] kprocess.start
- 29098[    bash]/ 29097[    bash] kprocess.exit
+ 29619[     sed]/ 29617[    bash] kprocess.exec_complete
+ 29619[     sed]/ 29617[    bash] kprocess.exit
 	return code: 0
- 29098[    bash]/ 29097[    bash] scheduler.process_exit
- 29097[    bash]/ 28986[    bash] kprocess.release
- 29097[    bash]/ 28986[    bash] syscall.wait4
- 29097[    bash]/ 28986[    bash] scheduler.process_wait
- 29099[     sed]/ 29097[    bash] kprocess.exit
+ 29619[     sed]/ 29617[    bash] scheduler.process_exit
+ 29617[    bash]/ 29578[    bash] kprocess.release
+ 29617[    bash]/ 29578[    bash] syscall.wait4
+ 29617[    bash]/ 29578[    bash] scheduler.process_wait
+ 29617[    bash]/ 29578[    bash] kprocess.exit
 	return code: 0
- 29099[     sed]/ 29097[    bash] scheduler.process_exit
- 29097[    bash]/ 28986[    bash] kprocess.release
- 29097[    bash]/ 28986[    bash] syscall.wait4
- 29097[    bash]/ 28986[    bash] scheduler.process_wait
- 29097[    bash]/ 28986[    bash] kprocess.exit
+ 29617[    bash]/ 29578[    bash] scheduler.process_exit
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.release
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.create
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_fork
+	PID: 29578 -> 29620
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
+ 29620[    bash]/ 29578[    bash] kprocess.start
+ 29620[    bash]/ 29578[    bash] kprocess.create
+ 29620[    bash]/ 29578[    bash] scheduler.process_fork
+	PID: 29620 -> 29621
+ 29620[    bash]/ 29578[    bash] scheduler.wakeup_new
+ 29621[    bash]/ 29620[    bash] kprocess.start
+ 29621[    bash]/ 29620[    bash] kprocess.create
+ 29621[    bash]/ 29620[    bash] scheduler.process_fork
+	PID: 29621 -> 29622
+ 29621[    bash]/ 29620[    bash] scheduler.wakeup_new
+ 29621[    bash]/ 29620[    bash] syscall.wait4
+ 29621[    bash]/ 29620[    bash] scheduler.process_wait
+ 29622[    bash]/ 29621[    bash] kprocess.start
+ 29622[    bash]/ 29621[    bash] scheduler.process_free
+ 29622[    bash]/ 29621[    bash] scheduler.process_free
+ 29622[    bash]/ 29621[    bash] scheduler.process_free
+ 29622[    bash]/ 29621[    bash] scheduler.process_free
+ 29622[    bash]/ 29621[    bash] scheduler.process_free
+ 29622[    bash]/ 29621[    bash] kprocess.exit
 	return code: 0
- 29097[    bash]/ 28986[    bash] scheduler.process_exit
- 28986[    bash]/  5394[gnome-terminal-] syscall.wait4
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_wait
- 28986[    bash]/  5394[gnome-terminal-] kprocess.release
- 28986[    bash]/  5394[gnome-terminal-] syscall.wait4
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_wait
- 28986[    bash]/  5394[gnome-terminal-] kprocess.create
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_fork
-	PID: 28986 -> 29100
- 28986[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
- 29100[    bash]/ 28986[    bash] kprocess.start
- 29100[    bash]/ 28986[    bash] kprocess.create
- 29100[    bash]/ 28986[    bash] scheduler.process_fork
-	PID: 29100 -> 29101
- 29100[    bash]/ 28986[    bash] scheduler.wakeup_new
- 29101[    bash]/ 29100[    bash] kprocess.start
- 29101[    bash]/ 29100[    bash] scheduler.process_free
- 29101[    bash]/ 29100[    bash] kprocess.create
- 29101[    bash]/ 29100[    bash] scheduler.process_fork
-	PID: 29101 -> 29102
- 29101[    bash]/ 29100[    bash] scheduler.wakeup_new
- 29101[    bash]/ 29100[    bash] syscall.wait4
- 29101[    bash]/ 29100[    bash] scheduler.process_wait
- 29102[    bash]/ 29101[    bash] kprocess.start
- 29102[    bash]/ 29101[    bash] kprocess.exit
+ 29622[    bash]/ 29621[    bash] scheduler.process_exit
+ 29621[    bash]/ 29620[    bash] kprocess.release
+ 29621[    bash]/ 29620[    bash] syscall.wait4
+ 29621[    bash]/ 29620[    bash] scheduler.process_wait
+ 29621[    bash]/ 29620[    bash] kprocess.exit
 	return code: 0
- 29102[    bash]/ 29101[    bash] scheduler.process_exit
- 29101[    bash]/ 29100[    bash] kprocess.release
- 29101[    bash]/ 29100[    bash] syscall.wait4
- 29101[    bash]/ 29100[    bash] scheduler.process_wait
- 29101[    bash]/ 29100[    bash] scheduler.process_free
- 29101[    bash]/ 29100[    bash] scheduler.process_free
- 29101[    bash]/ 29100[    bash] scheduler.process_free
- 29101[    bash]/ 29100[    bash] kprocess.exit
+ 29621[    bash]/ 29620[    bash] scheduler.process_exit
+ 29620[    bash]/ 29578[    bash] syscall.wait4
+ 29620[    bash]/ 29578[    bash] scheduler.process_wait
+ 29620[    bash]/ 29578[    bash] kprocess.release
+ 29620[    bash]/ 29578[    bash] syscall.wait4
+ 29620[    bash]/ 29578[    bash] scheduler.process_wait
+ 29620[    bash]/ 29578[    bash] kprocess.exit
 	return code: 0
- 29101[    bash]/ 29100[    bash] scheduler.process_exit
- 29100[    bash]/ 28986[    bash] syscall.wait4
- 29100[    bash]/ 28986[    bash] scheduler.process_wait
- 29100[    bash]/ 28986[    bash] kprocess.release
- 29100[    bash]/ 28986[    bash] syscall.wait4
- 29100[    bash]/ 28986[    bash] scheduler.process_wait
- 29100[    bash]/ 28986[    bash] kprocess.exit
-	return code: 0
- 29100[    bash]/ 28986[    bash] scheduler.process_exit
- 28986[    bash]/  5394[gnome-terminal-] syscall.wait4
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_wait
- 28986[    bash]/  5394[gnome-terminal-] kprocess.release
- 28986[    bash]/  5394[gnome-terminal-] syscall.wait4
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29620[    bash]/ 29578[    bash] scheduler.process_exit
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.release
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
      0[swapper/0]/     0[        ] scheduler.process_free
      0[swapper/0]/     0[        ] scheduler.process_free
-     0[swapper/0]/     0[        ] scheduler.process_free
- 29071[   sleep]/  2948[ksmtuned] kprocess.exit
+     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
+     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
+     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
+     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
+     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
+     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
+     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
+     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
+     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
+  5394[    pool]/     1[ systemd] syscall.exit
+  5394[    pool]/     1[ systemd] kprocess.exit
 	return code: 0
- 29071[   sleep]/  2948[ksmtuned] scheduler.process_exit
+  5394[    pool]/     1[ systemd] scheduler.process_exit
+  5394[    pool]/     1[ systemd] kprocess.release
+     0[swapper/0]/     0[        ] scheduler.process_free
+  5394[    pool]/     1[ systemd] syscall.exit
+  5394[    pool]/     1[ systemd] kprocess.exit
+	return code: 0
+  5394[    pool]/     1[ systemd] scheduler.process_exit
+  5394[    pool]/     1[ systemd] kprocess.release
+     0[swapper/0]/     0[        ] scheduler.process_free
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.create
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_fork
+	PID: 29578 -> 29623
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29623[    bash]/ 29578[    bash] kprocess.start
+ 29623[    bash]/ 29578[    bash] syscall.execve
+ 29623[    bash]/ 29578[    bash] kprocess.exec
+	filename: "/usr/bin/uname"
+ 29623[   uname]/ 29578[    bash] kprocess.exec_complete
+ 29623[   uname]/ 29578[    bash] kprocess.exit
+	return code: 0
+ 29623[   uname]/ 29578[    bash] scheduler.process_exit
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.release
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.create
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_fork
+	PID: 29578 -> 29624
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
+ 29624[    bash]/ 29578[    bash] kprocess.start
+ 29624[    bash]/ 29578[    bash] kprocess.create
+ 29624[    bash]/ 29578[    bash] scheduler.process_fork
+	PID: 29624 -> 29625
+ 29624[    bash]/ 29578[    bash] scheduler.wakeup_new
+ 29624[    bash]/ 29578[    bash] kprocess.create
+ 29624[    bash]/ 29578[    bash] scheduler.process_fork
+	PID: 29624 -> 29626
+ 29624[    bash]/ 29578[    bash] scheduler.wakeup_new
+ 29624[    bash]/ 29578[    bash] syscall.wait4
+ 29624[    bash]/ 29578[    bash] scheduler.process_wait
+ 29625[    bash]/ 29624[    bash] kprocess.start
+ 29625[    bash]/ 29624[    bash] kprocess.exit
+	return code: 0
+ 29625[    bash]/ 29624[    bash] scheduler.process_exit
+ 29624[    bash]/ 29578[    bash] kprocess.release
+ 29624[    bash]/ 29578[    bash] syscall.wait4
+ 29624[    bash]/ 29578[    bash] scheduler.process_wait
+ 29626[    bash]/ 29624[    bash] kprocess.start
+ 29626[    bash]/ 29624[    bash] syscall.execve
+ 29626[    bash]/ 29624[    bash] kprocess.exec
+	filename: "/usr/bin/sed"
+ 29626[     sed]/ 29624[    bash] kprocess.exec_complete
+ 29626[     sed]/ 29624[    bash] kprocess.exit
+	return code: 0
+ 29626[     sed]/ 29624[    bash] scheduler.process_exit
+ 29624[    bash]/ 29578[    bash] kprocess.release
+ 29624[    bash]/ 29578[    bash] syscall.wait4
+ 29624[    bash]/ 29578[    bash] scheduler.process_wait
+ 29624[    bash]/ 29578[    bash] kprocess.exit
+	return code: 0
+ 29624[    bash]/ 29578[    bash] scheduler.process_exit
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.release
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.create
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_fork
+	PID: 29578 -> 29627
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
+ 29627[    bash]/ 29578[    bash] kprocess.start
+ 29627[    bash]/ 29578[    bash] kprocess.create
+ 29627[    bash]/ 29578[    bash] scheduler.process_fork
+	PID: 29627 -> 29628
+ 29627[    bash]/ 29578[    bash] scheduler.wakeup_new
+ 29628[    bash]/ 29627[    bash] kprocess.start
+ 29628[    bash]/ 29627[    bash] kprocess.create
+ 29628[    bash]/ 29627[    bash] scheduler.process_fork
+	PID: 29628 -> 29629
+ 29628[    bash]/ 29627[    bash] scheduler.wakeup_new
+ 29628[    bash]/ 29627[    bash] syscall.wait4
+ 29628[    bash]/ 29627[    bash] scheduler.process_wait
+ 29629[    bash]/ 29628[    bash] kprocess.start
+ 29629[    bash]/ 29628[    bash] kprocess.exit
+	return code: 0
+ 29629[    bash]/ 29628[    bash] scheduler.process_exit
+ 29628[    bash]/ 29627[    bash] kprocess.release
+ 29628[    bash]/ 29627[    bash] syscall.wait4
+ 29628[    bash]/ 29627[    bash] scheduler.process_wait
+ 29628[    bash]/ 29627[    bash] kprocess.exit
+	return code: 0
+ 29628[    bash]/ 29627[    bash] scheduler.process_exit
+ 29627[    bash]/ 29578[    bash] syscall.wait4
+ 29627[    bash]/ 29578[    bash] scheduler.process_wait
+ 29627[    bash]/ 29578[    bash] kprocess.release
+ 29627[    bash]/ 29578[    bash] syscall.wait4
+ 29627[    bash]/ 29578[    bash] scheduler.process_wait
+ 29627[    bash]/ 29578[    bash] kprocess.exit
+	return code: 0
+ 29627[    bash]/ 29578[    bash] scheduler.process_exit
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.release
+ 29578[    bash]/  5394[gnome-terminal-] syscall.wait4
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_wait
+     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
+     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
+     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
+     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
+     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
+     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
+     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
+ 29555[   sleep]/  2948[ksmtuned] kprocess.exit
+	return code: 0
+ 29555[   sleep]/  2948[ksmtuned] scheduler.process_exit
   2948[ksmtuned]/     1[ systemd] kprocess.release
   2948[ksmtuned]/     1[ systemd] syscall.wait4
   2948[ksmtuned]/     1[ systemd] scheduler.process_wait
   2948[ksmtuned]/     1[ systemd] kprocess.create
   2948[ksmtuned]/     1[ systemd] scheduler.process_fork
-	PID: 2948 -> 29103
+	PID: 2948 -> 29630
   2948[ksmtuned]/     1[ systemd] scheduler.wakeup_new
- 29103[ksmtuned]/  2948[ksmtuned] kprocess.start
- 29103[ksmtuned]/  2948[ksmtuned] kprocess.create
- 29103[ksmtuned]/  2948[ksmtuned] scheduler.process_fork
-	PID: 29103 -> 29104
- 29103[ksmtuned]/  2948[ksmtuned] scheduler.wakeup_new
- 29103[ksmtuned]/  2948[ksmtuned] syscall.wait4
- 29103[ksmtuned]/  2948[ksmtuned] scheduler.process_wait
- 29104[ksmtuned]/ 29103[ksmtuned] kprocess.start
- 29104[ksmtuned]/ 29103[ksmtuned] syscall.execve
- 29104[ksmtuned]/ 29103[ksmtuned] kprocess.exec
+ 29630[ksmtuned]/  2948[ksmtuned] kprocess.start
+ 29630[ksmtuned]/  2948[ksmtuned] kprocess.create
+ 29630[ksmtuned]/  2948[ksmtuned] scheduler.process_fork
+	PID: 29630 -> 29631
+ 29630[ksmtuned]/  2948[ksmtuned] scheduler.wakeup_new
+ 29630[ksmtuned]/  2948[ksmtuned] syscall.wait4
+ 29630[ksmtuned]/  2948[ksmtuned] scheduler.process_wait
+ 29631[ksmtuned]/ 29630[ksmtuned] kprocess.start
+ 29631[ksmtuned]/ 29630[ksmtuned] syscall.execve
+ 29631[ksmtuned]/ 29630[ksmtuned] kprocess.exec
 	filename: "/usr/bin/awk"
- 29104[     awk]/ 29103[ksmtuned] kprocess.exec_complete
- 29104[     awk]/ 29103[ksmtuned] kprocess.exit
+ 29631[     awk]/ 29630[ksmtuned] kprocess.exec_complete
+ 29631[     awk]/ 29630[ksmtuned] kprocess.exit
 	return code: 0
- 29104[     awk]/ 29103[ksmtuned] scheduler.process_exit
- 29103[ksmtuned]/  2948[ksmtuned] kprocess.release
- 29103[ksmtuned]/  2948[ksmtuned] syscall.wait4
- 29103[ksmtuned]/  2948[ksmtuned] scheduler.process_wait
- 29103[ksmtuned]/  2948[ksmtuned] kprocess.exit
+ 29631[     awk]/ 29630[ksmtuned] scheduler.process_exit
+ 29630[ksmtuned]/  2948[ksmtuned] kprocess.release
+ 29630[ksmtuned]/  2948[ksmtuned] syscall.wait4
+ 29630[ksmtuned]/  2948[ksmtuned] scheduler.process_wait
+ 29630[ksmtuned]/  2948[ksmtuned] kprocess.exit
 	return code: 0
- 29103[ksmtuned]/  2948[ksmtuned] scheduler.process_exit
+ 29630[ksmtuned]/  2948[ksmtuned] scheduler.process_exit
   2948[ksmtuned]/     1[ systemd] syscall.wait4
   2948[ksmtuned]/     1[ systemd] scheduler.process_wait
   2948[ksmtuned]/     1[ systemd] kprocess.release
@@ -375,73 +861,73 @@
   2948[ksmtuned]/     1[ systemd] scheduler.process_wait
   2948[ksmtuned]/     1[ systemd] kprocess.create
   2948[ksmtuned]/     1[ systemd] scheduler.process_fork
-	PID: 2948 -> 29105
+	PID: 2948 -> 29632
   2948[ksmtuned]/     1[ systemd] scheduler.wakeup_new
- 29105[ksmtuned]/  2948[ksmtuned] kprocess.start
- 29105[ksmtuned]/  2948[ksmtuned] scheduler.process_free
- 29105[ksmtuned]/  2948[ksmtuned] kprocess.create
- 29105[ksmtuned]/  2948[ksmtuned] scheduler.process_fork
-	PID: 29105 -> 29106
- 29105[ksmtuned]/  2948[ksmtuned] scheduler.wakeup_new
- 29106[ksmtuned]/ 29105[ksmtuned] kprocess.start
- 29106[ksmtuned]/ 29105[ksmtuned] kprocess.create
- 29106[ksmtuned]/ 29105[ksmtuned] scheduler.process_fork
-	PID: 29106 -> 29107
- 29106[ksmtuned]/ 29105[ksmtuned] scheduler.wakeup_new
- 29106[ksmtuned]/ 29105[ksmtuned] syscall.wait4
- 29106[ksmtuned]/ 29105[ksmtuned] scheduler.process_wait
- 29107[ksmtuned]/ 29106[ksmtuned] kprocess.start
- 29107[ksmtuned]/ 29106[ksmtuned] syscall.execve
- 29107[ksmtuned]/ 29106[ksmtuned] kprocess.exec
+ 29632[ksmtuned]/  2948[ksmtuned] kprocess.start
+ 29632[ksmtuned]/  2948[ksmtuned] kprocess.create
+ 29632[ksmtuned]/  2948[ksmtuned] scheduler.process_fork
+	PID: 29632 -> 29633
+ 29632[ksmtuned]/  2948[ksmtuned] scheduler.wakeup_new
+ 29633[ksmtuned]/ 29632[ksmtuned] kprocess.start
+ 29633[ksmtuned]/ 29632[ksmtuned] kprocess.create
+ 29633[ksmtuned]/ 29632[ksmtuned] scheduler.process_fork
+	PID: 29633 -> 29634
+ 29633[ksmtuned]/ 29632[ksmtuned] scheduler.wakeup_new
+ 29633[ksmtuned]/ 29632[ksmtuned] syscall.wait4
+ 29633[ksmtuned]/ 29632[ksmtuned] scheduler.process_wait
+ 29634[ksmtuned]/ 29633[ksmtuned] kprocess.start
+ 29634[ksmtuned]/ 29633[ksmtuned] syscall.execve
+ 29634[ksmtuned]/ 29633[ksmtuned] kprocess.exec
 	filename: "/usr/bin/pgrep"
- 29107[   pgrep]/ 29106[ksmtuned] kprocess.exec_complete
- 29107[   pgrep]/ 29106[ksmtuned] scheduler.process_free
- 29107[   pgrep]/ 29106[ksmtuned] kprocess.exit
+ 29634[   pgrep]/ 29633[ksmtuned] kprocess.exec_complete
+ 29634[   pgrep]/ 29633[ksmtuned] scheduler.process_free
+ 29634[   pgrep]/ 29633[ksmtuned] scheduler.process_free
+ 29634[   pgrep]/ 29633[ksmtuned] scheduler.process_free
+ 29634[   pgrep]/ 29633[ksmtuned] kprocess.exit
 	return code: 256
- 29107[   pgrep]/ 29106[ksmtuned] scheduler.process_exit
- 29107[   pgrep]/ 29106[ksmtuned] scheduler.process_free
- 29106[ksmtuned]/ 29105[ksmtuned] kprocess.release
- 29106[ksmtuned]/ 29105[ksmtuned] syscall.wait4
- 29106[ksmtuned]/ 29105[ksmtuned] scheduler.process_wait
- 29106[ksmtuned]/ 29105[ksmtuned] kprocess.exit
+ 29634[   pgrep]/ 29633[ksmtuned] scheduler.process_exit
+ 29633[ksmtuned]/ 29632[ksmtuned] kprocess.release
+ 29633[ksmtuned]/ 29632[ksmtuned] syscall.wait4
+ 29633[ksmtuned]/ 29632[ksmtuned] scheduler.process_wait
+ 29633[ksmtuned]/ 29632[ksmtuned] kprocess.exit
 	return code: 256
- 29106[ksmtuned]/ 29105[ksmtuned] scheduler.process_exit
- 29105[ksmtuned]/  2948[ksmtuned] syscall.wait4
- 29105[ksmtuned]/  2948[ksmtuned] scheduler.process_wait
- 29105[ksmtuned]/  2948[ksmtuned] kprocess.release
- 29105[ksmtuned]/  2948[ksmtuned] syscall.wait4
- 29105[ksmtuned]/  2948[ksmtuned] scheduler.process_wait
- 29105[ksmtuned]/  2948[ksmtuned] kprocess.create
- 29105[ksmtuned]/  2948[ksmtuned] scheduler.process_fork
-	PID: 29105 -> 29108
- 29105[ksmtuned]/  2948[ksmtuned] scheduler.wakeup_new
- 29105[ksmtuned]/  2948[ksmtuned] kprocess.create
- 29105[ksmtuned]/  2948[ksmtuned] scheduler.process_fork
-	PID: 29105 -> 29109
- 29105[ksmtuned]/  2948[ksmtuned] scheduler.wakeup_new
- 29105[ksmtuned]/  2948[ksmtuned] syscall.wait4
- 29105[ksmtuned]/  2948[ksmtuned] scheduler.process_wait
- 29108[ksmtuned]/ 29105[ksmtuned] kprocess.start
- 29108[ksmtuned]/ 29105[ksmtuned] kprocess.exit
-	return code: 0
- 29108[ksmtuned]/ 29105[ksmtuned] scheduler.process_exit
- 29105[ksmtuned]/  2948[ksmtuned] kprocess.release
- 29105[ksmtuned]/  2948[ksmtuned] syscall.wait4
- 29105[ksmtuned]/  2948[ksmtuned] scheduler.process_wait
- 29109[ksmtuned]/ 29105[ksmtuned] kprocess.start
- 29109[ksmtuned]/ 29105[ksmtuned] syscall.execve
- 29109[ksmtuned]/ 29105[ksmtuned] kprocess.exec
+ 29633[ksmtuned]/ 29632[ksmtuned] scheduler.process_exit
+ 29632[ksmtuned]/  2948[ksmtuned] syscall.wait4
+ 29632[ksmtuned]/  2948[ksmtuned] scheduler.process_wait
+ 29632[ksmtuned]/  2948[ksmtuned] kprocess.release
+ 29632[ksmtuned]/  2948[ksmtuned] syscall.wait4
+ 29632[ksmtuned]/  2948[ksmtuned] scheduler.process_wait
+ 29632[ksmtuned]/  2948[ksmtuned] kprocess.create
+ 29632[ksmtuned]/  2948[ksmtuned] scheduler.process_fork
+	PID: 29632 -> 29635
+ 29632[ksmtuned]/  2948[ksmtuned] scheduler.wakeup_new
+ 29632[ksmtuned]/  2948[ksmtuned] kprocess.create
+ 29632[ksmtuned]/  2948[ksmtuned] scheduler.process_fork
+	PID: 29632 -> 29636
+ 29632[ksmtuned]/  2948[ksmtuned] scheduler.wakeup_new
+ 29632[ksmtuned]/  2948[ksmtuned] syscall.wait4
+ 29632[ksmtuned]/  2948[ksmtuned] scheduler.process_wait
+ 29636[ksmtuned]/ 29632[ksmtuned] kprocess.start
+ 29636[ksmtuned]/ 29632[ksmtuned] syscall.execve
+ 29636[ksmtuned]/ 29632[ksmtuned] kprocess.exec
 	filename: "/usr/bin/awk"
- 29109[     awk]/ 29105[ksmtuned] kprocess.exec_complete
- 29109[     awk]/ 29105[ksmtuned] kprocess.exit
+ 29636[     awk]/ 29632[ksmtuned] kprocess.exec_complete
+ 29635[ksmtuned]/ 29632[ksmtuned] kprocess.start
+ 29635[ksmtuned]/ 29632[ksmtuned] kprocess.exit
 	return code: 0
- 29109[     awk]/ 29105[ksmtuned] scheduler.process_exit
- 29105[ksmtuned]/  2948[ksmtuned] kprocess.release
- 29105[ksmtuned]/  2948[ksmtuned] syscall.wait4
- 29105[ksmtuned]/  2948[ksmtuned] scheduler.process_wait
- 29105[ksmtuned]/  2948[ksmtuned] kprocess.exit
+ 29635[ksmtuned]/ 29632[ksmtuned] scheduler.process_exit
+ 29632[ksmtuned]/  2948[ksmtuned] kprocess.release
+ 29632[ksmtuned]/  2948[ksmtuned] syscall.wait4
+ 29632[ksmtuned]/  2948[ksmtuned] scheduler.process_wait
+ 29636[     awk]/ 29632[ksmtuned] kprocess.exit
 	return code: 0
- 29105[ksmtuned]/  2948[ksmtuned] scheduler.process_exit
+ 29636[     awk]/ 29632[ksmtuned] scheduler.process_exit
+ 29632[ksmtuned]/  2948[ksmtuned] kprocess.release
+ 29632[ksmtuned]/  2948[ksmtuned] syscall.wait4
+ 29632[ksmtuned]/  2948[ksmtuned] scheduler.process_wait
+ 29632[ksmtuned]/  2948[ksmtuned] kprocess.exit
+	return code: 0
+ 29632[ksmtuned]/  2948[ksmtuned] scheduler.process_exit
   2948[ksmtuned]/     1[ systemd] syscall.wait4
   2948[ksmtuned]/     1[ systemd] scheduler.process_wait
   2948[ksmtuned]/     1[ systemd] kprocess.release
@@ -449,382 +935,29 @@
   2948[ksmtuned]/     1[ systemd] scheduler.process_wait
   2948[ksmtuned]/     1[ systemd] kprocess.create
   2948[ksmtuned]/     1[ systemd] scheduler.process_fork
-	PID: 2948 -> 29110
+	PID: 2948 -> 29637
   2948[ksmtuned]/     1[ systemd] scheduler.wakeup_new
   2948[ksmtuned]/     1[ systemd] syscall.wait4
   2948[ksmtuned]/     1[ systemd] scheduler.process_wait
- 29110[ksmtuned]/  2948[ksmtuned] kprocess.start
- 29110[ksmtuned]/  2948[ksmtuned] syscall.execve
- 29110[ksmtuned]/  2948[ksmtuned] kprocess.exec
+ 29637[ksmtuned]/  2948[ksmtuned] kprocess.start
+ 29637[ksmtuned]/  2948[ksmtuned] syscall.execve
+ 29637[ksmtuned]/  2948[ksmtuned] kprocess.exec
 	filename: "/usr/bin/sleep"
- 29110[   sleep]/  2948[ksmtuned] kprocess.exec_complete
+ 29637[   sleep]/  2948[ksmtuned] kprocess.exec_complete
      3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
      3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
      3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
      3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
      3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
- 28986[    bash]/  5394[gnome-terminal-] kprocess.create
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_fork
-	PID: 28986 -> 29111
- 28986[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
- 28986[    bash]/  5394[gnome-terminal-] syscall.wait4
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_wait
- 29111[    bash]/ 28986[    bash] kprocess.start
- 29111[    bash]/ 28986[    bash] syscall.execve
- 29111[    bash]/ 28986[    bash] kprocess.exec
-	filename: "/usr/bin/uname"
- 29111[   uname]/ 28986[    bash] kprocess.exec_complete
- 29111[   uname]/ 28986[    bash] kprocess.exit
-	return code: 0
- 29111[   uname]/ 28986[    bash] scheduler.process_exit
- 28986[    bash]/  5394[gnome-terminal-] kprocess.release
- 28986[    bash]/  5394[gnome-terminal-] syscall.wait4
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_wait
- 28986[    bash]/  5394[gnome-terminal-] kprocess.create
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_fork
-	PID: 28986 -> 29112
- 28986[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
- 29112[    bash]/ 28986[    bash] kprocess.start
- 29112[    bash]/ 28986[    bash] kprocess.create
- 29112[    bash]/ 28986[    bash] scheduler.process_fork
-	PID: 29112 -> 29113
- 29112[    bash]/ 28986[    bash] scheduler.wakeup_new
- 29112[    bash]/ 28986[    bash] kprocess.create
- 29112[    bash]/ 28986[    bash] scheduler.process_fork
-	PID: 29112 -> 29114
- 29112[    bash]/ 28986[    bash] scheduler.wakeup_new
- 29112[    bash]/ 28986[    bash] syscall.wait4
- 29112[    bash]/ 28986[    bash] scheduler.process_wait
- 29113[    bash]/ 29112[    bash] kprocess.start
- 29113[    bash]/ 29112[    bash] kprocess.exit
-	return code: 0
- 29113[    bash]/ 29112[    bash] scheduler.process_exit
- 29112[    bash]/ 28986[    bash] kprocess.release
- 29112[    bash]/ 28986[    bash] syscall.wait4
- 29112[    bash]/ 28986[    bash] scheduler.process_wait
- 29114[    bash]/ 29112[    bash] kprocess.start
- 29114[    bash]/ 29112[    bash] syscall.execve
- 29114[    bash]/ 29112[    bash] kprocess.exec
-	filename: "/usr/bin/sed"
- 29114[     sed]/ 29112[    bash] kprocess.exec_complete
- 29114[     sed]/ 29112[    bash] kprocess.exit
-	return code: 0
- 29114[     sed]/ 29112[    bash] scheduler.process_exit
- 29112[    bash]/ 28986[    bash] kprocess.release
- 29112[    bash]/ 28986[    bash] syscall.wait4
- 29112[    bash]/ 28986[    bash] scheduler.process_wait
- 29112[    bash]/ 28986[    bash] kprocess.exit
-	return code: 0
- 29112[    bash]/ 28986[    bash] scheduler.process_exit
- 28986[    bash]/  5394[gnome-terminal-] syscall.wait4
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_wait
- 28986[    bash]/  5394[gnome-terminal-] kprocess.release
- 28986[    bash]/  5394[gnome-terminal-] syscall.wait4
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_wait
- 28986[    bash]/  5394[gnome-terminal-] kprocess.create
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_fork
-	PID: 28986 -> 29115
- 28986[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
- 29115[    bash]/ 28986[    bash] kprocess.start
- 29115[    bash]/ 28986[    bash] kprocess.create
- 29115[    bash]/ 28986[    bash] scheduler.process_fork
-	PID: 29115 -> 29116
- 29115[    bash]/ 28986[    bash] scheduler.wakeup_new
- 29116[    bash]/ 29115[    bash] kprocess.start
- 29116[    bash]/ 29115[    bash] kprocess.create
- 29116[    bash]/ 29115[    bash] scheduler.process_fork
-	PID: 29116 -> 29117
- 29116[    bash]/ 29115[    bash] scheduler.wakeup_new
- 29116[    bash]/ 29115[    bash] syscall.wait4
- 29116[    bash]/ 29115[    bash] scheduler.process_wait
- 29117[    bash]/ 29116[    bash] kprocess.start
- 29117[    bash]/ 29116[    bash] kprocess.exit
-	return code: 0
- 29117[    bash]/ 29116[    bash] scheduler.process_exit
- 29116[    bash]/ 29115[    bash] kprocess.release
- 29116[    bash]/ 29115[    bash] syscall.wait4
- 29116[    bash]/ 29115[    bash] scheduler.process_wait
- 29116[    bash]/ 29115[    bash] kprocess.exit
-	return code: 0
- 29116[    bash]/ 29115[    bash] scheduler.process_exit
- 29115[    bash]/ 28986[    bash] syscall.wait4
- 29115[    bash]/ 28986[    bash] scheduler.process_wait
- 29115[    bash]/ 28986[    bash] kprocess.release
- 29115[    bash]/ 28986[    bash] syscall.wait4
- 29115[    bash]/ 28986[    bash] scheduler.process_wait
- 29115[    bash]/ 28986[    bash] kprocess.exit
-	return code: 0
- 29115[    bash]/ 28986[    bash] scheduler.process_exit
- 28986[    bash]/  5394[gnome-terminal-] syscall.wait4
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_wait
- 28986[    bash]/  5394[gnome-terminal-] kprocess.release
- 28986[    bash]/  5394[gnome-terminal-] syscall.wait4
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_wait
-     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
-     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
-     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
-     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
-     0[swapper/0]/     0[        ] scheduler.process_free
-     0[swapper/0]/     0[        ] scheduler.process_free
-     0[swapper/0]/     0[        ] scheduler.process_free
   2833[    lsmd]/     1[ systemd] scheduler.process_wait
- 28986[    bash]/  5394[gnome-terminal-] kprocess.create
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_fork
-	PID: 28986 -> 29118
- 28986[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
- 29118[    bash]/ 28986[    bash] kprocess.start
- 29118[    bash]/ 28986[    bash] kprocess.create
- 29118[    bash]/ 28986[    bash] scheduler.process_fork
-	PID: 29118 -> 29119
- 29118[    bash]/ 28986[    bash] scheduler.wakeup_new
- 29118[    bash]/ 28986[    bash] kprocess.create
- 29118[    bash]/ 28986[    bash] scheduler.process_fork
-	PID: 29118 -> 29120
- 29118[    bash]/ 28986[    bash] scheduler.wakeup_new
- 29118[    bash]/ 28986[    bash] syscall.wait4
- 29118[    bash]/ 28986[    bash] scheduler.process_wait
- 29119[    bash]/ 29118[    bash] kprocess.start
- 29119[    bash]/ 29118[    bash] kprocess.exit
-	return code: 0
- 29119[    bash]/ 29118[    bash] scheduler.process_exit
- 29118[    bash]/ 28986[    bash] kprocess.release
- 29118[    bash]/ 28986[    bash] syscall.wait4
- 29118[    bash]/ 28986[    bash] scheduler.process_wait
- 29120[    bash]/ 29118[    bash] kprocess.start
- 29120[    bash]/ 29118[    bash] syscall.execve
- 29120[    bash]/ 29118[    bash] kprocess.exec
-	filename: "/usr/bin/sed"
- 29120[     sed]/ 29118[    bash] kprocess.exec_complete
- 29120[     sed]/ 29118[    bash] kprocess.exit
-	return code: 0
- 29120[     sed]/ 29118[    bash] scheduler.process_exit
- 29118[    bash]/ 28986[    bash] kprocess.release
- 29118[    bash]/ 28986[    bash] syscall.wait4
- 29118[    bash]/ 28986[    bash] scheduler.process_wait
- 29118[    bash]/ 28986[    bash] kprocess.exit
-	return code: 0
- 29118[    bash]/ 28986[    bash] scheduler.process_exit
- 28986[    bash]/  5394[gnome-terminal-] syscall.wait4
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_wait
- 28986[    bash]/  5394[gnome-terminal-] kprocess.release
- 28986[    bash]/  5394[gnome-terminal-] syscall.wait4
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_wait
- 28986[    bash]/  5394[gnome-terminal-] kprocess.create
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_fork
-	PID: 28986 -> 29121
- 28986[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
- 29121[    bash]/ 28986[    bash] kprocess.start
- 29121[    bash]/ 28986[    bash] kprocess.create
- 29121[    bash]/ 28986[    bash] scheduler.process_fork
-	PID: 29121 -> 29122
- 29121[    bash]/ 28986[    bash] scheduler.wakeup_new
- 29122[    bash]/ 29121[    bash] kprocess.start
- 29122[    bash]/ 29121[    bash] kprocess.create
- 29122[    bash]/ 29121[    bash] scheduler.process_fork
-	PID: 29122 -> 29123
- 29122[    bash]/ 29121[    bash] scheduler.wakeup_new
- 29122[    bash]/ 29121[    bash] syscall.wait4
- 29122[    bash]/ 29121[    bash] scheduler.process_wait
- 29123[    bash]/ 29122[    bash] kprocess.start
- 29123[    bash]/ 29122[    bash] kprocess.exit
-	return code: 0
- 29123[    bash]/ 29122[    bash] scheduler.process_exit
- 29122[    bash]/ 29121[    bash] kprocess.release
- 29122[    bash]/ 29121[    bash] syscall.wait4
- 29122[    bash]/ 29121[    bash] scheduler.process_wait
- 29122[    bash]/ 29121[    bash] kprocess.exit
-	return code: 0
- 29122[    bash]/ 29121[    bash] scheduler.process_exit
- 29121[    bash]/ 28986[    bash] syscall.wait4
- 29121[    bash]/ 28986[    bash] scheduler.process_wait
- 29121[    bash]/ 28986[    bash] kprocess.release
- 29121[    bash]/ 28986[    bash] syscall.wait4
- 29121[    bash]/ 28986[    bash] scheduler.process_wait
- 29121[    bash]/ 28986[    bash] kprocess.exit
-	return code: 0
- 29121[    bash]/ 28986[    bash] scheduler.process_exit
- 28986[    bash]/  5394[gnome-terminal-] syscall.wait4
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_wait
- 28986[    bash]/  5394[gnome-terminal-] kprocess.release
- 28986[    bash]/  5394[gnome-terminal-] syscall.wait4
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_wait
-     0[swapper/0]/     0[        ] scheduler.process_free
-     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
-     0[swapper/0]/     0[        ] scheduler.process_free
-     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
-     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
-     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
- 28986[    bash]/  5394[gnome-terminal-] kprocess.create
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_fork
-	PID: 28986 -> 29124
- 28986[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
- 29124[    bash]/ 28986[    bash] kprocess.start
- 29124[    bash]/ 28986[    bash] kprocess.create
- 29124[    bash]/ 28986[    bash] scheduler.process_fork
-	PID: 29124 -> 29125
- 29124[    bash]/ 28986[    bash] scheduler.wakeup_new
- 29124[    bash]/ 28986[    bash] kprocess.create
- 29124[    bash]/ 28986[    bash] scheduler.process_fork
-	PID: 29124 -> 29126
- 29124[    bash]/ 28986[    bash] scheduler.wakeup_new
- 29124[    bash]/ 28986[    bash] syscall.wait4
- 29124[    bash]/ 28986[    bash] scheduler.process_wait
- 29125[    bash]/ 29124[    bash] kprocess.start
- 29125[    bash]/ 29124[    bash] kprocess.exit
-	return code: 0
- 29125[    bash]/ 29124[    bash] scheduler.process_exit
- 29124[    bash]/ 28986[    bash] kprocess.release
- 29124[    bash]/ 28986[    bash] syscall.wait4
- 29124[    bash]/ 28986[    bash] scheduler.process_wait
- 29126[    bash]/ 29124[    bash] kprocess.start
- 29126[    bash]/ 29124[    bash] syscall.execve
- 29126[    bash]/ 29124[    bash] kprocess.exec
-	filename: "/usr/bin/sed"
- 29126[     sed]/ 29124[    bash] kprocess.exec_complete
- 29126[     sed]/ 29124[    bash] kprocess.exit
-	return code: 0
- 29126[     sed]/ 29124[    bash] scheduler.process_exit
- 29124[    bash]/ 28986[    bash] kprocess.release
- 29124[    bash]/ 28986[    bash] syscall.wait4
- 29124[    bash]/ 28986[    bash] scheduler.process_wait
- 29124[    bash]/ 28986[    bash] kprocess.exit
-	return code: 0
- 29124[    bash]/ 28986[    bash] scheduler.process_exit
- 28986[    bash]/  5394[gnome-terminal-] syscall.wait4
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_wait
- 28986[    bash]/  5394[gnome-terminal-] kprocess.release
- 28986[    bash]/  5394[gnome-terminal-] syscall.wait4
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_wait
- 28986[    bash]/  5394[gnome-terminal-] kprocess.create
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_fork
-	PID: 28986 -> 29127
- 28986[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
- 29127[    bash]/ 28986[    bash] kprocess.start
- 29127[    bash]/ 28986[    bash] kprocess.create
- 29127[    bash]/ 28986[    bash] scheduler.process_fork
-	PID: 29127 -> 29128
- 29127[    bash]/ 28986[    bash] scheduler.wakeup_new
- 29128[    bash]/ 29127[    bash] kprocess.start
- 29128[    bash]/ 29127[    bash] kprocess.create
- 29128[    bash]/ 29127[    bash] scheduler.process_fork
-	PID: 29128 -> 29129
- 29128[    bash]/ 29127[    bash] scheduler.wakeup_new
- 29128[    bash]/ 29127[    bash] syscall.wait4
- 29128[    bash]/ 29127[    bash] scheduler.process_wait
- 29129[    bash]/ 29128[    bash] kprocess.start
- 29129[    bash]/ 29128[    bash] kprocess.exit
-	return code: 0
- 29129[    bash]/ 29128[    bash] scheduler.process_exit
- 29128[    bash]/ 29127[    bash] kprocess.release
- 29128[    bash]/ 29127[    bash] syscall.wait4
- 29128[    bash]/ 29127[    bash] scheduler.process_wait
- 29128[    bash]/ 29127[    bash] kprocess.exit
-	return code: 0
- 29128[    bash]/ 29127[    bash] scheduler.process_exit
- 29127[    bash]/ 28986[    bash] syscall.wait4
- 29127[    bash]/ 28986[    bash] scheduler.process_wait
- 29127[    bash]/ 28986[    bash] kprocess.release
- 29127[    bash]/ 28986[    bash] syscall.wait4
- 29127[    bash]/ 28986[    bash] scheduler.process_wait
- 29127[    bash]/ 28986[    bash] kprocess.exit
-	return code: 0
- 29127[    bash]/ 28986[    bash] scheduler.process_exit
- 28986[    bash]/  5394[gnome-terminal-] syscall.wait4
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_wait
- 28986[    bash]/  5394[gnome-terminal-] kprocess.release
- 28986[    bash]/  5394[gnome-terminal-] syscall.wait4
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_wait
-     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
-     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
-     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
-     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
-     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
-     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
- 28986[    bash]/  5394[gnome-terminal-] kprocess.create
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_fork
-	PID: 28986 -> 29130
- 28986[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
- 29130[    bash]/ 28986[    bash] kprocess.start
- 29130[    bash]/ 28986[    bash] kprocess.create
- 29130[    bash]/ 28986[    bash] scheduler.process_fork
-	PID: 29130 -> 29131
- 29130[    bash]/ 28986[    bash] scheduler.wakeup_new
- 29130[    bash]/ 28986[    bash] kprocess.create
- 29130[    bash]/ 28986[    bash] scheduler.process_fork
-	PID: 29130 -> 29132
- 29130[    bash]/ 28986[    bash] scheduler.wakeup_new
- 29130[    bash]/ 28986[    bash] syscall.wait4
- 29130[    bash]/ 28986[    bash] scheduler.process_wait
- 29131[    bash]/ 29130[    bash] kprocess.start
- 29131[    bash]/ 29130[    bash] kprocess.exit
-	return code: 0
- 29131[    bash]/ 29130[    bash] scheduler.process_exit
- 29130[    bash]/ 28986[    bash] kprocess.release
- 29130[    bash]/ 28986[    bash] syscall.wait4
- 29130[    bash]/ 28986[    bash] scheduler.process_wait
- 29132[    bash]/ 29130[    bash] kprocess.start
- 29132[    bash]/ 29130[    bash] syscall.execve
- 29132[    bash]/ 29130[    bash] kprocess.exec
-	filename: "/usr/bin/sed"
- 29132[     sed]/ 29130[    bash] kprocess.exec_complete
- 29132[     sed]/ 29130[    bash] kprocess.exit
-	return code: 0
- 29132[     sed]/ 29130[    bash] scheduler.process_exit
- 29130[    bash]/ 28986[    bash] kprocess.release
- 29130[    bash]/ 28986[    bash] syscall.wait4
- 29130[    bash]/ 28986[    bash] scheduler.process_wait
- 29130[    bash]/ 28986[    bash] kprocess.exit
-	return code: 0
- 29130[    bash]/ 28986[    bash] scheduler.process_exit
- 28986[    bash]/  5394[gnome-terminal-] syscall.wait4
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_wait
- 28986[    bash]/  5394[gnome-terminal-] kprocess.release
- 28986[    bash]/  5394[gnome-terminal-] syscall.wait4
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_wait
- 28986[    bash]/  5394[gnome-terminal-] kprocess.create
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_fork
-	PID: 28986 -> 29133
- 28986[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
- 29133[    bash]/ 28986[    bash] kprocess.start
- 29133[    bash]/ 28986[    bash] kprocess.create
- 29133[    bash]/ 28986[    bash] scheduler.process_fork
-	PID: 29133 -> 29134
- 29133[    bash]/ 28986[    bash] scheduler.wakeup_new
- 29134[    bash]/ 29133[    bash] kprocess.start
- 29134[    bash]/ 29133[    bash] kprocess.create
- 29134[    bash]/ 29133[    bash] scheduler.process_fork
-	PID: 29134 -> 29135
- 29134[    bash]/ 29133[    bash] scheduler.wakeup_new
- 29134[    bash]/ 29133[    bash] syscall.wait4
- 29134[    bash]/ 29133[    bash] scheduler.process_wait
- 29135[    bash]/ 29134[    bash] kprocess.start
- 29135[    bash]/ 29134[    bash] kprocess.exit
-	return code: 0
- 29135[    bash]/ 29134[    bash] scheduler.process_exit
- 29134[    bash]/ 29133[    bash] kprocess.release
- 29134[    bash]/ 29133[    bash] syscall.wait4
- 29134[    bash]/ 29133[    bash] scheduler.process_wait
- 29134[    bash]/ 29133[    bash] kprocess.exit
-	return code: 0
- 29134[    bash]/ 29133[    bash] scheduler.process_exit
- 29133[    bash]/ 28986[    bash] syscall.wait4
- 29133[    bash]/ 28986[    bash] scheduler.process_wait
- 29133[    bash]/ 28986[    bash] kprocess.release
- 29133[    bash]/ 28986[    bash] syscall.wait4
- 29133[    bash]/ 28986[    bash] scheduler.process_wait
- 29133[    bash]/ 28986[    bash] kprocess.exit
-	return code: 0
- 29133[    bash]/ 28986[    bash] scheduler.process_exit
- 28986[    bash]/  5394[gnome-terminal-] syscall.wait4
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_wait
- 28986[    bash]/  5394[gnome-terminal-] kprocess.release
- 28986[    bash]/  5394[gnome-terminal-] syscall.wait4
- 28986[    bash]/  5394[gnome-terminal-] scheduler.process_wait
-     0[swapper/0]/     0[        ] scheduler.process_free
-     0[swapper/0]/     0[        ] scheduler.process_free
-     0[swapper/0]/     0[        ] scheduler.process_free
-     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
-     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
-     3[ksoftirqd/0]/     2[kthreadd] scheduler.process_free
- 29074[    stap]/ 29072[    sudo] syscall.wait4
- 29074[    stap]/ 29072[    sudo] scheduler.process_wait
+ 29578[    bash]/  5394[gnome-terminal-] kprocess.exit
+	return code: 1
+ 29578[    bash]/  5394[gnome-terminal-] scheduler.process_exit
+  5394[   gmain]/     1[ systemd] syscall.wait4
+  5394[   gmain]/     1[ systemd] scheduler.process_wait
+  5394[   gmain]/     1[ systemd] kprocess.release
+  5394[   gmain]/     1[ systemd] syscall.wait4
+  5394[   gmain]/     1[ systemd] scheduler.process_wait
+  4729[gnome-shell]/  4475[gnome-session-b] scheduler.process_free
+ 29568[    stap]/ 29556[    sudo] syscall.wait4
+ 29568[    stap]/ 29556[    sudo] scheduler.process_wait
