@@ -1,4 +1,5 @@
-[raqib@localhost systemcall]$ sudo stap syscall_count.stp 
+#### Results:
+```[raqib@localhost systemcall]$ sudo stap syscall_count.stp 
 
 Collecting system-call data for the whole system
 Top 20 <processes, syscall> pair will be displayed for the interval of 10 seconds
@@ -94,8 +95,9 @@ Total Result:
               gnome-shell                      read         62
           gnome-terminal-                    writev         56
                         X                     ioctl         55
+```
 ------------------------------------------------------------------------
-[raqib@localhost systemcall]$ sudo stap syscall_count_arg.stp gnome-shell
+```[raqib@localhost systemcall]$ sudo stap syscall_count_arg.stp gnome-shell
 [sudo] password for raqib: 
 Collecting system-call data for the process: gnome-shell
 Top 20 syscall by process [gnome-shell] will be displayed for the interval of 10 seconds
@@ -125,8 +127,9 @@ Total Syscall Result for Process [gnome-shell]:
               gnome-shell                     write         59
               gnome-shell                      read         47
 [raqib@localhost systemcall]$ 
-
+```
 ------------------------------------------------------------------------
+```
   2029[    bash]/  5394[gnome-terminal-] kprocess.create
   2029[    bash]/  5394[gnome-terminal-] scheduler.process_fork
 	Parent ID: [2029] -> Child ID: [2053]
@@ -149,3 +152,12 @@ Total Syscall Result for Process [gnome-shell]:
 	return code: 0
   2054[   uname]/  2053[    bash] scheduler.process_exit
   2053[    bash]/  2029[    bash] kprocess.release
+```
+
+#### References:
+1. SystemTap Tapset Reference Manual: https://sourceware.org/systemtap/tapsets/
+2. SystemTap Beginners Guide: https://lrita.github.io/images/posts/systemtap/SystemTap_Beginners_Guide.pdf
+3. Systemtap Examples: https://sourceware.org/systemtap/examples/index.html#process/strace.stp
+4. Brendan's blog on "Using SystemTap": dtrace.org/blogs/brendan/2011/10/15/using-systemtap/
+5. Dynamic Tracing with DTrace & SystemTap: https://myaut.github.io/dtrace-stap-book/
+6. Red Hat Enterprise SystemTap Language Reference: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/5/pdf/systemtap_language_reference/Red_Hat_Enterprise_Linux-5-SystemTap_Language_Reference-en-US.pdf
