@@ -1,13 +1,28 @@
 #! /usr/bin/env stap
 
-probe syscall.fork, syscall.exec*, syscall.exit, syscall.wait4,
-    kprocess.*,
-    scheduler.process*, scheduler.wakeup_new {
+global process_start
+
+probe begin {
+    printf("Process tracing through systemtap, log format shown bellow:\n")
+    printf("{process_id}[{process_name}]/ {parent_process_id}[{parent_process_name}] {active_probe_name}");
+    printf("[PROCESS_ID] [USER_ID] [EFFECTIVE_USER_ID] [GROUP_ID] [CPU_NUMBER] [CMDLINE_ARGS] [ENV_VARIABLE] [EXE_FILE_POINTER]\n\n");
+}
+
+probe syscall.*, kprocess.*, scheduler.process*, scheduler.wakeup_new {
     printf("%6d[%8s]/%6d[%8s] %s\n", pid(), execname(), ppid(), pid2execname(ppid()), pn());
+    printf("[%6d] [%6d] [%6d] [%6d] [%6d] [%15s] [%15s] [%6d]\n", pid(), uid(), euid(), gid(), cpu(), cmdline_str(), env_var("PATH"), current_exe_file());
 }
 
 probe scheduler.process_fork {
-    printf("\tPID: %d -> %d\n", parent_pid, child_pid);
+    process_start[child_pid] = gettimeofday_us()
+    printf("\tParent ID: [%d] -> Child ID: [%d]\n", parent_pid, child_pid);
+}
+
+probe scheduler.wakeup_new {
+    if([pid()] in process_start) {
+        current_time = gettimeofday_us()
+        printf("\tprocess_id [%d] took %ld microseconds to be dispatched onto CPU first time\n", pid(), current_time-process_start[pid()]);
+    }
 }
 
 probe kprocess.exec {
