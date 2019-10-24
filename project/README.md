@@ -126,3 +126,26 @@ Total Syscall Result for Process [gnome-shell]:
               gnome-shell                      read         47
 [raqib@localhost systemcall]$ 
 
+------------------------------------------------------------------------
+  2029[    bash]/  5394[gnome-terminal-] kprocess.create
+  2029[    bash]/  5394[gnome-terminal-] scheduler.process_fork
+	Parent ID: [2029] -> Child ID: [2053]
+  2029[    bash]/  5394[gnome-terminal-] scheduler.wakeup_new
+	process_id [2029] took 221233 microseconds to be dispatched onto CPU first time
+  2053[    bash]/  2029[    bash] kprocess.start
+  2053[    bash]/  2029[    bash] kprocess.create
+  2053[    bash]/  2029[    bash] scheduler.process_fork
+	Parent ID: [2053] -> Child ID: [2054]
+  2053[    bash]/  2029[    bash] scheduler.wakeup_new
+	process_id [2053] took 421 microseconds to be dispatched onto CPU first time
+  2053[    bash]/  2029[    bash] syscall.wait4
+  2053[    bash]/  2029[    bash] scheduler.process_wait
+  2054[    bash]/  2053[    bash] kprocess.start
+  2054[    bash]/  2053[    bash] syscall.execve
+  2054[    bash]/  2053[    bash] kprocess.exec
+	filename: "/usr/bin/uname"
+  2054[   uname]/  2053[    bash] kprocess.exec_complete
+  2054[   uname]/  2053[    bash] kprocess.exit
+	return code: 0
+  2054[   uname]/  2053[    bash] scheduler.process_exit
+  2053[    bash]/  2029[    bash] kprocess.release
