@@ -1,0 +1,72 @@
+Collecting system-call data for the whole system
+Top 20 <processes, syscall> pair will be displayed for the interval of 10 seconds
+Type Ctrl+c to exit the program
+
+
+             Process Name              Syscall Name  #Syscalls
+                  polkitd                      poll      44075
+                    crond                     close       4183
+              gnome-shell                   recvmsg       3746
+                     bash            rt_sigprocmask       2526
+          gnome-terminal-                   recvmsg       2122
+                        X                   recvmsg       1624
+                        X                    writev       1502
+                        X                 setitimer       1406
+              gnome-shell                      poll       1394
+          gnome-terminal-                      poll       1177
+                        X                epoll_wait       1176
+                    pidof                      read        797
+                     bash              rt_sigaction        767
+              gnome-shell                    writev        629
+              gnome-shell                     write        526
+                    gdbus                      poll        508
+              InputThread                      read        503
+                    pidof                     mmap2        427
+                    gdbus                     write        425
+                    pidof                     close        418
+                            ***************<>***************
+             Process Name              Syscall Name  #Syscalls
+              gnome-shell                   recvmsg       1808
+                        X                   recvmsg        912
+          gnome-terminal-                   recvmsg        823
+                        X                    writev        783
+                        X                 setitimer        738
+              gnome-shell                      poll        679
+                        X                epoll_wait        600
+          gnome-terminal-                      poll        476
+          at-spi2-registr                   recvmsg        385
+              gnome-shell                    writev        338
+              gnome-shell                     write        207
+              InputThread                      read        198
+          at-spi2-registr                      poll        187
+          accounts-daemon                     alarm        165
+          accounts-daemon                      read        136
+          accounts-daemon                     fcntl        110
+          accounts-daemon              rt_sigaction        110
+          gnome-terminal-                    writev         98
+              gnome-shell                      read         85
+          at-spi2-registr                    writev         84
+                            ***************<>***************
+
+Total Result:
+             Process Name              Syscall Name  #Syscalls
+                  polkitd                      poll      44076
+              gnome-shell                   recvmsg       6036
+                    crond                     close       4183
+          gnome-terminal-                   recvmsg       3163
+                        X                   recvmsg       2740
+                     bash            rt_sigprocmask       2528
+                        X                    writev       2494
+                        X                 setitimer       2316
+              gnome-shell                      poll       2249
+                        X                epoll_wait       1919
+          gnome-terminal-                      poll       1769
+              gnome-shell                    writev       1052
+                    pidof                      read        797
+              gnome-shell                     write        784
+                     bash              rt_sigaction        768
+              InputThread                      read        757
+                    gdbus                      poll        587
+                    gdbus                     write        484
+          at-spi2-registr                   recvmsg        477
+                    pgrep                      open        445

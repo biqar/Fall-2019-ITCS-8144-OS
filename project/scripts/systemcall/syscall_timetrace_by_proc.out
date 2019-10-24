@@ -1,0 +1,70 @@
+Trace time spent in all system calls in a per-process way
+Top 20 processes will be displayed for the interval of 10 seconds
+Type Ctrl+c to exit the program
+
+
+             Process Name Duration spend on syscalls
+             in:imjournal 9921023
+                   stapio 9812568
+              InputThread 9388594
+                        X 9140344
+          at-spi2-registr 9099752
+                gsd-color 9024482
+                    tuned 9020770
+              dbus-daemon 8986363
+                    gmain 7445831
+                     pool 7204506
+          gnome-terminal- 5877977
+                       id 5153166
+                      tty 5141856
+                    fwupd 5013806
+          goa-identity-se 5005354
+          accounts-daemon 5005085
+                    uname 4983496
+                      sed 4974000
+                dircolors 4970954
+                     tput 4969359
+                     grep 4966021
+              grepconf.sh 4963662
+                  systemd 4954934
+                  timeout 4954402
+           systemd-logind 4954076
+               pkg-config 4950625
+                       ls 4943581
+                    pidof 4937188
+                   mktemp 4935465
+                    mkdir 4932854
+   ***************<>***************
+
+Total Result:
+             Process Name Duration spend on syscalls
+                   stapio 15019357
+                gsd-color 14662398
+             in:imjournal 14440552
+              InputThread 14355048
+          at-spi2-registr 14344276
+                    tuned 14024956
+                        X 13918862
+              dbus-daemon 12175339
+                    gmain 12101044
+                    fwupd 10018168
+                ssh-agent 10010540
+           wpa_supplicant 10004632
+          goa-identity-se 9998548
+                     pool 9933708
+                    gdbus 6846456
+          gnome-terminal- 6277367
+          accounts-daemon 6176405
+          gnome-pty-helpe 5842846
+                     bash 5358591
+                       id 5153166
+                      tty 5141856
+                    uname 4983496
+                      sed 4974000
+                dircolors 4970954
+                     tput 4969359
+                     grep 4966021
+              grepconf.sh 4963662
+                  systemd 4954934
+                  timeout 4954402
+           systemd-logind 4954076

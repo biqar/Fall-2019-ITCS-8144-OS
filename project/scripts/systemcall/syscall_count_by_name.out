@@ -1,0 +1,94 @@
+Collecting system-call data for the whole system
+Top 20 system-calls will be displayed for the interval of 10 seconds
+Type Ctrl+c to exit the program
+
+
+             Syscall Name  #Syscalls
+                  recvmsg       4184
+                     poll       1579
+                     read       1451
+                    write       1273
+                    ioctl       1234
+                   writev       1215
+                setitimer        734
+               epoll_wait        585
+                    ppoll        495
+             rt_sigaction        187
+           rt_sigprocmask        178
+                    close        164
+                    mmap2        122
+                     open        106
+                    fcntl        106
+                epoll_ctl        102
+                    fstat         92
+                     stat         71
+                 mprotect         70
+                  madvise         58
+   ***************<>***************
+             Syscall Name  #Syscalls
+                  recvmsg       6199
+                     poll       2089
+                   writev       1814
+                     read       1716
+                    write       1342
+                    ioctl       1164
+                setitimer       1044
+               epoll_wait        928
+                    ppoll        456
+           rt_sigprocmask        300
+             rt_sigaction        295
+                    close        179
+                epoll_ctl        150
+                    mmap2        129
+                    fstat         85
+                     open         83
+                    fcntl         64
+                 mprotect         62
+                     stat         60
+                    futex         46
+   ***************<>***************
+             Syscall Name  #Syscalls
+                  recvmsg       3539
+                     poll       1241
+                     read       1095
+                    ioctl       1044
+           rt_sigprocmask       1038
+                   writev        931
+                    write        816
+                setitimer        546
+               epoll_wait        530
+                    ppoll        403
+                    fcntl        202
+                    close        189
+                     stat        159
+             rt_sigaction        131
+                     dup2         70
+                    lseek         53
+                     open         50
+                 getdents         50
+        inotify_add_watch         48
+                  madvise         41
+   ***************<>***************
+
+Total Result:
+             Syscall Name  #Syscalls
+                  recvmsg      16722
+                     poll       5879
+                   writev       4852
+                     read       4629
+                    write       3680
+                    ioctl       3625
+                setitimer       2850
+               epoll_wait       2482
+           rt_sigprocmask       1520
+                    ppoll       1427
+             rt_sigaction        613
+                    close        542
+                    fcntl        396
+                     stat        370
+                epoll_ctl        302
+                    mmap2        281
+                     open        248
+                    fstat        221
+        inotify_add_watch        144
+                  madvise        139

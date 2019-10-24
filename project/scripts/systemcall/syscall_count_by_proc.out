@@ -1,0 +1,72 @@
+Collecting system-call data for the whole system
+Top 20 processes will be displayed for the interval of 10 seconds
+Type Ctrl+c to exit the program
+
+
+             Process Name  #Syscalls
+              gnome-shell        987
+                        X        695
+          gnome-terminal-        256
+                   stapio        183
+                  firefox        131
+                    gmain         61
+            systemd-udevd         45
+             in:imjournal         24
+                     pool         22
+                gsd-color         20
+                    tuned         10
+                    Timer          5
+           wpa_supplicant          4
+          goa-identity-se          4
+             rtkit-daemon          4
+                ssh-agent          4
+                     lsmd          2
+                    fwupd          2
+              packagekitd          1
+          GUsbEventThread          1
+   ***************<>***************
+             Process Name  #Syscalls
+              gnome-shell       5538
+                        X       5435
+          gnome-terminal-       3165
+              InputThread        798
+          at-spi2-registr        192
+                   stapio        182
+          nautilus-deskto        113
+          systemd-journal         76
+                    gdbus         72
+                    gmain         58
+          gsd-housekeepin         52
+              dbus-daemon         40
+             in:imjournal         32
+                gsd-color         30
+                     pool         22
+                  firefox         18
+           abrt-watch-log         15
+                    tuned         10
+                    crond          6
+                     tail          5
+   ***************<>***************
+
+Total Result:
+             Process Name  #Syscalls
+              gnome-shell       7416
+                        X       6889
+          gnome-terminal-       3692
+              InputThread        846
+                   stapio        432
+          at-spi2-registr        276
+                  firefox        157
+                    gmain        140
+          nautilus-deskto        121
+                    gdbus        101
+          systemd-journal         76
+             in:imjournal         64
+                gsd-color         64
+                     pool         55
+          gsd-housekeepin         52
+              dbus-daemon         51
+            systemd-udevd         45
+              Web Content         24
+                    tuned         23
+                 ibus-x11         16

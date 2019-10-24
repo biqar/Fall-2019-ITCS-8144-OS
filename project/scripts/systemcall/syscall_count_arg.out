@@ -1,0 +1,60 @@
+Collecting system-call data for the process: gnome-shell
+Top 20 syscall by process [gnome-shell] will be displayed for the interval of 10 seconds
+Type Ctrl+c to exit the program
+
+
+             Process Name              Syscall Name  #Syscalls
+              gnome-shell                   recvmsg       2804
+              gnome-shell                      poll       1065
+              gnome-shell                    writev        532
+              gnome-shell                     write        316
+              gnome-shell                      read        127
+              gnome-shell                      stat         40
+              gnome-shell                     fstat         14
+              gnome-shell                    access          8
+              gnome-shell                     mmap2          7
+              gnome-shell                    munmap          7
+              gnome-shell                     fcntl          7
+              gnome-shell                      open          7
+              gnome-shell                     close          7
+                            ***************<>***************
+             Process Name              Syscall Name  #Syscalls
+              gnome-shell                   recvmsg       3436
+              gnome-shell                      poll       1310
+              gnome-shell                    writev        639
+              gnome-shell                     write        415
+              gnome-shell                      read        174
+              gnome-shell                      stat         40
+              gnome-shell                     fstat         28
+              gnome-shell                    access         16
+              gnome-shell                      open         15
+              gnome-shell                     mmap2         14
+              gnome-shell                    munmap         14
+              gnome-shell                     fcntl         14
+              gnome-shell                     close         14
+              gnome-shell                    shmget          1
+              gnome-shell                     shmat          1
+              gnome-shell                    shmctl          1
+              gnome-shell                     uname          1
+                            ***************<>***************
+
+Total Syscall Result for Process [gnome-shell]:
+             Process Name              Syscall Name  #Syscalls
+              gnome-shell                   recvmsg       7550
+              gnome-shell                      poll       2858
+              gnome-shell                    writev       1401
+              gnome-shell                     write        862
+              gnome-shell                      read        362
+              gnome-shell                      stat        120
+              gnome-shell                     fstat         52
+              gnome-shell                      open         27
+              gnome-shell                     mmap2         26
+              gnome-shell                    munmap         26
+              gnome-shell                     fcntl         26
+              gnome-shell                     close         26
+              gnome-shell                    access         24
+              gnome-shell                    shmctl          2
+              gnome-shell                    shmget          1
+              gnome-shell                     shmat          1
+              gnome-shell                     shmdt          1
+              gnome-shell                     uname          1
