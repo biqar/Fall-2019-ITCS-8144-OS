@@ -8,9 +8,11 @@ probe begin {
     printf("[PROCESS_ID] [USER_ID] [EFFECTIVE_USER_ID] [GROUP_ID] [CPU_NUMBER] [CMDLINE_ARGS] [ENV_VARIABLE] [EXE_FILE_POINTER]\n\n");
 }
 
-probe syscall.*, kprocess.*, scheduler.process*, scheduler.wakeup_new {
+probe syscall.fork, syscall.exec*, syscall.exit, syscall.wait*,
+    kprocess.*, scheduler.process*, scheduler.wakeup_new {
+
     printf("%6d[%8s]/%6d[%8s] %s\n", pid(), execname(), ppid(), pid2execname(ppid()), pn());
-    printf("[%6d] [%6d] [%6d] [%6d] [%6d] [%15s] [%15s] [%6d]\n", pid(), uid(), euid(), gid(), cpu(), cmdline_str(), env_var("PATH"), current_exe_file());
+    printf("[%d] [%d] [%d] [%d] [%d] [%s] [%s] [%d]\n", pid(), uid(), euid(), gid(), cpu(), cmdline_str(), env_var("PATH"), current_exe_file());
 }
 
 probe scheduler.process_fork {
