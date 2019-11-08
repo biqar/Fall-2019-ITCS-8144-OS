@@ -1,4 +1,41 @@
-#### Results:
+# Course Project: Understand Linux OS via Modern Tool (Systemtap)
+
+In building/designing/using an operating system, it is important to know its internal logic and the performance characteristics. 
+
+In this project, you will create, justify, and apply a set of experiments (via a dynamic tracing tool, named Systemtap) to a production operating system (Linux) to characterize and understand its internal behaviors and performance characteristics. In addition, you may explore the relations between some of these quantities. In doing so, you will study how to profile/debug/optimize complex system in runtime, which could be an ultimate capability for you even in the future.
+
+You can use, and I also suggested, to use a virtual machine (e.g., VirtualBox or VMware) to conduct this project.  
+
+This project has three parts. First, you will need to learn what is Systemtap and what it can do; Second, you will write a number of SystemTap Scripts and some analytic programs (using C, Python, or Java) to probe various parts of the Linux Operating System to gain deep understanding about the system; Third, you will need to develop visualization tool to present nice interface to others to intuitively understand what you have collected. When you finish, you will submit your report as well as the code used to perform your experiments.
+
+### What You Can Analyze
+1. Understand OS Kernel
+	* Addresses and contents of a user process’s user frame and kernel frame
+2. Understand System Calls
+	* Show all the system calls issued by a process or in the whole system in a given period of time
+	* Trace time spent in all system calls in a per-process way
+3. Understand Processes
+	* Parent-Child tree of an process
+	* Detailed current process information, including executable files, cmdline arguments, environment variables, its uid, gid, cpuid,  
+	* Metrics: how long it takes before your user process actually starts to execute its main?
+4. Understand Context Switch
+	* Metrics: how often and how long task scheduling and context switch take?
+5. Understand Scheduler
+	* latency between a task (thread) being woken up and it actually being dispatched to a CPU
+	* instruments the scheduler to track the amount of time that each process spends in running, sleeping, queuing, and waiting for io.
+	* Show how often and how long process scheduling takes
+6. Understand Virtual Memory System
+	* trace page faults, user space frees, page ins, copy on writes and unmaps.
+	* trace and analysis memory usage of a user process, identify the memory leak
+7. Understand Virtual File System
+	* Record file open/close/read/write/mmap operations done by process
+	* Store these ops in a per-process way (together with the info of processes)
+	* Trace slow file system synchronous reads and writes
+8. More than this...
+
+You also need to Store everything we have collected efficiently and Use D3J to visualize it offline
+
+### Midterm Results:
 ```[raqib@localhost systemcall]$ sudo stap syscall_count.stp 
 
 Collecting system-call data for the whole system
@@ -154,10 +191,15 @@ Total Syscall Result for Process [gnome-shell]:
   2053[    bash]/  2029[    bash] kprocess.release
 ```
 
-#### References:
-1. SystemTap Tapset Reference Manual: https://sourceware.org/systemtap/tapsets/
-2. SystemTap Beginners Guide: https://lrita.github.io/images/posts/systemtap/SystemTap_Beginners_Guide.pdf
-3. Systemtap Examples: https://sourceware.org/systemtap/examples/index.html#process/strace.stp
-4. Brendan's blog on "Using SystemTap": dtrace.org/blogs/brendan/2011/10/15/using-systemtap/
-5. Dynamic Tracing with DTrace & SystemTap: https://myaut.github.io/dtrace-stap-book/
-6. Red Hat Enterprise SystemTap Language Reference: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/5/pdf/systemtap_language_reference/Red_Hat_Enterprise_Linux-5-SystemTap_Language_Reference-en-US.pdf
+### References
+In addition, other papers you may find useful for help with system measurement are:
+1. Lightweight Provenance Service for High-Performance Computing: https://webpages.uncc.edu/ddai/papers/dong-pact-lps-2017.pdf (Links to an external site.)
+2. https://sourceware.org/systemtap/tapsets/ (Links to an external site.)
+3. https://sourceware.org/systemtap/examples/keyword-index.html (Links to an external site.)
+4. http://www.brendangregg.com/index.html (Links to an external site.).
+5. SystemTap Tapset Reference Manual: https://sourceware.org/systemtap/tapsets/
+6. SystemTap Beginners Guide: https://lrita.github.io/images/posts/systemtap/SystemTap_Beginners_Guide.pdf
+7. Systemtap Examples: https://sourceware.org/systemtap/examples/index.html#process/strace.stp
+8. Brendan's blog on "Using SystemTap": dtrace.org/blogs/brendan/2011/10/15/using-systemtap/
+9. Dynamic Tracing with DTrace & SystemTap: https://myaut.github.io/dtrace-stap-book/
+10. Red Hat Enterprise SystemTap Language Reference: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/5/pdf/systemtap_language_reference/Red_Hat_Enterprise_Linux-5-SystemTap_Language_Reference-en-US.pdf
