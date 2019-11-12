@@ -203,3 +203,4 @@ In addition, other papers you may find useful for help with system measurement a
 8. Brendan's blog on "Using SystemTap": dtrace.org/blogs/brendan/2011/10/15/using-systemtap/
 9. Dynamic Tracing with DTrace & SystemTap: https://myaut.github.io/dtrace-stap-book/
 10. Red Hat Enterprise SystemTap Language Reference: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/5/pdf/systemtap_language_reference/Red_Hat_Enterprise_Linux-5-SystemTap_Language_Reference-en-US.pdf
+11. Architecture of systemtap (a Linuxtrace/probetool): https://sourceware.org/systemtap/archpaper.pdf
