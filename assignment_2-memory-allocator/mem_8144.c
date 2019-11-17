@@ -10,7 +10,7 @@ struct mem_ptr {
   int alloc_id;
 };
 
-void kmem_init(){
+void kmem_init() {
   /* this is just sample code for debugging */
   mem_region_ptr = mmap(NULL, MEM_SIZE, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0);
   if (mem_region_ptr == NULL){
@@ -24,7 +24,7 @@ void kmem_init(){
   return;
 }
 
-void *kmalloc_8144(int size){
+void *kmalloc_8144(int size) {
   /* this is just sample code for debugging */
   int local_test_id = 0;
   struct mem_ptr * ptr = (struct mem_ptr *) malloc(sizeof(struct mem_ptr));
@@ -41,7 +41,7 @@ void *kmalloc_8144(int size){
   return (void *)ptr;
 }
 
-void kfree_8144(void *ptr){
+void kfree_8144(void *ptr) {
   /* this is just sample code for debugging */
   struct mem_ptr *p = (struct mem_ptr *) ptr;
   pthread_mutex_lock(&test_mutex_lock);
@@ -51,23 +51,23 @@ void kfree_8144(void *ptr){
   return;
 }
 
-void purge_8144(){
+void purge_8144() {
   /* this is just sample code for debugging */
   printf("  purge memory, system used memory: %d\n", test_kmem_size);
   return;
 }
 
-int internal_frag(){
+int internal_frag() {
   /* this is just sample code for debugging */
   return test_kmem_size;
 }
 
-int external_frag(){
+int external_frag() {
   /* this is just sample code for debugging */
   return test_kmem_size;
 }
 
-void kmem_finit(){
+void kmem_finit() {
   /* this is just sample code for debugging */
   if (mem_region_ptr != NULL){
     int r = munmap(mem_region_ptr, MEM_SIZE);

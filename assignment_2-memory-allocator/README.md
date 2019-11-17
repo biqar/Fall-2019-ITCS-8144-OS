@@ -52,6 +52,9 @@ int internal_frag();
 
 /* report the size of external fragementations (holes) in bytes */ 
 int external_frag();
+
+/* destructor */
+void kmem_finit();
 ```
 ### Hints
 
