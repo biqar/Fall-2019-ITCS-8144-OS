@@ -14,9 +14,9 @@ long microsec(struct timeval t) {
     return ((t.tv_sec * 1000000 + t.tv_usec));
 }
 
-void *mem_ops(void *vargp) {
+pointer mem_ops(pointer vargp) {
     int thread_id = *(int *) vargp;
-    void *allocated_mem_ptr[NUM_ALLOC_OPS];
+    pointer allocated_mem_ptr[NUM_ALLOC_OPS];
     int size[SLAB_MAX_ORDER + 1];
     srand(time(NULL));
 
@@ -41,7 +41,8 @@ void *mem_ops(void *vargp) {
         }
     }
 
-    /* This section will do arbitrary memory allocation. No free. kmem_finit() should free all the data structures*/
+    /* This section will do arbitrary memory allocation.
+     * No free. kmem_finit() should free all the data structures*/
     for (int k = 1; k < NUM_REPEAT; k++) {
         for (int i = 0; i < NUM_ALLOC_OPS; i++) {
             int idx = rand() % (SLAB_MAX_ORDER - SLAB_MIN_ORDER + 1) + SLAB_MIN_ORDER;
@@ -64,7 +65,7 @@ int main() {
 
     gettimeofday(&tic, NULL);
     for (i = 0; i < NUM_THREADS; i++) {
-        status = pthread_create(&threads[i], NULL, mem_ops, (void *) &i);
+        status = pthread_create(&threads[i], NULL, mem_ops, (pointer) &i);
     }
 
     for (i = 0; i < NUM_THREADS; i++) {

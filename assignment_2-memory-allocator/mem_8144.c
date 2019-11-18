@@ -24,7 +24,7 @@ void kmem_init() {
     return;
 }
 
-void *kmalloc_8144(int size) {
+pointer kmalloc_8144(int size) {
     /* this is just sample code for debugging */
     int local_test_id = 0;
     struct mem_ptr *ptr = (struct mem_ptr *) malloc(sizeof(struct mem_ptr));
@@ -38,10 +38,10 @@ void *kmalloc_8144(int size) {
     pthread_mutex_unlock(&test_mutex_lock);
 
     printf("[%d] kmalloc %d with size: %d\n", pthread_self(), local_test_id, size);
-    return (void *) ptr;
+    return (pointer) ptr;
 }
 
-void kfree_8144(void *ptr) {
+void kfree_8144(pointer ptr) {
     /* this is just sample code for debugging */
     struct mem_ptr *p = (struct mem_ptr *) ptr;
     pthread_mutex_lock(&test_mutex_lock);

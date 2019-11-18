@@ -12,15 +12,18 @@
 #define SLAB_MIN_ORDER 5        /* minimal object size of a slab area: 32 bytes */
 #define SLAB_MAX_ORDER 14       /* maximal object size of a slab area: 2^14 bytes */
 
-static void *mem_region_ptr = NULL;    /* the start of managed memory */
+/* used for untyped pointers */
+typedef void * pointer;
+
+static pointer mem_region_ptr = NULL;    /* the start of managed memory */
 
 void kmem_init();
 
 void kmem_finit();
 
-void *kmalloc_8144(int size);
+pointer kmalloc_8144(int size);
 
-void kfree_8144(void *ptr);
+void kfree_8144(pointer ptr);
 
 void purge_8144();
 
