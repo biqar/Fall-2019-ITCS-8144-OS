@@ -1,3 +1,0 @@
-/home/aislam6/workspace/projects/uncc/Fall-2019-ITCS-8144-OS/assignment_2-memory-allocator/build/CMakeFiles/rebuild_cache.dir
-/home/aislam6/workspace/projects/uncc/Fall-2019-ITCS-8144-OS/assignment_2-memory-allocator/build/CMakeFiles/mem_test.dir
-/home/aislam6/workspace/projects/uncc/Fall-2019-ITCS-8144-OS/assignment_2-memory-allocator/build/CMakeFiles/edit_cache.dir
