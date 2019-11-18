@@ -6,7 +6,8 @@
 #include <sys/time.h>
 #include <math.h>
 
-#define NUM_THREADS 4
+//todo: update the following values according to the problem description
+#define NUM_THREADS 1
 #define NUM_ALLOC_OPS 1
 #define NUM_REPEAT 1
 
@@ -25,7 +26,7 @@ pointer mem_ops(pointer vargp) {
     }
 
     /* This section allocates and frees all the memory */
-    for (int k = 1; k < NUM_REPEAT; k++) {
+    for (int k = 1; k <= NUM_REPEAT; k++) {
         /* each time, we allocate set of memory and free them */
         for (int i = 0; i < NUM_ALLOC_OPS; i++) {
             int idx = rand() % (SLAB_MAX_ORDER - SLAB_MIN_ORDER + 1) + SLAB_MIN_ORDER;

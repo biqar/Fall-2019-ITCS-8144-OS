@@ -18,10 +18,41 @@ void kmem_init() {
         exit(EXIT_FAILURE);
     }
 
-    // initilize slabs and data structures
+    //todo: initialize slabs and data structures
     pthread_mutex_init(&test_mutex_lock, NULL);
 
     return;
+}
+
+pointer binary_buddy_allocate(int size) {
+    int i;
+
+    /* compute i as the least integer such that i >= log2(size) */
+    for (i = 0; BLOCK_SIZE(i) < size; i++);
+
+    if (i >= BUDDY_MAX_ORDER) {
+        printf("no space available\n");
+        return NULL;
+    } else if (freelists[i] != NULL) {
+        /* we already have the right size block on hand */
+        pointer block;
+        block = freelists[i];
+        freelists[i] = *(pointer *) freelists[i];
+        return block;
+    } else {
+        /* we need to split a bigger block */
+        pointer block, buddy;
+        block = binary_buddy_allocate(BLOCK_SIZE(i + 1));
+
+        if (block != NULL) {
+            printf("found space in buddy\n");
+            /* split and put extra on a free list */
+            buddy = BUDDY_OF(block, i);
+            *(pointer *) buddy = freelists[i];
+            freelists[i] = buddy;
+        }
+        return block;
+    }
 }
 
 pointer kmalloc_8144(int size) {
@@ -30,14 +61,18 @@ pointer kmalloc_8144(int size) {
     struct mem_ptr *ptr = (struct mem_ptr *) malloc(sizeof(struct mem_ptr));
 
     pthread_mutex_lock(&test_mutex_lock);
+    //todo: allocation logic will go here
     test_kmem_id += 1;
     test_kmem_size += size;
     local_test_id = test_kmem_id;
     ptr->alloc_size = size;
     ptr->alloc_id = test_kmem_id;
+
+    //try with buddy
+    binary_buddy_allocate(size);
     pthread_mutex_unlock(&test_mutex_lock);
 
-    printf("[%d] kmalloc %d with size: %d\n", pthread_self(), local_test_id, size);
+    printf("[%ld] kmalloc %d with size: %d\n", pthread_self(), local_test_id, size);
     return (pointer) ptr;
 }
 
@@ -47,7 +82,7 @@ void kfree_8144(pointer ptr) {
     pthread_mutex_lock(&test_mutex_lock);
     test_kmem_size -= p->alloc_size;
     pthread_mutex_unlock(&test_mutex_lock);
-    printf("[%d]   kfree %d with size: %d\n", pthread_self(), p->alloc_id, p->alloc_size);
+    printf("[%ld]   kfree %d with size: %d\n", pthread_self(), p->alloc_id, p->alloc_size);
     return;
 }
 
