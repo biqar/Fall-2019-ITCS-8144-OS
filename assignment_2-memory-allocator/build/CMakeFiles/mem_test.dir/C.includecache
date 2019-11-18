@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/aislam6/workspace/projects/uncc/Fall-2019-ITCS-8144-OS/assignment_2-memory-allocator/mem_8144.c
+mem_8144.h
+/home/aislam6/workspace/projects/uncc/Fall-2019-ITCS-8144-OS/assignment_2-memory-allocator/mem_8144.h
+
+/home/aislam6/workspace/projects/uncc/Fall-2019-ITCS-8144-OS/assignment_2-memory-allocator/mem_8144.h
+stdio.h
+-
+stdlib.h
+-
+sys/mman.h
+-
+errno.h
+-
+pthread.h
+-
+
+/home/aislam6/workspace/projects/uncc/Fall-2019-ITCS-8144-OS/assignment_2-memory-allocator/mem_test.c
+mem_8144.h
+/home/aislam6/workspace/projects/uncc/Fall-2019-ITCS-8144-OS/assignment_2-memory-allocator/mem_8144.h
+stdio.h
+-
+pthread.h
+-
+stdlib.h
+-
+unistd.h
+-
+sys/time.h
+-
+math.h
+-
+

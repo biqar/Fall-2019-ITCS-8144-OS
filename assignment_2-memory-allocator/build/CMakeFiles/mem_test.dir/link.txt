@@ -1,0 +1,1 @@
+/usr/bin/cc  -pthread -std=gnu99  -rdynamic CMakeFiles/mem_test.dir/mem_8144.c.o CMakeFiles/mem_test.dir/mem_test.c.o  -o mem_test 
