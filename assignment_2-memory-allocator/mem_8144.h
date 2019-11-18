@@ -11,7 +11,7 @@
 #define MEM_SIZE 32*1024*1024
 
 /* maximal order of buddy algorithm */
-#define BUDDY_MAX_ORDER 10
+#define BUDDY_MAX_ORDER 25
 
 /* minimal object size of a slab area: 32 bytes */
 #define SLAB_MIN_ORDER 5
@@ -23,13 +23,13 @@
 #define BLOCK_SIZE(i) (1 << (i))
 
 /* the address of the buddy of a block from freelists[i]. */
-#define BUDDY_OF(b,i) ((pointer)( ((int)b) ^ (1 << (i)) ))
+#define BUDDY_OF(b, i) ((pointer)( ((int)b) ^ (1 << (i)) ))
 
 /* used for untyped pointers */
 typedef void * pointer;
 
 /* pointers to the free space lists */
-pointer freelists[BUDDY_MAX_ORDER];
+pointer freelists[BUDDY_MAX_ORDER + 1];
 
 /* the start of managed memory */
 static pointer mem_region_ptr = NULL;
