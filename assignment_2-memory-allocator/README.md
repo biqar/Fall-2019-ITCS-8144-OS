@@ -28,7 +28,7 @@
 
 
 ### Assignment Description
-In this assignment, you will develop an eumlated memory allocator using buddy algorithm and slab algorithm. Your code will be compiled together with a given test file and you are expected to run the given test program and report the performance of your allocator (including both performance and fragementation level).
+In this assignment, you will develop an emulated memory allocator using buddy algorithm and slab algorithm. Your code will be compiled together with a given test file and you are expected to run the given test program and report the performance of your allocator (including both performance and fragementation level).
 
 #### Program Structure
 We provide the basic program skeleton. To compile the program, in the decompressed project directory, please create a folder **build**, and use **cmake ..** and **make** to compile the project in the **build** folder. This will generate **mem_test** binary which is compiled with your developed libaray. Run the **mem_test** binary and report the results.
