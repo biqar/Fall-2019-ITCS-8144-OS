@@ -19,6 +19,12 @@
 /* maximal object size of a slab area: 2^14 bytes */
 #define SLAB_MAX_ORDER 14
 
+/* size of slab cache list */
+#define CACHE_LIST_SIZE 10
+
+/* all slabs have the same size 128 * 1024 (128K) */
+#define SLAB_SIZE 128*1024
+
 /* blocks in freelists[i] are of size 2**i. */
 #define BLOCK_SIZE(i) (1 << (i))
 
@@ -33,6 +39,36 @@ pointer freelists[BUDDY_MAX_ORDER + 1];
 
 /* the start of managed memory */
 static pointer mem_region_ptr = NULL;
+
+typedef enum slab_color {
+    EMPTY,
+    PARTIAL,
+    FULL
+} COLOR;
+
+struct obj_header {
+    pointer block;
+    unsigned is_free;
+    struct obj_header *next;
+};
+
+struct slab_header {
+    pointer mem_base;
+    struct obj_header *obj_head;
+    //struct obj_header *obj_tail;
+    COLOR color;
+    struct slab_header *next;
+    struct slab_header *previous;
+};
+
+struct mem_ptr {
+    int alloc_size;
+    int alloc_id;
+    pointer block;
+};
+
+struct slab_header *cache_list[CACHE_LIST_SIZE];
+int pow_of_two[BUDDY_MAX_ORDER + 1];
 
 /* initialization */
 void kmem_init();

@@ -5,43 +5,19 @@ int test_kmem_id = 0;
 int test_kmem_size = 0;
 pthread_mutex_t test_mutex_lock;
 
-struct mem_ptr {
-    int alloc_size;
-    int alloc_id;
-    pointer block;
-};
-
-void kmem_init() {
-    /* this is just sample code for debugging */
-    mem_region_ptr = mmap(NULL, MEM_SIZE, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
-    if (mem_region_ptr == NULL) {
-        perror("memory init error");
-        exit(EXIT_FAILURE);
-    }
-
-    printf("initial address: %ld\n", mem_region_ptr);
-
-    //todo: initialize slabs and data structures
-    pthread_mutex_init(&test_mutex_lock, NULL);
-    freelists[BUDDY_MAX_ORDER] = mem_region_ptr;
-    pointer buddy = BUDDY_OF(mem_region_ptr, 25);
-    printf("->%ld\n", buddy);
-
-    return;
-}
-
 pointer binary_buddy_allocate(int size) {
     int i, order;
     pointer block, buddy;
 
     // calculate minimal order for this size
     i = 0;
-    while (BLOCK_SIZE(i) < size) // one more byte for storing order
+    while (pow_of_two[i] < size) {
         i++;
+    }
 
     order = i;// = (i < MIN_ORDER) ? MIN_ORDER : i;
 
-    printf("size: %d, order: %d\n", size, order);
+    //printf("size: %d, order: %d\n", size, order);
 
     // level up until non-null list found
     for (;; i++) {
@@ -53,29 +29,126 @@ pointer binary_buddy_allocate(int size) {
 
     // remove the block out of list
     block = freelists[i];
-    printf("block: %ld, i: %d\n", block, i);
-    printf("[%d] order current free list: %ld\n", i, freelists[i]);
+    //printf("block: %ld, i: %d\n", block, i);
+    //printf("[%d] order current free list: %ld\n", i, freelists[i]);
     freelists[i] = *(pointer *) freelists[i];
-    printf("[%d] order current free list: %ld\n", i, freelists[i]);
+    //printf("[%d] order current free list: %ld\n", i, freelists[i]);
 
     // split until i == order
     while (i-- > order) {
         buddy = BUDDY_OF(block, i);
-        printf("buddies never die: %ld\n", buddy);
+        //printf("buddies never die: %ld\n", buddy);
         freelists[i] = buddy;
 
-        printf("[%d] order setting buddy to free list: %ld\n", i, freelists[i]);
+        //printf("[%d] order setting buddy to free list: %ld\n", i, freelists[i]);
     }
 
-    printf("%d-> %ld\n", order, freelists[order]);
-    printf("allocation order: %d\n", order);
+    //printf("%d-> %ld\n", order, freelists[order]);
+    //printf("allocation order: %d\n", order);
 
     // store order in previous byte
     //*((uint8_t*) (block - 1)) = order;
     return block;
 }
 
+void binary_buddy_deallocate(pointer block, int size) {
+    int i;
+    pointer buddy;
+    pointer *p;
+
+    // fetch order in previous byte
+    //i = *((uint8_t*) (block - 1));
+    i = 0;
+    while (pow_of_two[i] < size) i++;
+
+    //printf("[%s] find pointer at: %d\n", __func__, i);
+
+    for (;; i++) {
+        //printf("~~~~~~~~~~~~~~~~~~~[%d]\n", i);
+        // calculate buddy
+        buddy = BUDDY_OF(block, i);
+        p = &(freelists[i]);
+
+        //printf("[%s] buddy: %ld, freelist_entry: %ld\n", __func__, buddy, *p);
+
+        // find buddy in list
+        while ((*p != NULL) && (*p != buddy)) {
+            p = (pointer *) *p;
+        }
+
+        //printf("come here ... %ld %ld\n", *p, buddy);
+
+        // not found, insert into list
+        if (*p != buddy) {
+            //printf("buddy not found\n");
+            *(pointer *) block = freelists[i];
+            freelists[i] = block;
+            return;
+        }
+        // found, merged block starts from the lower one
+        //printf("buddy found ... %ld %ld\n", block, buddy);
+        block = (block < buddy) ? block : buddy;
+        // remove buddy out of list
+        //printf("*(pointer*) *p: %ld\n", *p);
+        *p = *(pointer *) *p;
+        //printf("done or not done...\n");
+    }
+}
+
+void kmem_init() {
+    /* this is just sample code for debugging */
+    mem_region_ptr = mmap(NULL, MEM_SIZE, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+    if (mem_region_ptr == NULL) {
+        perror("memory init error");
+        exit(EXIT_FAILURE);
+    }
+
+    printf("initial address: %ld\n", mem_region_ptr);
+
+    for(int i=0; i<=BUDDY_MAX_ORDER; i+=1) pow_of_two[i] = (1 << i);
+
+    /* initialize mutex lock */
+    pthread_mutex_init(&test_mutex_lock, NULL);
+
+    /* initialize buddy freelist at the highest order */
+    freelists[BUDDY_MAX_ORDER] = mem_region_ptr;
+
+    /* initialize slab caches */
+    for(int i=0; i<CACHE_LIST_SIZE; i+=1) {
+        pointer addr = binary_buddy_allocate(CACHE_LIST_SIZE);
+
+        if(addr == NULL) {
+            perror("buddy allocation failed");
+            exit(EXIT_FAILURE);
+        }
+
+        //print_buddy();
+        cache_list[i] = (struct slab_header *) addr;
+        cache_list[i]->color = EMPTY;
+
+        int obj_size = pow_of_two[SLAB_MIN_ORDER + i];
+        int obj_unit_size = sizeof(struct obj_header) + obj_size;
+        int num_of_objects = (SLAB_SIZE - sizeof(struct slab_header)) / obj_unit_size;
+
+        int internal_fragmentation = SLAB_SIZE - sizeof(struct slab_header) - obj_unit_size * num_of_objects;
+        printf("internal fragmentation: %d\n", internal_fragmentation);
+
+        struct obj_header *obj_list = cache_list[i]->obj_head;
+
+        //initialize slab object chain
+        for(int o=0; o<num_of_objects; o+=1) {
+            obj_list = (pointer) ((char *) addr + sizeof(struct slab_header) + (o * obj_unit_size));
+            obj_list->is_free = 1;
+            obj_list = obj_list->next;
+        }
+    }
+
+    return;
+}
+
 pointer kmalloc_8144(int size) {
+    if(!size) return NULL;
+
     /* this is just sample code for debugging */
     int local_test_id = 0;
     struct mem_ptr *ptr = (struct mem_ptr *) malloc(sizeof(struct mem_ptr));
@@ -95,50 +168,6 @@ pointer kmalloc_8144(int size) {
 
     printf("[%ld] kmalloc %d with size: %d\n", pthread_self(), local_test_id, size);
     return (pointer) ptr;
-}
-
-void binary_buddy_deallocate(pointer block, int size) {
-    int i;
-    pointer buddy;
-    pointer *p;
-
-    // fetch order in previous byte
-    //i = *((uint8_t*) (block - 1));
-    i = 0;
-    while (BLOCK_SIZE(i) < size) i++;
-
-    printf("[%s] find pointer at: %d\n", __func__, i);
-
-    for (;; i++) {
-        printf("~~~~~~~~~~~~~~~~~~~[%d]\n", i);
-        // calculate buddy
-        buddy = BUDDY_OF(block, i);
-        p = &(freelists[i]);
-
-        printf("[%s] buddy: %ld, freelist_entry: %ld\n", __func__, buddy, *p);
-
-        // find buddy in list
-        while ((*p != NULL) && (*p != buddy)) {
-            p = (pointer *) *p;
-        }
-
-        printf("come here ... %ld %ld\n", *p, buddy);
-
-        // not found, insert into list
-        if (*p != buddy) {
-            printf("buddy not found\n");
-            *(pointer *) block = freelists[i];
-            freelists[i] = block;
-            return;
-        }
-        // found, merged block starts from the lower one
-        printf("buddy found ... %ld %ld\n", block, buddy);
-        block = (block < buddy) ? block : buddy;
-        // remove buddy out of list
-        printf("*(pointer*) *p: %ld\n", *p);
-        *p = *(pointer *) *p;
-        printf("done or not done...\n");
-    }
 }
 
 void kfree_8144(pointer ptr) {
