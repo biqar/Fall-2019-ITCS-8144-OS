@@ -15,6 +15,7 @@ pointer binary_buddy_allocate(int size) {
         i++;
     }
 
+    //todo: order should not be of 25, it should be of 10 ... need to remap this thing
     order = i;// = (i < MIN_ORDER) ? MIN_ORDER : i;
 
     //printf("size: %d, order: %d\n", size, order);
@@ -102,22 +103,26 @@ void kmem_init() {
             exit(EXIT_FAILURE);
         }
 
-        //print_buddy();
-        cache_list[i] = (struct slab_header *) addr;
+        //todo: for now, we keep track of memory pointers in custom data-structure, later it should be updated and placed in the memory got from buddy
+        cache_list[i] = (struct slab_header *) malloc(sizeof(struct slab_header));
         cache_list[i]->color = EMPTY;
 
         int obj_size = pow_of_two[SLAB_MIN_ORDER + i];
-        int obj_unit_size = sizeof(struct obj_header) + obj_size;
-        int num_of_objects = (SLAB_SIZE - sizeof(struct slab_header)) / obj_unit_size;
+        //int obj_unit_size = sizeof(struct obj_header) + obj_size;
+        //int num_of_objects = (SLAB_SIZE - sizeof(struct slab_header)) / obj_unit_size;
+        int num_of_objects = (SLAB_SIZE  / obj_size);
 
-        int internal_fragmentation = SLAB_SIZE - sizeof(struct slab_header) - obj_unit_size * num_of_objects;
+        //int internal_fragmentation = SLAB_SIZE - sizeof(struct slab_header) - obj_unit_size * num_of_objects;
+        int internal_fragmentation = SLAB_SIZE - (obj_size * num_of_objects);
         printf("internal fragmentation: %d\n", internal_fragmentation);
 
         struct obj_header *obj_list = cache_list[i]->obj_head;
 
         //initialize slab object chain
         for(int o=0; o<num_of_objects; o+=1) {
-            obj_list = (pointer) ((char *) addr + sizeof(struct slab_header) + (o * obj_unit_size));
+            //obj_list = (pointer) ((char *) addr + sizeof(struct slab_header) + (o * obj_unit_size));
+            obj_list = (struct obj_header *) malloc(sizeof(struct obj_header));
+            obj_list->block = (pointer) ((char *) addr + (o * obj_size));
             obj_list->is_free = 1;
             obj_list = obj_list->next;
         }
