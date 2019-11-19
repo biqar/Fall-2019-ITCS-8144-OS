@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <sys/mman.h>
 #include <errno.h>
+#include <stdint.h>
 #include <pthread.h>
 
 /* Total size of the memory region */
