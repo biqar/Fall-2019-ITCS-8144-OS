@@ -23,7 +23,7 @@
 #define BLOCK_SIZE(i) (1 << (i))
 
 /* the address of the buddy of a block from freelists[i]. */
-#define BUDDY_OF(b, i) ((pointer)( ((int)b) ^ (1 << (i)) ))
+#define BUDDY_OF(b, i) ((pointer)( ((long long int)b) ^ (1 << (i)) ))
 
 /* used for untyped pointers */
 typedef void * pointer;
@@ -54,5 +54,8 @@ int external_frag();
 
 /* destructor */
 void kmem_finit();
+
+/* print buddy list */
+void print_buddy();
 
 #endif

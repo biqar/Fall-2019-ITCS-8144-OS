@@ -8,7 +8,7 @@
 
 //todo: update the following values according to the problem description
 #define NUM_THREADS 1
-#define NUM_ALLOC_OPS 1
+#define NUM_ALLOC_OPS 6
 #define NUM_REPEAT 1
 
 long microsec(struct timeval t) {
@@ -24,6 +24,8 @@ pointer mem_ops(pointer vargp) {
     for (int i = 0; i <= SLAB_MAX_ORDER; i++) {
         size[i] = 1 << i;
     }
+
+    print_buddy();
 
     /* This section allocates and frees all the memory */
     for (int k = 1; k <= NUM_REPEAT; k++) {
@@ -41,6 +43,8 @@ pointer mem_ops(pointer vargp) {
             purge_8144();
         }
     }
+
+    print_buddy();
 
     /* This section will do arbitrary memory allocation.
      * No free. kmem_finit() should free all the data structures*/

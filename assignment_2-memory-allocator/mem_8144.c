@@ -54,12 +54,17 @@ pointer binary_buddy_allocate(int size) {
     // remove the block out of list
     block = freelists[i];
     printf("block: %ld, i: %d\n", block, i);
-    freelists[i] = *(pointer*) freelists[i];
+    printf("[%d] order current free list: %ld\n", i, freelists[i]);
+    freelists[i] = *(pointer *) freelists[i];
+    printf("[%d] order current free list: %ld\n", i, freelists[i]);
 
     // split until i == order
     while (i-- > order) {
         buddy = BUDDY_OF(block, i);
+        printf("buddies never die: %ld\n", buddy);
         freelists[i] = buddy;
+
+        printf("[%d] order setting buddy to free list: %ld\n", i, freelists[i]);
     }
 
     printf("%d-> %ld\n", order, freelists[order]);
@@ -68,42 +73,6 @@ pointer binary_buddy_allocate(int size) {
     // store order in previous byte
     //*((uint8_t*) (block - 1)) = order;
     return block;
-
-    /*int i;
-
-    printf("buddy called with: %d\n", size);
-
-    *//* compute i as the least integer such that i >= log2(size) *//*
-    for (i = 0; BLOCK_SIZE(i) < size; i++);
-
-    printf("order: %d\n", i);
-
-    if (i > BUDDY_MAX_ORDER) {
-        printf("no space available\n");
-        return NULL;
-    } else if (freelists[i] != NULL) {
-        *//* we already have the right size block on hand *//*
-        pointer block;
-        block = freelists[i];
-        freelists[i] = *(pointer *) freelists[i];
-        return block;
-    } else {
-        *//* we need to split a bigger block *//*
-        pointer block, buddy;
-        block = binary_buddy_allocate(BLOCK_SIZE(i + 1));
-
-        if (block != NULL) {
-            printf("found space in buddy\n");
-            *//* split and put extra on a free list *//*
-            buddy = BUDDY_OF(block, i);
-            printf("buddy: %ld\n", buddy);
-            *(pointer *) buddy = freelists[i];
-            printf("buddy: %ld\n", buddy);
-            freelists[i] = buddy;
-            printf("buddy set ... returning\n");
-        }
-        return block;
-    }*/
 }
 
 pointer kmalloc_8144(int size) {
@@ -131,7 +100,7 @@ pointer kmalloc_8144(int size) {
 void binary_buddy_deallocate(pointer block, int size) {
     int i;
     pointer buddy;
-    pointer * p;
+    pointer *p;
 
     // fetch order in previous byte
     //i = *((uint8_t*) (block - 1));
@@ -140,7 +109,7 @@ void binary_buddy_deallocate(pointer block, int size) {
 
     printf("[%s] find pointer at: %d\n", __func__, i);
 
-    for ( ; ; i++) {
+    for (;; i++) {
         printf("~~~~~~~~~~~~~~~~~~~[%d]\n", i);
         // calculate buddy
         buddy = BUDDY_OF(block, i);
@@ -158,7 +127,7 @@ void binary_buddy_deallocate(pointer block, int size) {
         // not found, insert into list
         if (*p != buddy) {
             printf("buddy not found\n");
-            *(pointer*) block = freelists[i];
+            *(pointer *) block = freelists[i];
             freelists[i] = block;
             return;
         }
@@ -167,7 +136,7 @@ void binary_buddy_deallocate(pointer block, int size) {
         block = (block < buddy) ? block : buddy;
         // remove buddy out of list
         printf("*(pointer*) *p: %ld\n", *p);
-        *p = *(pointer*) *p;
+        *p = *(pointer *) *p;
         printf("done or not done...\n");
     }
 }
@@ -209,4 +178,52 @@ void kmem_finit() {
         }
     }
     return;
+}
+
+static int count_blocks(int i) {
+    int count = 0;
+    pointer *p = &(freelists[i]);
+
+    //printf("inside free count block [%d]: %ld\n", i, *p);
+    while (*p != NULL) {
+        //printf("--->%ld\n", *p);
+        count++;
+        p = (pointer*) *p;
+    }
+    return count;
+}
+
+static int total_free() {
+    int i, bytecount = 0;
+
+    for (i = 0; i <= BUDDY_MAX_ORDER; i++) {
+        bytecount += count_blocks(i) * BLOCK_SIZE(i);
+        //printf("[%d] free byte count: %d\n", i, bytecount);
+    }
+    return bytecount;
+}
+
+static void print_list(int i) {
+    printf("freelists[%d]: \n", i);
+
+    pointer *p = &freelists[i];
+    printf("\t");
+    while (*p != NULL) {
+        printf("%ld ", *p);
+        p = (pointer*) *p;
+    }
+    printf("\n");
+}
+
+void print_buddy() {
+    int i;
+
+    printf("========================================\n");
+    printf("MEMPOOL size: %d\n", MEM_SIZE);
+    printf("MEMPOOL start @ %ld\n", mem_region_ptr);
+    printf("total free: %d\n", total_free());
+
+    for (i = 0; i <= BUDDY_MAX_ORDER; i++) {
+        print_list(i);
+    }
 }
