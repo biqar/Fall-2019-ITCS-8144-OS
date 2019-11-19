@@ -29,22 +29,13 @@ pointer binary_buddy_allocate(int size) {
 
     // remove the block out of list
     block = freelists[i];
-    //printf("block: %ld, i: %d\n", block, i);
-    //printf("[%d] order current free list: %ld\n", i, freelists[i]);
     freelists[i] = *(pointer *) freelists[i];
-    //printf("[%d] order current free list: %ld\n", i, freelists[i]);
 
     // split until i == order
     while (i-- > order) {
         buddy = BUDDY_OF(mem_region_ptr, block, i);
-        //printf("buddies never die: %ld\n", buddy);
         freelists[i] = buddy;
-
-        //printf("[%d] order setting buddy to free list: %ld\n", i, freelists[i]);
     }
-
-    //printf("%d-> %ld\n", order, freelists[order]);
-    //printf("allocation order: %d\n", order);
 
     // store order in previous byte
     //*((uint8_t*) (block - 1)) = order;
@@ -61,37 +52,26 @@ void binary_buddy_deallocate(pointer block, int size) {
     i = 0;
     while (pow_of_two[i] < size) i++;
 
-    //printf("[%s] find pointer at: %d\n", __func__, i);
-
     for (;; i++) {
-        //printf("~~~~~~~~~~~~~~~~~~~[%d]\n", i);
         // calculate buddy
         buddy = BUDDY_OF(mem_region_ptr, block, i);
         p = &(freelists[i]);
-
-        //printf("[%s] buddy: %ld, freelist_entry: %ld\n", __func__, buddy, *p);
 
         // find buddy in list
         while ((*p != NULL) && (*p != buddy)) {
             p = (pointer *) *p;
         }
 
-        //printf("come here ... %ld %ld\n", *p, buddy);
-
         // not found, insert into list
         if (*p != buddy) {
-            //printf("buddy not found\n");
             *(pointer *) block = freelists[i];
             freelists[i] = block;
             return;
         }
         // found, merged block starts from the lower one
-        //printf("buddy found ... %ld %ld\n", block, buddy);
         block = (block < buddy) ? block : buddy;
         // remove buddy out of list
-        //printf("*(pointer*) *p: %ld\n", *p);
         *p = *(pointer *) *p;
-        //printf("done or not done...\n");
     }
 }
 
@@ -213,9 +193,7 @@ static int count_blocks(int i) {
     int count = 0;
     pointer *p = &(freelists[i]);
 
-    //printf("inside free count block [%d]: %ld\n", i, *p);
     while (*p != NULL) {
-        //printf("--->%ld\n", *p);
         count++;
         p = (pointer*) *p;
     }
@@ -227,7 +205,6 @@ static int total_free() {
 
     for (i = 0; i <= BUDDY_MAX_ORDER; i++) {
         bytecount += count_blocks(i) * BLOCK_SIZE(i);
-        //printf("[%d] free byte count: %d\n", i, bytecount);
     }
     return bytecount;
 }
