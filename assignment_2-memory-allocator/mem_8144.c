@@ -76,6 +76,40 @@ void binary_buddy_deallocate(pointer block, int size) {
     }
 }
 
+struct slab_header *allocate_new_slab(int slab_order) {
+    pointer addr = binary_buddy_allocate(CACHE_LIST_SIZE);
+
+    if(addr == NULL) {
+        perror("buddy allocation failed");
+        exit(EXIT_FAILURE);
+    }
+
+    //todo: for now, we keep track of memory pointers in custom data-structure, later it should be updated and placed in the memory got from buddy
+    struct slab_header * new_slab_header = (struct slab_header *) malloc(sizeof(struct slab_header));
+    new_slab_header->color = EMPTY;
+
+    int obj_size = pow_of_two[SLAB_MIN_ORDER + slab_order];
+    //int obj_unit_size = sizeof(struct obj_header) + obj_size;
+    //int num_of_objects = (SLAB_SIZE - sizeof(struct slab_header)) / obj_unit_size;
+    int num_of_objects = (SLAB_SIZE  / obj_size);
+
+    //int internal_fragmentation = SLAB_SIZE - sizeof(struct slab_header) - obj_unit_size * num_of_objects;
+    int internal_fragmentation = SLAB_SIZE - (obj_size * num_of_objects);
+    printf("internal fragmentation: %d\n", internal_fragmentation);
+
+    struct obj_header *obj_list = new_slab_header->obj_head;
+
+    //initialize slab object chain
+    for(int o=0; o<num_of_objects; o+=1) {
+        //obj_list = (pointer) ((char *) addr + sizeof(struct slab_header) + (o * obj_unit_size));
+        obj_list = (struct obj_header *) malloc(sizeof(struct obj_header));
+        obj_list->block = (pointer) ((char *) addr + (o * obj_size));
+        obj_list->is_free = 1;
+        obj_list = obj_list->next;
+    }
+    return new_slab_header;
+}
+
 void kmem_init() {
     /* this is just sample code for debugging */
     mem_region_ptr = mmap(NULL, MEM_SIZE, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
@@ -96,36 +130,7 @@ void kmem_init() {
 
     /* initialize slab caches */
     for(int i=0; i<CACHE_LIST_SIZE; i+=1) {
-        pointer addr = binary_buddy_allocate(CACHE_LIST_SIZE);
-
-        if(addr == NULL) {
-            perror("buddy allocation failed");
-            exit(EXIT_FAILURE);
-        }
-
-        //todo: for now, we keep track of memory pointers in custom data-structure, later it should be updated and placed in the memory got from buddy
-        cache_list[i] = (struct slab_header *) malloc(sizeof(struct slab_header));
-        cache_list[i]->color = EMPTY;
-
-        int obj_size = pow_of_two[SLAB_MIN_ORDER + i];
-        //int obj_unit_size = sizeof(struct obj_header) + obj_size;
-        //int num_of_objects = (SLAB_SIZE - sizeof(struct slab_header)) / obj_unit_size;
-        int num_of_objects = (SLAB_SIZE  / obj_size);
-
-        //int internal_fragmentation = SLAB_SIZE - sizeof(struct slab_header) - obj_unit_size * num_of_objects;
-        int internal_fragmentation = SLAB_SIZE - (obj_size * num_of_objects);
-        printf("internal fragmentation: %d\n", internal_fragmentation);
-
-        struct obj_header *obj_list = cache_list[i]->obj_head;
-
-        //initialize slab object chain
-        for(int o=0; o<num_of_objects; o+=1) {
-            //obj_list = (pointer) ((char *) addr + sizeof(struct slab_header) + (o * obj_unit_size));
-            obj_list = (struct obj_header *) malloc(sizeof(struct obj_header));
-            obj_list->block = (pointer) ((char *) addr + (o * obj_size));
-            obj_list->is_free = 1;
-            obj_list = obj_list->next;
-        }
+        cache_list[i] = allocate_new_slab(i);
     }
 
     return;
