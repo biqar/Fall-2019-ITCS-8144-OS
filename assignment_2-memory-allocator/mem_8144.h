@@ -29,7 +29,11 @@
 #define BLOCK_SIZE(i) (1 << (i))
 
 /* the address of the buddy of a block from freelists[i]. */
-#define BUDDY_OF(b, i) ((pointer)( ((long long int)b) ^ (1 << (i)) ))
+//#define BUDDY_OF(b, i) ((pointer)( ((long long int)b) ^ (1 << (i)) ))
+#define _MEMBASE(base)        ((uintptr_t) base)
+#define _OFFSET(base, b)      ((uintptr_t)b - _MEMBASE(base))
+#define _BUDDYOF(base, b, i)  (_OFFSET(base, b) ^ (1 << (i)))
+#define BUDDY_OF(base, b, i)   ((pointer)( _BUDDYOF(base, b, i) + _MEMBASE(base)))
 
 /* used for untyped pointers */
 typedef void * pointer;

@@ -36,7 +36,7 @@ pointer binary_buddy_allocate(int size) {
 
     // split until i == order
     while (i-- > order) {
-        buddy = BUDDY_OF(block, i);
+        buddy = BUDDY_OF(mem_region_ptr, block, i);
         //printf("buddies never die: %ld\n", buddy);
         freelists[i] = buddy;
 
@@ -66,7 +66,7 @@ void binary_buddy_deallocate(pointer block, int size) {
     for (;; i++) {
         //printf("~~~~~~~~~~~~~~~~~~~[%d]\n", i);
         // calculate buddy
-        buddy = BUDDY_OF(block, i);
+        buddy = BUDDY_OF(mem_region_ptr, block, i);
         p = &(freelists[i]);
 
         //printf("[%s] buddy: %ld, freelist_entry: %ld\n", __func__, buddy, *p);
