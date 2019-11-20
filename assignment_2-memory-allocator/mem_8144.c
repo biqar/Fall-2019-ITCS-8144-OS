@@ -6,6 +6,7 @@ int test_kmem_size = 0;
 pthread_mutex_t test_mutex_lock;
 
 pointer binary_buddy_allocate(int size) {
+    printf("buddy called with size: %d\n", size);
     int i, order;
     pointer block, buddy;
 
@@ -94,7 +95,7 @@ void print_slab(int slab_order) {
 }
 
 struct slab_header *allocate_new_slab(int slab_order) {
-    pointer addr = binary_buddy_allocate(CACHE_LIST_SIZE);
+    pointer addr = binary_buddy_allocate(SLAB_SIZE);
 
     printf("\t\tslab order: %d, buddy gives: %ld\n", slab_order, addr);
 
