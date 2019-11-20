@@ -59,9 +59,11 @@ struct obj_header {
 
 struct slab_header {
     pointer mem_base;
+    int total_objects;
+    unsigned long long int bit_mask[65];    //todo: need to utilize this bit_mask to efficiently alloc free memory space
     struct obj_header *obj_head;
     //struct obj_header *obj_tail;
-    COLOR color;
+    //COLOR color;
     struct slab_header *next;
     struct slab_header *previous;
 };
@@ -74,6 +76,8 @@ struct mem_ptr {
 
 struct slab_header *cache_list[CACHE_LIST_SIZE];
 int pow_of_two[BUDDY_MAX_ORDER + 1];
+static long long int global_internal_fragmentation;
+static long long int global_external_fragmentation;
 
 /* initialization */
 void kmem_init();

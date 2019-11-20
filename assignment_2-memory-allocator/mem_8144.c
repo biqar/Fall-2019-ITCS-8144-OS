@@ -75,12 +75,14 @@ void binary_buddy_deallocate(pointer block, int size) {
 }
 
 void print_slab(int slab_order) {
-    struct slab_header * current_slab = cache_list[slab_order];
+    printf("into the world of happyness ...");
+    struct slab_header *current_slab = cache_list[slab_order];
     printf("slab[%d]", slab_order);
 
-    while(current_slab) {
-        struct obj_header * current_obj_chain = current_slab->obj_head;
-        while(current_obj_chain) {
+    while(current_slab != NULL) {
+        struct obj_header *current_obj_chain = current_slab->obj_head;
+        printf("===>{{%ld}}<==", current_obj_chain);
+        while(current_obj_chain != NULL) {
             printf(" <(%d), (%ld)>", current_obj_chain->is_free, current_obj_chain->block);
             current_obj_chain = current_obj_chain->next;
         }
@@ -94,6 +96,66 @@ void print_slab(int slab_order) {
 struct slab_header *allocate_new_slab(int slab_order) {
     pointer addr = binary_buddy_allocate(CACHE_LIST_SIZE);
 
+    printf("\t\tslab order: %d, buddy gives: %ld\n", slab_order, addr);
+
+    if(addr == NULL) {
+        perror("buddy allocation failed");
+        exit(EXIT_FAILURE);
+    }
+
+    int obj_size = pow_of_two[SLAB_MIN_ORDER + slab_order];
+    int obj_unit_size = sizeof(struct obj_header) + obj_size;
+    int num_of_objects = (SLAB_SIZE - sizeof(struct slab_header)) / obj_unit_size;
+
+    printf("-----------------obj size: %d, obj unit size: %d\n", obj_size, obj_unit_size);
+    //int num_of_objects = (SLAB_SIZE  / obj_size);
+
+    //todo: for now, we keep track of memory pointers in custom data-structure, later it should be updated and placed in the memory got from buddy
+    struct slab_header *new_slab_header = (struct slab_header *) addr;
+    new_slab_header->mem_base = addr;
+    new_slab_header->total_objects = num_of_objects;
+    new_slab_header->next = NULL;
+
+    //int local_internal_fragmentation = SLAB_SIZE - sizeof(struct slab_header) - obj_unit_size * num_of_objects;
+    int local_internal_fragmentation = SLAB_SIZE - sizeof(struct slab_header) - (obj_unit_size * num_of_objects);
+    printf("local internal fragmentation: %d, #of objects: %d\n", local_internal_fragmentation, num_of_objects);
+    global_internal_fragmentation += local_internal_fragmentation;
+
+    //new_slab_header->obj_head = (struct obj_header *) malloc(sizeof(struct obj_header));
+    addr = (pointer) ((char *) addr + sizeof(struct slab_header));
+    new_slab_header->obj_head = (struct obj_header *) addr;
+    struct obj_header *current_obj = new_slab_header->obj_head;
+    //current_obj->block = addr;
+    current_obj->block = (pointer) ((char *) addr + sizeof(struct obj_header));
+    current_obj->is_free = 1;
+    current_obj->next = NULL;
+
+    addr = (pointer) ((char *) addr + obj_unit_size);
+    int obj_count = 1;
+
+    //initialize slab object chain
+    for(int o=1; o<num_of_objects; o+=1) {
+        //current_obj = (pointer) ((char *) addr + sizeof(struct slab_header) + (o * obj_unit_size));
+        //struct obj_header *new_obj = (struct obj_header *) malloc(sizeof(struct obj_header));
+        struct obj_header *new_obj = (struct obj_header *) addr;
+        new_obj->block = (pointer) ((char *) addr + sizeof(struct obj_header));
+        new_obj->is_free = 1;
+        new_obj->next = NULL;
+
+        current_obj->next = new_obj;
+        current_obj = current_obj->next;
+        obj_count += 1;
+
+        addr = (pointer) ((char *) addr + obj_unit_size);
+    }
+    printf("total created object: %d\n", obj_count);
+    return new_slab_header;
+}
+
+//todo: this method is working fine, trying with another way ... if failed should remove "V1" from method name
+struct slab_header *allocate_new_slabV1(int slab_order) {
+    pointer addr = binary_buddy_allocate(CACHE_LIST_SIZE);
+
     if(addr == NULL) {
         perror("buddy allocation failed");
         exit(EXIT_FAILURE);
@@ -101,7 +163,7 @@ struct slab_header *allocate_new_slab(int slab_order) {
 
     //todo: for now, we keep track of memory pointers in custom data-structure, later it should be updated and placed in the memory got from buddy
     struct slab_header * new_slab_header = (struct slab_header *) malloc(sizeof(struct slab_header));
-    new_slab_header->color = EMPTY;
+    //new_slab_header->color = EMPTY;
 
     int obj_size = pow_of_two[SLAB_MIN_ORDER + slab_order];
     //int obj_unit_size = sizeof(struct obj_header) + obj_size;
@@ -137,11 +199,15 @@ pointer get_mempointer_from_slab(int size) {
     slab_order -= SLAB_MIN_ORDER;
 
     struct slab_header * current_slab = cache_list[slab_order];
-    while(current_slab) {
+    while(current_slab != NULL) {
         struct obj_header * current_obj_chain = current_slab->obj_head;
-        while(current_obj_chain) {
+        //for(int i=0; i< current_slab->total_objects; i+=1) {
+        while(current_obj_chain != NULL) {
+            printf("... looking for shotrues ...\n");
             if(current_obj_chain->is_free) {
-                printf("found free pointer\n");
+                printf("found free pointer <%ld, %ld> ... sizeofheader: %ld, gap: %ld\n",
+                        current_obj_chain, current_obj_chain->block,
+                        sizeof(struct obj_header), ((char *) current_obj_chain->block - (char *)current_obj_chain));
                 current_obj_chain->is_free = 0;
                 return current_obj_chain->block;
             }
@@ -152,7 +218,7 @@ pointer get_mempointer_from_slab(int size) {
     }
 
     //don't found free slot till now, need to assign new slab
-    printf("not found free pointer, trying to get new memory\n");
+    printf("not found free pointer, trying to get new memory with order: %d\n", slab_order);
     struct slab_header *new_slab = allocate_new_slab(slab_order);
     current_slab->next = new_slab;
     current_slab = current_slab->next;
@@ -177,6 +243,9 @@ void kmem_init() {
 
     /* initialize buddy freelist at the highest order */
     freelists[BUDDY_MAX_ORDER] = mem_region_ptr;
+
+    global_external_fragmentation = 0;
+    global_internal_fragmentation = 0;
 
     /* initialize slab caches */
     for(int i=0; i<CACHE_LIST_SIZE; i+=1) {
@@ -230,13 +299,11 @@ void purge_8144() {
 }
 
 int internal_frag() {
-    /* this is just sample code for debugging */
-    return test_kmem_size;
+    return global_internal_fragmentation;
 }
 
 int external_frag() {
-    /* this is just sample code for debugging */
-    return test_kmem_size;
+    return global_external_fragmentation;
 }
 
 void kmem_finit() {
