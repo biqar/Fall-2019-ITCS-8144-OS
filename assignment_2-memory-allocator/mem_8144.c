@@ -11,9 +11,7 @@ pointer binary_buddy_allocate(int size) {
 
     // calculate minimal order for this size
     i = 0;
-    while (pow_of_two[i] < size) {
-        i++;
-    }
+    while (pow_of_two[i] < size) i++;
 
     //todo: order should not be of 25, it should be of 10 ... need to remap this thing
     order = i;// = (i < MIN_ORDER) ? MIN_ORDER : i;
@@ -76,6 +74,23 @@ void binary_buddy_deallocate(pointer block, int size) {
     }
 }
 
+void print_slab(int slab_order) {
+    struct slab_header * current_slab = cache_list[slab_order];
+    printf("slab[%d]", slab_order);
+
+    while(current_slab) {
+        struct obj_header * current_obj_chain = current_slab->obj_head;
+        while(current_obj_chain) {
+            printf(" <(%d), (%ld)>", current_obj_chain->is_free, current_obj_chain->block);
+            current_obj_chain = current_obj_chain->next;
+        }
+        if(current_slab->next == NULL) break;
+        printf(" ///==>\\\\\\ ");
+        current_slab = current_slab->next;
+    }
+    printf("\n");
+}
+
 struct slab_header *allocate_new_slab(int slab_order) {
     pointer addr = binary_buddy_allocate(CACHE_LIST_SIZE);
 
@@ -95,19 +110,54 @@ struct slab_header *allocate_new_slab(int slab_order) {
 
     //int internal_fragmentation = SLAB_SIZE - sizeof(struct slab_header) - obj_unit_size * num_of_objects;
     int internal_fragmentation = SLAB_SIZE - (obj_size * num_of_objects);
-    printf("internal fragmentation: %d\n", internal_fragmentation);
+    printf("internal fragmentation: %d, #of objects: %d\n", internal_fragmentation, num_of_objects);
 
+    new_slab_header->obj_head = (struct obj_header *) malloc(sizeof(struct obj_header));
     struct obj_header *obj_list = new_slab_header->obj_head;
+    obj_list->block = addr;
+    obj_list->is_free = 1;
 
     //initialize slab object chain
-    for(int o=0; o<num_of_objects; o+=1) {
+    for(int o=1; o<num_of_objects; o+=1) {
         //obj_list = (pointer) ((char *) addr + sizeof(struct slab_header) + (o * obj_unit_size));
-        obj_list = (struct obj_header *) malloc(sizeof(struct obj_header));
-        obj_list->block = (pointer) ((char *) addr + (o * obj_size));
-        obj_list->is_free = 1;
+        struct obj_header *new_obj = (struct obj_header *) malloc(sizeof(struct obj_header));
+        new_obj->block = (pointer) ((char *) addr + (o * obj_size));
+        new_obj->is_free = 1;
+
+        obj_list->next = new_obj;
         obj_list = obj_list->next;
     }
     return new_slab_header;
+}
+
+pointer get_mempointer_from_slab(int size) {
+    printf("size %d requested to slab\n", size);
+    int slab_order = 0;
+    while(pow_of_two[slab_order] < size) slab_order += 1;
+    slab_order -= SLAB_MIN_ORDER;
+
+    struct slab_header * current_slab = cache_list[slab_order];
+    while(current_slab) {
+        struct obj_header * current_obj_chain = current_slab->obj_head;
+        while(current_obj_chain) {
+            if(current_obj_chain->is_free) {
+                printf("found free pointer\n");
+                current_obj_chain->is_free = 0;
+                return current_obj_chain->block;
+            }
+            current_obj_chain = current_obj_chain->next;
+        }
+        if(current_slab->next == NULL) break;
+        current_slab = current_slab->next;
+    }
+
+    //don't found free slot till now, need to assign new slab
+    printf("not found free pointer, trying to get new memory\n");
+    struct slab_header *new_slab = allocate_new_slab(slab_order);
+    current_slab->next = new_slab;
+    current_slab = current_slab->next;
+    current_slab->obj_head->is_free = 0;
+    return current_slab->obj_head->block;
 }
 
 void kmem_init() {
@@ -152,7 +202,9 @@ pointer kmalloc_8144(int size) {
     ptr->alloc_id = test_kmem_id;
 
     //try with buddy
-    pointer block = binary_buddy_allocate(size);
+    //pointer block = binary_buddy_allocate(size);
+    //try with slab
+    pointer block = get_mempointer_from_slab(size);
     ptr->block = block;
     pthread_mutex_unlock(&test_mutex_lock);
 
