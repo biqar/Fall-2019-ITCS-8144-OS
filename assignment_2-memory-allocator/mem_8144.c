@@ -286,8 +286,8 @@ void kfree_8144(pointer ptr) {
     /* this is just sample code for debugging */
     struct mem_ptr *p = (struct mem_ptr *) ptr;
     pthread_mutex_lock(&test_mutex_lock);
-    test_kmem_size -= p->alloc_size;
-    binary_buddy_deallocate(p->block, p->alloc_size);
+    struct obj_header *header = (struct obj_header *) ((char *) p->block - sizeof(struct obj_header));
+    header->is_free = 1;
     pthread_mutex_unlock(&test_mutex_lock);
     printf("[%ld]   kfree %d with size: %d\n", pthread_self(), p->alloc_id, p->alloc_size);
     return;

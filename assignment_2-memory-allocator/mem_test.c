@@ -87,6 +87,8 @@ int main() {
     for(int i=0; i<15; i+=1) allocated_mem_ptr[i] = kmalloc_8144(pow_of_two[14]);
     printf("insert done ... ekhon ki hobe france?\n");
     print_slab(9);
+    for(int i=0; i<15; i+=2) kfree_8144(allocated_mem_ptr[i]);
+    print_slab(9);
 
     /* free allocated memory */
     kmem_finit();
