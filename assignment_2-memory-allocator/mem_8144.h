@@ -7,6 +7,8 @@
 #include <errno.h>
 #include <stdint.h>
 #include <pthread.h>
+#include <stdbool.h>
+#include <string.h>
 
 /* Total size of the memory region */
 #define MEM_SIZE 32*1024*1024
@@ -37,7 +39,7 @@
 #define BUDDY_OF(base, b, i)   ((pointer)( _BUDDYOF(base, b, i) + _MEMBASE(base)))
 
 /* used for untyped pointers */
-typedef void * pointer;
+typedef void *pointer;
 
 /* pointers to the free space lists */
 pointer freelists[BUDDY_MAX_ORDER + 1];

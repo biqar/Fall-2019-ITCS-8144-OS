@@ -84,10 +84,13 @@ int main() {
     printf("result external fragementations: %d bytes\n", external_frag());*/
 
     pointer allocated_mem_ptr[NUM_ALLOC_OPS];
-    for(int i=0; i<15; i+=1) allocated_mem_ptr[i] = kmalloc_8144(pow_of_two[14]);
+    for (int i = 0; i < 15; i += 1) allocated_mem_ptr[i] = kmalloc_8144(pow_of_two[14]);
     printf("insert done ... ekhon ki hobe france?\n");
     print_slab(9);
-    for(int i=0; i<15; i+=2) kfree_8144(allocated_mem_ptr[i]);
+    for (int i = 7; i < 14; i += 1) kfree_8144(allocated_mem_ptr[i]);
+
+    print_slab(9);
+    purge_8144();
     print_slab(9);
 
     /* free allocated memory */

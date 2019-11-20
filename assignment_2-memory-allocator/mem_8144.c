@@ -76,19 +76,19 @@ void binary_buddy_deallocate(pointer block, int size) {
 }
 
 void print_slab(int slab_order) {
-    printf("into the world of happyness ...");
     struct slab_header *current_slab = cache_list[slab_order];
     printf("slab[%d]", slab_order);
 
-    while(current_slab != NULL) {
+    while (current_slab != NULL) {
         struct obj_header *current_obj_chain = current_slab->obj_head;
-        printf("===>{{%ld}}<==", current_obj_chain);
-        while(current_obj_chain != NULL) {
+        //printf("===>{{%ld}}<==", current_obj_chain);
+        while (current_obj_chain != NULL) {
             printf(" <(%d), (%ld)>", current_obj_chain->is_free, current_obj_chain->block);
             current_obj_chain = current_obj_chain->next;
         }
-        if(current_slab->next == NULL) break;
-        printf(" ///==>\\\\\\ ");
+        if (current_slab->next == NULL) break;
+        printf(" ==>");
+        printf("\n");
         current_slab = current_slab->next;
     }
     printf("\n");
@@ -99,7 +99,7 @@ struct slab_header *allocate_new_slab(int slab_order) {
 
     printf("\t\tslab order: %d, buddy gives: %ld\n", slab_order, addr);
 
-    if(addr == NULL) {
+    if (addr == NULL) {
         perror("buddy allocation failed");
         exit(EXIT_FAILURE);
     }
@@ -135,7 +135,7 @@ struct slab_header *allocate_new_slab(int slab_order) {
     int obj_count = 1;
 
     //initialize slab object chain
-    for(int o=1; o<num_of_objects; o+=1) {
+    for (int o = 1; o < num_of_objects; o += 1) {
         //current_obj = (pointer) ((char *) addr + sizeof(struct slab_header) + (o * obj_unit_size));
         //struct obj_header *new_obj = (struct obj_header *) malloc(sizeof(struct obj_header));
         struct obj_header *new_obj = (struct obj_header *) addr;
@@ -157,19 +157,19 @@ struct slab_header *allocate_new_slab(int slab_order) {
 struct slab_header *allocate_new_slabV1(int slab_order) {
     pointer addr = binary_buddy_allocate(CACHE_LIST_SIZE);
 
-    if(addr == NULL) {
+    if (addr == NULL) {
         perror("buddy allocation failed");
         exit(EXIT_FAILURE);
     }
 
     //todo: for now, we keep track of memory pointers in custom data-structure, later it should be updated and placed in the memory got from buddy
-    struct slab_header * new_slab_header = (struct slab_header *) malloc(sizeof(struct slab_header));
+    struct slab_header *new_slab_header = (struct slab_header *) malloc(sizeof(struct slab_header));
     //new_slab_header->color = EMPTY;
 
     int obj_size = pow_of_two[SLAB_MIN_ORDER + slab_order];
     //int obj_unit_size = sizeof(struct obj_header) + obj_size;
     //int num_of_objects = (SLAB_SIZE - sizeof(struct slab_header)) / obj_unit_size;
-    int num_of_objects = (SLAB_SIZE  / obj_size);
+    int num_of_objects = (SLAB_SIZE / obj_size);
 
     //int internal_fragmentation = SLAB_SIZE - sizeof(struct slab_header) - obj_unit_size * num_of_objects;
     int internal_fragmentation = SLAB_SIZE - (obj_size * num_of_objects);
@@ -181,7 +181,7 @@ struct slab_header *allocate_new_slabV1(int slab_order) {
     obj_list->is_free = 1;
 
     //initialize slab object chain
-    for(int o=1; o<num_of_objects; o+=1) {
+    for (int o = 1; o < num_of_objects; o += 1) {
         //obj_list = (pointer) ((char *) addr + sizeof(struct slab_header) + (o * obj_unit_size));
         struct obj_header *new_obj = (struct obj_header *) malloc(sizeof(struct obj_header));
         new_obj->block = (pointer) ((char *) addr + (o * obj_size));
@@ -196,25 +196,25 @@ struct slab_header *allocate_new_slabV1(int slab_order) {
 pointer get_mempointer_from_slab(int size) {
     printf("size %d requested to slab\n", size);
     int slab_order = 0;
-    while(pow_of_two[slab_order] < size) slab_order += 1;
+    while (pow_of_two[slab_order] < size) slab_order += 1;
     slab_order -= SLAB_MIN_ORDER;
 
-    struct slab_header * current_slab = cache_list[slab_order];
-    while(current_slab != NULL) {
-        struct obj_header * current_obj_chain = current_slab->obj_head;
+    struct slab_header *current_slab = cache_list[slab_order];
+    while (current_slab != NULL) {
+        struct obj_header *current_obj_chain = current_slab->obj_head;
         //for(int i=0; i< current_slab->total_objects; i+=1) {
-        while(current_obj_chain != NULL) {
+        while (current_obj_chain != NULL) {
             printf("... looking for shotrues ...\n");
-            if(current_obj_chain->is_free) {
+            if (current_obj_chain->is_free) {
                 printf("found free pointer <%ld, %ld> ... sizeofheader: %ld, gap: %ld\n",
-                        current_obj_chain, current_obj_chain->block,
-                        sizeof(struct obj_header), ((char *) current_obj_chain->block - (char *)current_obj_chain));
+                       current_obj_chain, current_obj_chain->block,
+                       sizeof(struct obj_header), ((char *) current_obj_chain->block - (char *) current_obj_chain));
                 current_obj_chain->is_free = 0;
                 return current_obj_chain->block;
             }
             current_obj_chain = current_obj_chain->next;
         }
-        if(current_slab->next == NULL) break;
+        if (current_slab->next == NULL) break;
         current_slab = current_slab->next;
     }
 
@@ -237,7 +237,7 @@ void kmem_init() {
 
     printf("initial address: %ld\n", mem_region_ptr);
 
-    for(int i=0; i<=BUDDY_MAX_ORDER; i+=1) pow_of_two[i] = (1 << i);
+    for (int i = 0; i <= BUDDY_MAX_ORDER; i += 1) pow_of_two[i] = (1 << i);
 
     /* initialize mutex lock */
     pthread_mutex_init(&test_mutex_lock, NULL);
@@ -249,7 +249,7 @@ void kmem_init() {
     global_internal_fragmentation = 0;
 
     /* initialize slab caches */
-    for(int i=0; i<CACHE_LIST_SIZE; i+=1) {
+    for (int i = 0; i < CACHE_LIST_SIZE; i += 1) {
         cache_list[i] = allocate_new_slab(i);
     }
 
@@ -257,7 +257,7 @@ void kmem_init() {
 }
 
 pointer kmalloc_8144(int size) {
-    if(!size) return NULL;
+    if (!size) return NULL;
 
     /* this is just sample code for debugging */
     int local_test_id = 0;
@@ -293,9 +293,38 @@ void kfree_8144(pointer ptr) {
     return;
 }
 
+bool is_empty_slab(struct slab_header *current_slab) {
+    struct obj_header *current_obj_chain = current_slab->obj_head;
+    //printf("===>{{%ld}}<==", current_obj_chain);
+    while (current_obj_chain != NULL) {
+        //printf("\t\t<(%d), (%ld)>\n", current_obj_chain->is_free, current_obj_chain->block);
+        if (!current_obj_chain->is_free) return false;
+        current_obj_chain = current_obj_chain->next;
+    }
+    return true;
+}
+
+void purge_slab(struct slab_header *header) {
+    while (header->next != NULL) {
+        if (is_empty_slab(header->next)) {
+            printf("empty slab found ... need to purge\n");
+            struct slab_header *purgeable_slab = header->next;
+            header->next = header->next->next;
+            //memset(purgeable_slab->mem_base, 0, SLAB_SIZE);
+            binary_buddy_deallocate(purgeable_slab->mem_base, SLAB_SIZE);
+        } else {
+            printf("empty slab pai nai ... porertay try kortechi\n");
+            header = header->next;
+        }
+    }
+}
+
 void purge_8144() {
-    /* this is just sample code for debugging */
-    printf("  purge memory, system used memory: %d\n", test_kmem_size);
+    /* purge slab caches */
+    for (int i = 0; i < CACHE_LIST_SIZE; i += 1) {
+        printf("trying to purge with %d'th slab\n", i);
+        purge_slab(cache_list[i]);
+    }
     return;
 }
 
@@ -308,7 +337,21 @@ int external_frag() {
 }
 
 void kmem_finit() {
-    /* this is just sample code for debugging */
+    global_external_fragmentation = 0;
+    global_internal_fragmentation = 0;
+
+    for (int i = 0; i < CACHE_LIST_SIZE; i += 1) {
+        //print_buddy();
+        struct slab_header *header = cache_list[i];
+        while (header != NULL) {
+            struct slab_header *purgeable_slab = header;
+            header = header->next;
+            binary_buddy_deallocate(purgeable_slab->mem_base, SLAB_SIZE);
+        }
+    }
+
+    //print_buddy();
+
     if (mem_region_ptr != NULL) {
         int r = munmap(mem_region_ptr, MEM_SIZE);
         if (r == -1) {
@@ -325,7 +368,7 @@ static int count_blocks(int i) {
 
     while (*p != NULL) {
         count++;
-        p = (pointer*) *p;
+        p = (pointer *) *p;
     }
     return count;
 }
@@ -346,7 +389,7 @@ static void print_list(int i) {
     printf("\t");
     while (*p != NULL) {
         printf("%ld ", *p);
-        p = (pointer*) *p;
+        p = (pointer *) *p;
     }
     printf("\n");
 }
