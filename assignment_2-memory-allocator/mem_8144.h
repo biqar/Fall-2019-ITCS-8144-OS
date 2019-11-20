@@ -99,4 +99,7 @@ void kmem_finit();
 /* print buddy list */
 void print_buddy();
 
+/* print a single slab */
+void print_slab(int slab_order);
+
 #endif

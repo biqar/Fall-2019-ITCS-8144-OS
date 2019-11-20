@@ -25,8 +25,6 @@ pointer mem_ops(pointer vargp) {
         size[i] = 1 << i;
     }
 
-    print_buddy();
-
     /* This section allocates and frees all the memory */
     for (int k = 1; k <= NUM_REPEAT; k++) {
         /* each time, we allocate set of memory and free them */
@@ -68,7 +66,8 @@ int main() {
     /* initilize memory allocator */
     kmem_init();
 
-    gettimeofday(&tic, NULL);
+    //todo: after manual testing, will uncomment the following block
+    /*gettimeofday(&tic, NULL);
     for (i = 0; i < NUM_THREADS; i++) {
         status = pthread_create(&threads[i], NULL, mem_ops, (pointer) &i);
     }
@@ -82,7 +81,11 @@ int main() {
 
     printf("ops finish in %ld us\n", time_taken);
     printf("result internal fragementations: %d bytes\n", internal_frag());
-    printf("result external fragementations: %d bytes\n", external_frag());
+    printf("result external fragementations: %d bytes\n", external_frag());*/
+
+    pointer allocated_mem_ptr[NUM_ALLOC_OPS];
+    for(int i=0; i<10; i+=1) allocated_mem_ptr[i] = kmalloc_8144(pow_of_two[14]);
+    print_slab(9);
 
     /* free allocated memory */
     kmem_finit();
