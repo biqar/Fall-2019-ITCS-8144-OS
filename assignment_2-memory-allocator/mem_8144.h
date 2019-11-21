@@ -62,7 +62,7 @@ struct obj_header {
 struct slab_header {
     pointer mem_base;
     int total_objects;
-    unsigned long long int bit_mask[65];    //todo: need to utilize this bit_mask to efficiently alloc free memory space
+    int bit_mask[130];    //todo: need to utilize this bit_mask to efficiently alloc free memory space
     struct obj_header *obj_head;
     //struct obj_header *obj_tail;
     //COLOR color;
