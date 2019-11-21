@@ -10,11 +10,17 @@
 #include <stdbool.h>
 #include <string.h>
 
-/* Total size of the memory region */
+/* total size of the memory region */
 #define MEM_SIZE 32*1024*1024
 
-/* maximal order of buddy algorithm */
-#define BUDDY_MAX_ORDER 25
+/* maximum order of memory region */
+#define MEM_MAX_ORDER 25
+
+/* padding for buddy algorithm to match with memory order */
+#define BUDDY_ORDER_PADDING 15
+
+/* maximum order of buddy algorithm */
+#define BUDDY_MAX_ORDER 10
 
 /* minimal object size of a slab area: 32 bytes */
 #define SLAB_MIN_ORDER 5
@@ -77,7 +83,7 @@ struct mem_ptr {
 };
 
 struct slab_header *cache_list[CACHE_LIST_SIZE];
-int pow_of_two[BUDDY_MAX_ORDER + 1];
+int pow_of_two[MEM_MAX_ORDER + 1];
 static long long int global_internal_fragmentation;
 static long long int global_external_fragmentation;
 

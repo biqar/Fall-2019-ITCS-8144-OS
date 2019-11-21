@@ -16,7 +16,7 @@ void update_external_fragmentation() {
             local_external_fragmentation = 0;
         }
         else {
-            local_external_fragmentation += pow_of_two[i];
+            local_external_fragmentation += pow_of_two[i + BUDDY_ORDER_PADDING];
         }
     }
 }
@@ -31,7 +31,7 @@ pointer binary_buddy_allocate(int size) {
     while (pow_of_two[i] < size) i++;
 
     //todo: order should not be of 25, it should be of 10 ... need to remap this thing
-    order = i;// = (i < MIN_ORDER) ? MIN_ORDER : i;
+    order = i = (i - BUDDY_ORDER_PADDING);
 
     //printf("size: %d, order: %d\n", size, order);
 
@@ -49,7 +49,7 @@ pointer binary_buddy_allocate(int size) {
 
     // split until i == order
     while (i-- > order) {
-        buddy = BUDDY_OF(mem_region_ptr, block, i);
+        buddy = BUDDY_OF(mem_region_ptr, block, i + BUDDY_ORDER_PADDING);
         freelists[i] = buddy;
     }
 
@@ -69,10 +69,11 @@ void binary_buddy_deallocate(pointer block, int size) {
     //i = *((uint8_t*) (block - 1));
     i = 0;
     while (pow_of_two[i] < size) i++;
+    i = (i - BUDDY_ORDER_PADDING);
 
     for (;; i++) {
         // calculate buddy
-        buddy = BUDDY_OF(mem_region_ptr, block, i);
+        buddy = BUDDY_OF(mem_region_ptr, block, i + BUDDY_ORDER_PADDING);
         p = &(freelists[i]);
 
         // find buddy in list
@@ -256,7 +257,7 @@ void kmem_init() {
 
     printf("initial address: %ld\n", mem_region_ptr);
 
-    for (int i = 0; i <= BUDDY_MAX_ORDER; i += 1) pow_of_two[i] = (1 << i);
+    for (int i = 0; i <= MEM_MAX_ORDER; i += 1) pow_of_two[i] = (1 << i);
 
     /* initialize mutex lock */
     pthread_mutex_init(&test_mutex_lock, NULL);
