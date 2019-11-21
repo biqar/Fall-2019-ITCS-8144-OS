@@ -7,9 +7,9 @@
 #include <math.h>
 
 //todo: update the following values according to the problem description
-#define NUM_THREADS 1
-#define NUM_ALLOC_OPS 6
-#define NUM_REPEAT 1
+#define NUM_THREADS 4
+#define NUM_ALLOC_OPS 128
+#define NUM_REPEAT 8
 
 long microsec(struct timeval t) {
     return ((t.tv_sec * 1000000 + t.tv_usec));
@@ -42,8 +42,6 @@ pointer mem_ops(pointer vargp) {
         }
     }
 
-    print_buddy();
-
     /* This section will do arbitrary memory allocation.
      * No free. kmem_finit() should free all the data structures*/
     for (int k = 1; k < NUM_REPEAT; k++) {
@@ -56,7 +54,7 @@ pointer mem_ops(pointer vargp) {
     return NULL;
 }
 
-int main() {
+void test_memory_allocator_concurrent() {
     struct timeval tic, toc;
     long time_taken = 0L;
 
@@ -66,8 +64,7 @@ int main() {
     /* initilize memory allocator */
     kmem_init();
 
-    //todo: after manual testing, will uncomment the following block
-    /*gettimeofday(&tic, NULL);
+    gettimeofday(&tic, NULL);
     for (i = 0; i < NUM_THREADS; i++) {
         status = pthread_create(&threads[i], NULL, mem_ops, (pointer) &i);
     }
@@ -80,8 +77,16 @@ int main() {
     time_taken = (microsec(toc) - microsec(tic));
 
     printf("ops finish in %ld us\n", time_taken);
-    printf("result internal fragementations: %d bytes\n", internal_frag());
-    printf("result external fragementations: %d bytes\n", external_frag());*/
+    printf("result internal fragementations: %lld bytes\n", internal_frag());
+    printf("result external fragementations: %lld bytes\n", external_frag());
+
+    /* free allocated memory */
+    kmem_finit();
+}
+
+void test_memory_allocator_single_thread() {
+    /* initilize memory allocator */
+    kmem_init();
 
     pointer allocated_mem_ptr[NUM_ALLOC_OPS];
     for (int i = 0; i < 15; i += 1) allocated_mem_ptr[i] = kmalloc_8144(pow_of_two[14]);
@@ -94,11 +99,16 @@ int main() {
     print_slab(9);
     print_buddy();
 
-    printf("internal fragmentation: %ld Bytes\n", internal_frag());
-    printf("external fragmentation: %ld Bytes\n", external_frag());
+    printf("result internal fragementations: %lld bytes\n", internal_frag());
+    printf("result external fragementations: %lld bytes\n", external_frag());
 
     /* free allocated memory */
     kmem_finit();
+}
 
-    exit(0);
+int main() {
+    test_memory_allocator_single_thread();
+    //test_memory_allocator_concurrent();
+
+    return 0;
 }

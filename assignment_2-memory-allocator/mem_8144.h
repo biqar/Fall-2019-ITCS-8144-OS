@@ -34,11 +34,7 @@
 /* all slabs have the same size 128 * 1024 (128K) */
 #define SLAB_SIZE 128*1024
 
-/* blocks in freelists[i] are of size 2**i. */
-#define BLOCK_SIZE(i) (1 << (i))
-
-/* the address of the buddy of a block from freelists[i]. */
-//#define BUDDY_OF(b, i) ((pointer)( ((long long int)b) ^ (1 << (i)) ))
+/* the address of the buddy of a block from buddy_lists[i]. */
 #define _MEMBASE(base)        ((uintptr_t) base)
 #define _OFFSET(base, b)      ((uintptr_t)b - _MEMBASE(base))
 #define _BUDDYOF(base, b, i)  (_OFFSET(base, b) ^ (1 << (i)))
@@ -48,11 +44,18 @@
 typedef void *pointer;
 
 /* pointers to the free space lists */
-pointer freelists[BUDDY_MAX_ORDER + 1];
+pointer buddy_lists[BUDDY_MAX_ORDER + 1];
 
 /* the start of managed memory */
 static pointer mem_region_ptr = NULL;
 
+struct slab_header *cache_list[CACHE_LIST_SIZE];
+int pow_of_two[MEM_MAX_ORDER + 1];
+static long long int global_internal_fragmentation;
+static long long int global_external_fragmentation;
+pthread_mutex_t global_mutex_lock;
+
+/* not in use */
 typedef enum slab_color {
     EMPTY,
     PARTIAL,
@@ -68,10 +71,7 @@ struct obj_header {
 struct slab_header {
     pointer mem_base;
     int total_objects;
-    int bit_mask[130];    //todo: need to utilize this bit_mask to efficiently alloc free memory space
     struct obj_header *obj_head;
-    //struct obj_header *obj_tail;
-    //COLOR color;
     struct slab_header *next;
     struct slab_header *previous;
 };
@@ -81,11 +81,6 @@ struct mem_ptr {
     int alloc_id;
     pointer block;
 };
-
-struct slab_header *cache_list[CACHE_LIST_SIZE];
-int pow_of_two[MEM_MAX_ORDER + 1];
-static long long int global_internal_fragmentation;
-static long long int global_external_fragmentation;
 
 /* initialization */
 void kmem_init();
@@ -100,10 +95,10 @@ void kfree_8144(pointer ptr);
 void purge_8144();
 
 /* report the size of internal fragmentations in bytes */
-int internal_frag();
+long long int internal_frag();
 
 /* report the size of external fragmentations (holes) in bytes */
-int external_frag();
+long long int external_frag();
 
 /* destructor */
 void kmem_finit();
