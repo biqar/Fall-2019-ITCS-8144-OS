@@ -49,25 +49,40 @@ pointer buddy_lists[BUDDY_MAX_ORDER + 1];
 /* the start of managed memory */
 static pointer mem_region_ptr = NULL;
 
+/* list of slab caches, each index contain different size objects
+ * index [0] contains 2^5 size object
+ * index [1] contains 2^6 size object
+ * index [2] contains 2^7 size object
+ * index [9] contains 2^14 size object*/
 struct slab_header *cache_list[CACHE_LIST_SIZE];
+
+/* index i contains value of 2^i */
 int pow_of_two[MEM_MAX_ORDER + 1];
+
+/* stores internal fragmentation value */
 static long long int global_internal_fragmentation;
+
+/* stores external fragmentation value */
 static long long int global_external_fragmentation;
+
+/* shared resource access lock to support concurrency */
 pthread_mutex_t global_mutex_lock;
 
-/* not in use */
+/* intended for coloring slabs, not in use right now */
 typedef enum slab_color {
     EMPTY,
     PARTIAL,
     FULL
 } COLOR;
 
+/* store information about memory pointer */
 struct obj_header {
     pointer block;
     unsigned is_free;
     struct obj_header *next;
 };
 
+/* store information regarding slab */
 struct slab_header {
     pointer mem_base;
     int total_objects;
@@ -76,6 +91,7 @@ struct slab_header {
     struct slab_header *previous;
 };
 
+/* used to track memory allocation and de-allocation */
 struct mem_ptr {
     int alloc_size;
     int alloc_id;
