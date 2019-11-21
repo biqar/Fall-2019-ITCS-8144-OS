@@ -97,7 +97,7 @@ void print_slab(int slab_order) {
 struct slab_header *allocate_new_slab(int slab_order) {
     pointer addr = binary_buddy_allocate(SLAB_SIZE);
 
-    printf("\t\tslab order: %d, buddy gives: %ld\n", slab_order, addr);
+    //printf("\t\tslab order: %d, buddy gives: %ld\n", slab_order, addr);
 
     if (addr == NULL) {
         perror("buddy allocation failed");
@@ -108,7 +108,7 @@ struct slab_header *allocate_new_slab(int slab_order) {
     int obj_unit_size = sizeof(struct obj_header) + obj_size;
     int num_of_objects = (SLAB_SIZE - sizeof(struct slab_header)) / obj_unit_size;
 
-    printf("-----------------obj size: %d, obj unit size: %d\n", obj_size, obj_unit_size);
+    //printf("-----------------obj size: %d, obj unit size: %d\n", obj_size, obj_unit_size);
     //int num_of_objects = (SLAB_SIZE  / obj_size);
 
     //todo: for now, we keep track of memory pointers in custom data-structure, later it should be updated and placed in the memory got from buddy
@@ -204,11 +204,11 @@ pointer get_mempointer_from_slab(int size) {
         struct obj_header *current_obj_chain = current_slab->obj_head;
         //for(int i=0; i< current_slab->total_objects; i+=1) {
         while (current_obj_chain != NULL) {
-            printf("... looking for shotrues ...\n");
+            //printf("... looking for shotrues ...\n");
             if (current_obj_chain->is_free) {
-                printf("found free pointer <%ld, %ld> ... sizeofheader: %ld, gap: %ld\n",
-                       current_obj_chain, current_obj_chain->block,
-                       sizeof(struct obj_header), ((char *) current_obj_chain->block - (char *) current_obj_chain));
+                //printf("found free pointer <%ld, %ld> ... sizeofheader: %ld, gap: %ld\n",
+                //       current_obj_chain, current_obj_chain->block,
+                //       sizeof(struct obj_header), ((char *) current_obj_chain->block - (char *) current_obj_chain));
                 current_obj_chain->is_free = 0;
                 return current_obj_chain->block;
             }
@@ -305,6 +305,7 @@ bool is_empty_slab(struct slab_header *current_slab) {
 }
 
 void purge_slab(struct slab_header *header) {
+    pthread_mutex_lock(&test_mutex_lock);
     while (header->next != NULL) {
         if (is_empty_slab(header->next)) {
             printf("empty slab found ... need to purge\n");
@@ -317,6 +318,7 @@ void purge_slab(struct slab_header *header) {
             header = header->next;
         }
     }
+    pthread_mutex_unlock(&test_mutex_lock);
 }
 
 void purge_8144() {
@@ -359,7 +361,8 @@ void kmem_finit() {
             exit(EXIT_FAILURE);
         }
     }
-    return;
+
+    pthread_mutex_destroy(&test_mutex_lock);
 }
 
 static int count_blocks(int i) {
