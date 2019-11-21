@@ -92,6 +92,10 @@ int main() {
     print_slab(9);
     purge_8144();
     print_slab(9);
+    print_buddy();
+
+    printf("internal fragmentation: %ld Bytes\n", internal_frag());
+    printf("external fragmentation: %ld Bytes\n", external_frag());
 
     /* free allocated memory */
     kmem_finit();

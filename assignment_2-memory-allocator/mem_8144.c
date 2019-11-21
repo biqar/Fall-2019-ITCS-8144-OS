@@ -5,6 +5,22 @@ int test_kmem_id = 0;
 int test_kmem_size = 0;
 pthread_mutex_t test_mutex_lock;
 
+void update_external_fragmentation() {
+    //printf("here I come\n");
+    long long int local_external_fragmentation = 0;
+    global_external_fragmentation = 0;
+    for(int i=BUDDY_MAX_ORDER-1; i>=0; i-=1) {
+        //printf("->%d\n", i);
+        if(freelists[i] != NULL) {
+            global_external_fragmentation += local_external_fragmentation;
+            local_external_fragmentation = 0;
+        }
+        else {
+            local_external_fragmentation += pow_of_two[i];
+        }
+    }
+}
+
 pointer binary_buddy_allocate(int size) {
     printf("buddy called with size: %d\n", size);
     int i, order;
@@ -37,6 +53,8 @@ pointer binary_buddy_allocate(int size) {
         freelists[i] = buddy;
     }
 
+    update_external_fragmentation();
+
     // store order in previous byte
     //*((uint8_t*) (block - 1)) = order;
     return block;
@@ -66,6 +84,7 @@ void binary_buddy_deallocate(pointer block, int size) {
         if (*p != buddy) {
             *(pointer *) block = freelists[i];
             freelists[i] = block;
+            update_external_fragmentation();
             return;
         }
         // found, merged block starts from the lower one
