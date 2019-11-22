@@ -35,8 +35,8 @@
 #define SLAB_SIZE (128*1024)
 
 /* the address of the buddy of a block from buddy_lists[i]. */
-#define _MEMBASE(base)        ((uintptr_t) base)
-#define _OFFSET(base, b)      ((uintptr_t)b - _MEMBASE(base))
+#define _MEMBASE(base)        ((uintptr_t) (base))
+#define _OFFSET(base, b)      ((uintptr_t)(b) - _MEMBASE(base))
 #define _BUDDYOF(base, b, i)  (_OFFSET(base, b) ^ (1 << (i)))
 #define BUDDY_OF(base, b, i)   ((pointer)( _BUDDYOF(base, b, i) + _MEMBASE(base)))
 
@@ -44,7 +44,6 @@
 typedef void *pointer;
 
 /* pointers to the free space lists */
-//pointer buddy_lists[BUDDY_MAX_ORDER + 1];
 struct buddy_list *buddy_lists[BUDDY_MAX_ORDER + 1];
 
 /* the start of managed memory */

@@ -1,15 +1,12 @@
-#include <stdio.h>
-#include <pthread.h>
-#include <stdlib.h>
 #include <unistd.h>
 #include <sys/time.h>
-#include <math.h>
+#include <time.h>
 
 #include "mem_8144.h"
 
-#define NUM_THREADS 8
-#define NUM_ALLOC_OPS 256
-#define NUM_REPEAT 8
+#define NUM_THREADS 4
+#define NUM_ALLOC_OPS 128
+#define NUM_REPEAT 11
 
 long microsec(struct timeval t) {
     return ((t.tv_sec * 1000000 + t.tv_usec));
@@ -19,10 +16,10 @@ pointer mem_ops(pointer vargp) {
     int thread_id = *(int *) vargp;
     pointer allocated_mem_ptr[NUM_ALLOC_OPS];
     int size[SLAB_MAX_ORDER + 1];
-    srand(time(NULL));
+    srand((uint32_t) time(NULL));
 
     for (int i = 0; i <= SLAB_MAX_ORDER; i++) {
-        size[i] = 1 << i;
+        size[i] = (1 << i);
     }
 
     /* This section allocates and frees all the memory */
@@ -82,7 +79,7 @@ void test_memory_allocator_concurrent() {
     printf("result external fragementations: %lld bytes\n", external_frag());
 
     /* free allocated memory */
-    //kmem_finit();
+    kmem_finit();
 }
 
 /* test correctness of the slab memory allocator implementation

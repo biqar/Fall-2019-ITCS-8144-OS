@@ -28,7 +28,7 @@ pointer binary_buddy_allocate(int size) {
     order = i = (i - BUDDY_ORDER_PADDING);
 
     // level up until non-null list found
-    while(true) {
+    while (true) {
         if (i > BUDDY_MAX_ORDER) return NULL;
         if (buddy_lists[i] != NULL) break;
         i += 1;
@@ -64,7 +64,7 @@ void binary_buddy_deallocate(pointer block, int size) {
     i = (i - BUDDY_ORDER_PADDING);
 
     while (true) {
-        if(i > BUDDY_MAX_ORDER) {
+        if (i > BUDDY_MAX_ORDER) {
             return;
         }
         // calculate buddy
@@ -72,7 +72,7 @@ void binary_buddy_deallocate(pointer block, int size) {
         struct buddy_list *current_buddy_list = buddy_lists[i];
         // find buddy in list
         while (current_buddy_list != NULL) {
-            if(current_buddy_list->buddy_ptr == buddy) break;
+            if (current_buddy_list->buddy_ptr == buddy) break;
             current_buddy_list = current_buddy_list->next;
         }
 
@@ -91,13 +91,13 @@ void binary_buddy_deallocate(pointer block, int size) {
 
         // remove buddy out of list
         //todo: if this works ... will keep the previous link to do it in optimized way
-        if(buddy_lists[i]->buddy_ptr == buddy) {
+        if (buddy_lists[i]->buddy_ptr == buddy) {
             struct buddy_list *tmp_buddy_entry = buddy_lists[i];
             buddy_lists[i] = buddy_lists[i]->next;
             free(tmp_buddy_entry);
         } else {
             current_buddy_list = buddy_lists[i];
-            while(current_buddy_list->next->buddy_ptr != buddy) {
+            while (current_buddy_list->next->buddy_ptr != buddy) {
                 current_buddy_list = current_buddy_list->next;
             }
             struct buddy_list *tmp_buddy_entry = current_buddy_list->next;
@@ -220,7 +220,7 @@ pointer get_mempointer_from_slab(int size) {
     slab_order -= SLAB_MIN_ORDER;
 
     struct slab_header *current_slab = cache_list[slab_order];
-    while (current_slab != NULL) {
+    while (true) {
         struct obj_header *current_obj_chain = current_slab->obj_head;
         while (current_obj_chain != NULL) {
             if (current_obj_chain->is_free) {
@@ -235,7 +235,7 @@ pointer get_mempointer_from_slab(int size) {
 
     //don't found free slot till now, need to assign new slab
     struct slab_header *new_slab = allocate_new_slab(slab_order);
-    if(new_slab == NULL) {
+    if (new_slab == NULL) {
         return NULL;
     }
     current_slab->next = new_slab;
@@ -259,7 +259,7 @@ void kmem_init() {
     pthread_mutex_init(&global_mutex_lock, NULL);
 
     /* initialize buddy freelist at the highest order */
-    for(int i=0; i<BUDDY_MAX_ORDER; i+=1) buddy_lists[i] = NULL;
+    for (int i = 0; i < BUDDY_MAX_ORDER; i += 1) buddy_lists[i] = NULL;
     //place mem_region_ptr at the highest order in buddy_list
     struct buddy_list *buddy_list_entry = (struct buddy_list *) malloc(sizeof(struct buddy_list));
     buddy_list_entry->buddy_ptr = mem_region_ptr;
@@ -294,7 +294,7 @@ pointer kmalloc_8144(int size) {
     pointer block = get_mempointer_from_slab(size);
     ptr->block = block;
 
-    printf("[%ld] kmalloc with size: %d\n", pthread_self(), size);
+    //printf("[%ld] kmalloc with size: %d\n", pthread_self(), size);
 
     pthread_mutex_unlock(&global_mutex_lock);
     return (pointer) ptr;
@@ -305,10 +305,10 @@ void kfree_8144(pointer ptr) {
     //printf("[%s]: %ld\n", __func__, pthread_self());
 
     struct mem_ptr *p = (struct mem_ptr *) ptr;
-    if(p->block != NULL) {
+    if (p->block != NULL) {
         struct obj_header *header = (struct obj_header *) ((char *) p->block - sizeof(struct obj_header));
         header->is_free = 1;
-        printf("[%ld]   kfree %d with size: %d\n", pthread_self(), p->alloc_id, p->alloc_size);
+        //printf("[%ld]   kfree %d with size: %d\n", pthread_self(), p->alloc_id, p->alloc_size);
     }
 
     pthread_mutex_unlock(&global_mutex_lock);
@@ -362,7 +362,7 @@ void purge_slab(struct slab_header *header) {
 /* purge slab caches */
 void purge_8144() {
     pthread_mutex_lock(&global_mutex_lock);
-    printf("[%s]: %ld\n", __func__, pthread_self());
+    //printf("[%s]: %ld\n", __func__, pthread_self());
 
     for (int i = 0; i < CACHE_LIST_SIZE; i += 1) {
         purge_slab(cache_list[i]);
