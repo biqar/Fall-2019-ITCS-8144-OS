@@ -55,3 +55,6 @@ dkms.conf
 
 # build directory
 **/build/*
+
+#cmake diretory
+**/cmake-build-debug/*
