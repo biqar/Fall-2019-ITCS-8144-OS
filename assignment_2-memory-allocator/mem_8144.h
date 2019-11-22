@@ -11,7 +11,7 @@
 #include <string.h>
 
 /* total size of the memory region */
-#define MEM_SIZE 32*1024*1024
+#define MEM_SIZE (32*1024*1024)
 
 /* maximum order of memory region */
 #define MEM_MAX_ORDER 25
@@ -32,7 +32,7 @@
 #define CACHE_LIST_SIZE 10
 
 /* all slabs have the same size 128 * 1024 (128K) */
-#define SLAB_SIZE 128*1024
+#define SLAB_SIZE (128*1024)
 
 /* the address of the buddy of a block from buddy_lists[i]. */
 #define _MEMBASE(base)        ((uintptr_t) base)
@@ -44,7 +44,8 @@
 typedef void *pointer;
 
 /* pointers to the free space lists */
-pointer buddy_lists[BUDDY_MAX_ORDER + 1];
+//pointer buddy_lists[BUDDY_MAX_ORDER + 1];
+struct buddy_list *buddy_lists[BUDDY_MAX_ORDER + 1];
 
 /* the start of managed memory */
 static pointer mem_region_ptr = NULL;
@@ -86,6 +87,7 @@ struct obj_header {
 struct slab_header {
     pointer mem_base;
     int total_objects;
+    int local_internal_fragmentation;
     struct obj_header *obj_head;
     struct slab_header *next;
     struct slab_header *previous;
@@ -98,22 +100,31 @@ struct mem_ptr {
     pointer block;
 };
 
+struct buddy_list {
+    pointer buddy_ptr;
+    struct buddy_list *next;
+};
+
 /* initialization */
 void kmem_init();
 
-/* malloc a continuous memory spacce */
+/* malloc a continuous memory space */
 pointer kmalloc_8144(int size);
 
 /* free the allocated memory space */
 void kfree_8144(pointer ptr);
 
-/* purge the free slabs */
+/* purge the free slabs
+ * will keep a single slab for each size, though it is free */
 void purge_8144();
 
-/* report the size of internal fragmentations in bytes */
+/* purge all the free slabs */
+void purge_8144_v1();
+
+/* report the size of internal fragmentation in bytes */
 long long int internal_frag();
 
-/* report the size of external fragmentations (holes) in bytes */
+/* report the size of external fragmentation (holes) in bytes */
 long long int external_frag();
 
 /* destructor */
