@@ -182,9 +182,22 @@ Figure 1: An example of the whole memory system in use
 ### Buddy and Slab Data Structures
 Let's discuss on the data structures used to maintain buddy and slab information. As I have mentioned earlier, memory will always assigned from slab caches and if the specific slab cache don't have any space left, it will call buddy to get memory for it. After getting memory from buddy, slab will initialize it's cache and return the object pointer to the requesting thread. If the slab cache is full and buddy don't have any memory left, a null pointer is returned as a response.
 
-todo: Figure 2.1: Single slab cache	Figure
-todo: 2.2: Chain of slab caches
-Todo: Figure 2: Slab Architecture
+<table>
+  <tr>
+    <td>
+       <img align="left" src="https://github.com/biqar/Fall-2019-ITCS-8144-OS/blob/master/assignment_2-memory-allocator/report/slab_unit.png" alt="assignment_2_image_slab_unit" title="Figure 2.1: Single slab cache Figure"/>
+    </td>
+    <td><img align="left" src="https://github.com/biqar/Fall-2019-ITCS-8144-OS/blob/master/assignment_2-memory-allocator/report/slab_chain.png" alt="assignment_2_image_slab_chain" title="Figure 2.2: Chain of slab caches"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="middle">Figure 2.1: Single slab cache Figure</td>
+    <td align="middle">Figure 2.2: Chain of slab caches</td>
+  </tr>
+  <tr>
+    <td colspan="2" align="middle">Figure 2: Slab Architecture</td>
+  </tr>
+</table>
 
 Now, let's do some basic mathematics that can be helpful to understand the memory allocator in depth. The memory region from where the memory pointer will be allocated has a size of 4 MB or 2^25 Bytes. This whole region will be manipulated by buddy system. On the other hand, memory allocation requests will be handled by the slab system. For different size of objects, slab caches are been initialized at the beginning of the program. We have considered objects with size ranging from  2^5 Bytes to 2^14 Bytes. While initializing a slab cache, we request buddy with fixed size (i.e. 128KB in this case) to assign the memory. When buddy allocate a pointer for that size, we initialize the whole slab cache for further object allocation. As I have mentioned earlier, each slab header and object header is implemented as in-memory basis. So while initializing slab caches with different object sizes, here is the list of possible objects allocation and internal fragmentations (in Byte),
 ```
