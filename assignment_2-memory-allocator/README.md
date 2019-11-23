@@ -126,6 +126,11 @@ The submitted package should include:
     2. your results (better with plots)
     3. explain why you get the results
 
+### Limitations & Future Improvements
+* For keeping buddy information I have used external memory, which can be used from the initially occupied remory region (like slab).
+* Slab architecture contains a single chain of objects. We can use different chain (i.e. EMPTY, PARTIAL, FULL, etc.) to make the purge faster.
+* For marking object pointers (i.e. IS_FREE) we can use bitset to get better memory usage. Bitset will also help to gain better performance in finding empty slots in the slab cache chain.
+
 ### References
 
 * Memory Allocators 101 - Write a simple memory allocator: https://arjunsreedharan.org/post/148675821737/memory-allocators-101-write-a-simple-memory
