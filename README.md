@@ -2,7 +2,7 @@
 This repository will contains the projects and assignments of course ITCS 6144/8144: Operating System Design. This course has been taken in Fall 2019 semester, as part of my PhD degree at UNC Charlotte.
 
 ## Assignment 1: Pthread Lock
----
+
 * ITCS 6144/8144 Assignment - Pthread Lock
     * Metadata
     * Assignment Description
@@ -137,7 +137,7 @@ int main(int argc, char *argv[])
 * MCS Lock: Implement your own.
 
 ## Assignment 2: Memory Allocator
----
+
 * ITCS 6144/8144 Assignment - Memory Allocator
     * Metadata
     * Assignment Description
@@ -265,7 +265,7 @@ The submitted package should include:
     3. explain why you get the results
 
 ## Course Project: Understand Linux OS via Modern Tool (Systemtap)
----
+
 In building/designing/using an operating system, it is important to know its internal logic and the performance characteristics. 
 
 In this project, you will create, justify, and apply a set of experiments (via a dynamic tracing tool, named Systemtap) to a production operating system (Linux) to characterize and understand its internal behaviors and performance characteristics. In addition, you may explore the relations between some of these quantities. In doing so, you will study how to profile/debug/optimize complex system in runtime, which could be an ultimate capability for you even in the future.
