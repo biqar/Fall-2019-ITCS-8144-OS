@@ -132,8 +132,21 @@ The submitted package should include:
 
 ### Run Command
 ```
--- make the project, executable files will be stored in "build" directory
-$ make
+-- go to project directory
+$ cd path-to-directory/assignment_2-memory-allocator/
 
-TBA
+-- create build directory
+$ mkdir build
+
+-- go to build directory
+$ cd build
+
+-- create make file from CMakeLists, make file will be generated in the same "build" directory
+$ cmake ..
+
+-- make the project, executable files will be generated in the same "build" directory
+$ make clean && make
+
+-- run the program
+$ ./mem_test
 ```
