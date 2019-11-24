@@ -152,10 +152,52 @@ void test_memory_allocator_single_thread_2() {
     kmem_finit();
 }
 
+void benchmark_test(int size, int num_of_objects) {
+    pointer allocated_mem_ptr[num_of_objects + 1];
+    struct timeval tic, toc;
+    long time_taken = 0L;
+
+    kmem_init();
+    gettimeofday(&tic, NULL);
+    for (int i = 0; i < num_of_objects; i += 1) {
+        allocated_mem_ptr[i] = kmalloc_8144(size);
+    }
+    gettimeofday(&toc, NULL);
+    time_taken = (microsec(toc) - microsec(tic));
+    printf("memory allocator ops finish in %ld us\n", time_taken);
+
+    /* free allocated memory */
+    kmem_finit();
+
+    gettimeofday(&tic, NULL);
+    for (int i = 0; i < num_of_objects; i += 1) {
+        allocated_mem_ptr[i] = malloc(size);
+    }
+    gettimeofday(&toc, NULL);
+    time_taken = (microsec(toc) - microsec(tic));
+    printf("malloc ops finish in %ld us\n", time_taken);
+
+    for (int i = 0; i < num_of_objects; i += 1) {
+        free(allocated_mem_ptr[i]);
+    }
+}
+
 int main() {
     //test_memory_allocator_single_thread_1();
     //test_memory_allocator_single_thread_2();
     test_memory_allocator_concurrent();
+
+    /* lowest object size, highest number of objects
+     * memory allocator took long time to execute
+     * possible bug alert!!!
+     * */
+    //benchmark_test((1<<5), (2339*247));
+
+    /* highest object size, lowest number of objects
+     *  - memory allocator ops finish in 33235 us
+     *  - malloc ops finish in 3781 us
+     * */
+    //benchmark_test((1<<14), (7*247));
 
     return 0;
 }
