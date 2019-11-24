@@ -38,6 +38,7 @@ pointer binary_buddy_allocate(int size) {
     buddy_list_entry = buddy_lists[i];
     block = buddy_list_entry->buddy_ptr;
     buddy_lists[i] = buddy_lists[i]->next;
+    if (buddy_lists[i] != NULL) buddy_lists[i]->previous = NULL;
     free(buddy_list_entry);
 
     // split until i == order
@@ -47,6 +48,8 @@ pointer binary_buddy_allocate(int size) {
         struct buddy_list *new_buddy_list_entry = (struct buddy_list *) malloc(sizeof(struct buddy_list));
         new_buddy_list_entry->buddy_ptr = buddy;
         new_buddy_list_entry->next = buddy_lists[i];
+        new_buddy_list_entry->previous = NULL;
+        if (buddy_lists[i] != NULL) buddy_lists[i]->previous = new_buddy_list_entry;
         buddy_lists[i] = new_buddy_list_entry;
     }
 
@@ -81,6 +84,8 @@ void binary_buddy_deallocate(pointer block, int size) {
             struct buddy_list *new_buddy_list_entry = (struct buddy_list *) malloc(sizeof(struct buddy_list));
             new_buddy_list_entry->buddy_ptr = block;
             new_buddy_list_entry->next = buddy_lists[i];
+            new_buddy_list_entry->previous = NULL;
+            if (buddy_lists[i] != NULL) buddy_lists[i]->previous = new_buddy_list_entry;
             buddy_lists[i] = new_buddy_list_entry;
 
             return;
@@ -90,18 +95,18 @@ void binary_buddy_deallocate(pointer block, int size) {
         block = (block < buddy) ? block : buddy;
 
         // remove buddy out of list
-        //todo: if this works ... will keep the previous link to do it in optimized way
         if (buddy_lists[i]->buddy_ptr == buddy) {
             struct buddy_list *tmp_buddy_entry = buddy_lists[i];
             buddy_lists[i] = buddy_lists[i]->next;
+            if (buddy_lists[i] != NULL) buddy_lists[i]->previous = NULL;
             free(tmp_buddy_entry);
         } else {
-            current_buddy_list = buddy_lists[i];
-            while (current_buddy_list->next->buddy_ptr != buddy) {
-                current_buddy_list = current_buddy_list->next;
-            }
+            current_buddy_list = current_buddy_list->previous;
             struct buddy_list *tmp_buddy_entry = current_buddy_list->next;
             current_buddy_list->next = current_buddy_list->next->next;
+            if (current_buddy_list->next != NULL) {
+                current_buddy_list->next->previous = current_buddy_list;
+            }
             free(tmp_buddy_entry);
         }
 
@@ -264,6 +269,7 @@ void kmem_init() {
     struct buddy_list *buddy_list_entry = (struct buddy_list *) malloc(sizeof(struct buddy_list));
     buddy_list_entry->buddy_ptr = mem_region_ptr;
     buddy_list_entry->next = NULL;
+    buddy_list_entry->previous = NULL;
     buddy_lists[BUDDY_MAX_ORDER] = buddy_list_entry;
 
     global_external_fragmentation = 0;

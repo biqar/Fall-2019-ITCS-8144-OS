@@ -102,6 +102,7 @@ struct mem_ptr {
 struct buddy_list {
     pointer buddy_ptr;
     struct buddy_list *next;
+    struct buddy_list *previous;
 };
 
 /* initialization */
