@@ -140,8 +140,8 @@ I have prepared two test scenarios to check the correctness of my buddy and slab
 
 * Memory Allocators 101 - Write a simple memory allocator: https://arjunsreedharan.org/post/148675821737/memory-allocators-101-write-a-simple-memory
 * The SLAB Memory Allocator: http://3zanders.co.uk/2018/02/24/the-slab-allocator/
-* Dynamic Storage Allocation: homepage.cs.uiowa.edu/~jones/opsys/notes/27.shtml
-* Memory management Buddy allocator, Slab allocator: students.mimuw.edu.pl/ZSO/Wyklady/05_pamiec/5_pamiec_en.html
+* Dynamic Storage Allocation: http://homepage.cs.uiowa.edu/~jones/opsys/notes/27.shtml
+* Memory management Buddy allocator, Slab allocator: http://students.mimuw.edu.pl/ZSO/Wyklady/05_pamiec/5_pamiec_en.html
 
 ### Compile & Run Instruction
 ```
