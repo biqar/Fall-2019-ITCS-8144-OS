@@ -66,20 +66,10 @@ function fault_flags_str:string(flags: long) {
 }
 
 function vm_fault_str(fault_type: long) {
-    if(vm_fault_contains(fault_type, VM_FAULT_OOM))
-        return "OOM";
-    else if(vm_fault_contains(fault_type, VM_FAULT_SIGBUS))
-        return "SIGBUS";
-    else if(vm_fault_contains(fault_type, VM_FAULT_MINOR))
-        return "MINOR";
-    else if(vm_fault_contains(fault_type, VM_FAULT_MAJOR))
-        return "MAJOR";
-    else if(vm_fault_contains(fault_type, VM_FAULT_NOPAGE))
-        return "NOPAGE";
-    else if(vm_fault_contains(fault_type, VM_FAULT_LOCKED))
-        return "LOCKED";
-    else if(vm_fault_contains(fault_type, VM_FAULT_ERROR))
-        return "ERROR";
+    if(vm_fault_contains(fault_type, VM_FAULT_OOM)) return "OOM";
+    else if(vm_fault_contains(fault_type, VM_FAULT_SIGBUS)) return "SIGBUS";
+    else if(vm_fault_contains(fault_type, VM_FAULT_MINOR)) return "MINOR";
+    else if(vm_fault_contains(fault_type, VM_FAULT_MAJOR)) return "MAJOR";
 
     return "???";
 }
@@ -91,8 +81,7 @@ probe vm.pagefault {
     printf("\t%s\n", vma_flags_str($vma->vm_flags));
     printf("\tamp: %p\n", $vma->anon_vma)
 
-    if($vma->vm_file != 0)
-        printf("\tfile: %s\n", d_name($vma->vm_file->f_path->dentry))*/
+    if($vma->vm_file != 0) printf("\tfile: %s\n", d_name($vma->vm_file->f_path->dentry))*/
 }
 
 probe vm.pagefault.return {
