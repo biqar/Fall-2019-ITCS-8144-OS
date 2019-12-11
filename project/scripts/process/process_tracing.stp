@@ -23,7 +23,8 @@ probe scheduler.process_fork {
 probe scheduler.wakeup_new {
     if([pid()] in process_start) {
         current_time = gettimeofday_us()
-        printf("\tprocess_id [%d] took %ld microseconds to be dispatched onto CPU first time\n", pid(), current_time-process_start[pid()]);
+        printf("\tprocess %s(%d) took %ld microseconds to be dispatched onto CPU first time\n", execname(), pid(), current_time-process_start[pid()]);
+        delete process_start[pid()]
     }
 }
 
