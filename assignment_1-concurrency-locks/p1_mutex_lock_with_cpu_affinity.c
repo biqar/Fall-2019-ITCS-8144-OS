@@ -24,6 +24,18 @@ struct thread_data {
 
 void *thread_safe_increment(void *arg) {
     struct thread_data *this_thread_data = (struct thread_data *) arg;
+
+    // Add cpu affinity here:
+    // Create a cpu_set_t object representing a set of CPUs. Clear it and mark only CPU "this_thread_data->tid" as set
+    cpu_set_t cpuset;
+    CPU_ZERO(&cpuset);
+    CPU_SET(this_thread_data->tid, &cpuset);
+    int rc = pthread_setaffinity_np(pthread_self(), sizeof(cpu_set_t), &cpuset);
+    if (rc != 0) {
+        printf("Error calling pthread_setaffinity_np: %d\n", rc);
+        exit(0);
+    }
+
     //printf("Job#%d has started\n", this_thread_data->tid);
 
     for(int i=0; i<THREAD_LOOP; i+=1) {
@@ -75,6 +87,7 @@ int main(int argc, char** argv) {
             struct thread_data *trd_data = (struct thread_data *) malloc(sizeof(struct thread_data));
             trd_data->tid = i;
             trd_data->itr = iterators[t];
+
             pthread_create(&threads[i], NULL, thread_safe_increment, (void *)trd_data);
         }
 
