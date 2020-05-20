@@ -304,3 +304,8 @@ This project is done as part of the completion of course “ITCS 6144/8144: Oper
     [9] Red Hat Enterprise SystemTap Language Reference: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/5/pdf/systemtap_language_reference/Red_Hat_Enterprise_Linux-5-SystemTap_Language_Reference-en-US.pdf
     [10] Lightweight Provenance Service for High-Performance Computing: https://webpages.uncc.edu/ddai/papers/dong-pact-lps-2017.pdf
     [11] sourceware's systemtap example scripts: https://sourceware.org/systemtap/examples/keyword-index.html
+    [12] Systemtap usage stories and interesting demos: http://sourceware.org/systemtap/wiki/WarStories
+    [13] Colin King's Systemtap musings: smackerelofopinion.blogspot.com/search/label/systemtap
+    [14] Sourceware Systemtap page: http://sourceware.org/systemtap/
+    [15] Sourceware Systemtap wiki-page: http://sourceware.org/systemtap/wiki
+    [16] A guide on how to install Systemtap on an Ubuntu system: http://sourceware.org/systemtap/wiki/SystemtapOnUbuntu
